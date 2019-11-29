@@ -4,6 +4,7 @@
 call plug#begin()
 
 " ================= looks and GUI stuff ================== "
+
 Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'vim-airline/vim-airline-themes'                   " airline themes
 Plug 'ryanoasis/vim-devicons'                           " powerline like icons for NERDTree
@@ -19,7 +20,6 @@ Plug 'desmap/ale-sensible' | Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'css', 'less', 'scss', 'json',  'markdown',  'yaml', 'html'] }
-Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 
 " markdown
 Plug 'jkramer/vim-checkbox', { 'for': 'markdown' }      " markdown checboxes
@@ -30,6 +30,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                                " fuzzy search integration
 
 " snippets
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'                               " actual snippets
 
 " visual
@@ -57,8 +58,10 @@ Plug 'psliwka/vim-smoothie'                             " some very smooth ass s
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
+Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 
 call plug#end()
+
 
 " ==================== general config ======================== "
 
@@ -106,14 +109,26 @@ highlight NonText guibg=none
 hi Search guibg=orange
 autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
-" performance tweaks
+" coc multi cursor highlight color
+hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
+
+" performance tweaks
 set nocursorline
 set nocursorcolumn
 set scrolljump=5
 set lazyredraw
 set synmaxcol=180
 set re=1
+
+" required by coc
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 " ======================== Plugin Configurations ======================== "
 
@@ -152,12 +167,36 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+" list of the extensions required
+let g:coc_global_extensions = [
+            \'coc-yank',
+            \'coc-highlight',
+            \'coc-prettier',
+            \'coc-pairs',
+            \'coc-json',
+            \'coc-css',
+            \'coc-html',
+            \'coc-tsserver',
+            \'coc-yaml',
+            \'coc-lists',
+            \'coc-snippets',
+            \'coc-ultisnips',
+            \'coc-python',
+            \'coc-xml',
+            \'coc-word',
+            \'coc-syntax',
+            \'coc-emoji',
+            \'coc-git',
+            \]
 
 " ALE
 let g:ale_fixers = {
@@ -337,9 +376,10 @@ noremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" select text via ctrl+shift+arrows in insert mode
-inoremap <C-S-left> <esc>vb
-inoremap <C-S-right> <esc>ve
+" multi cursor shortcuts
+nmap <silent> <C-c> <Plug>(coc-cursors-position)
+nmap <silent> <C-a> <Plug>(coc-cursors-word)
+xmap <silent> <C-a> <Plug>(coc-cursors-range)
 
 " new line in normal mode and back
 map <Enter> o<ESC>
