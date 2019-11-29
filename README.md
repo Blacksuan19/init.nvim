@@ -1,5 +1,15 @@
 # An opinionated Neovim config for the Minimalists
 
+## Why?
+
+Modern vim distributions are really huge and bloated with way too many fancy features
+that you won't ever use or need, for example directory trees like Nerd tree, you
+don't need a tree, you can view a project structure with fzf which is faster and has search.
+Another example is [ThinkVim](https://github.com/hardcoreplayers/ThinkVim) has a
+separate extension for formatting while also having ALE which can do that as
+well, this double functionality is very common, thats one of the things this
+distro avoids, KISS!
+
 ## Features
 
 - Single file (you don't want your dotfiles to be all vim script)
@@ -47,6 +57,7 @@ to check if your current environment is correctly set up run `:CheckHealth`.
 - [prettier](https://prettier.io/)
 - clang (much better C and C++)
 - [fuzzy finder (fzf)](https://github.com/junegunn/fzf)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [the silver searcher (Ag)](https://github.com/ggreer/the_silver_searcher)
 - [Terminal markdown viewer](https://github.com/axiros/terminal_markdown_viewer)
 
