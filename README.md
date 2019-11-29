@@ -69,6 +69,45 @@ to check if your current environment is correctly set up run `:CheckHealth`.
 
 ## Plugins
 
+| Plugin                                                                  | Functionality                              |
+| ----------------------------------------------------------------------- | ------------------------------------------ |
+| [vim-airline](https://github.com/vim-airline/vim-airline)               | airline status line                        |
+| [airline-themes](https://github.com/vim-airline/vim-airline-themes)     | airline themes                             |
+| [devicons](https://github.com/ryanoasis/vim-devicons)                   | icons everywhere                           |
+| [rainbow](https://github.com/luochen1990/rainbow)                       | rainbow parenthesis                        |
+| [vim-material](https://github.com/hzchirs/vim-material)                 | material themes                            |
+| [goyo](https://github.com/junegunn/goyo.vim)                            | focus mode                                 |
+| [coc.nvim](https://github.com/neoclide/coc.nvim)                        | async completion and more                  |
+| [ale-sensible](https://github.com/desmap/ale-sensible)                  | better ALE experience                      |
+| [ale](https://github.com/w0rp/ale)                                      | diagnostics, linting and more              |
+| [prettier](https://github.com/prettier/vim-prettier)                    | formatter for many languages               |
+| [vim-checbox](https://github.com/jkramer/vim-checkbox)                  | check boxes rendering in markdown          |
+| [bullets](https://github.com/dkarter/bullets.vim)                       | better lists in markdown                   |
+| [fzf](https://github.com/junegunn/fzf)                                  | fuzzy finder                               |
+| [fzf.vim](https://github.com/junegunn/fzf.vim)                          | fuzzy finder vim integration               |
+| [ultisnips](https://github.com/SirVer/ultisnips)                        | snippets engine                            |
+| [vim-snippets](https://github.com/honza/vim-snippets)                   | snippets for many languages                |
+| [auto-pairs](https://github.com/jiangmiao/auto-pairs)                   | auto brackets closing                      |
+| [vim-closetag](https://github.com/alvan/vim-closetag)                   | auto html tag closing                      |
+| [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indtent lines                         |
+| [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string              |
+| [vim-polyglot](https://github.com/sheerun/vim-polyglot)                 | add syntax support for many languages      |
+| [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
+| [vim-mipssyntax](https://github.com/harenome/vim-mipssyntax)            | mips assembly syntax support               |
+| [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                 |
+| [vim-sensible](https://github.com/tpope/vim-sensible)                   | sensible defaults for vim                  |
+| [suda](https://github.com/lambdalisue/suda.vim)                         | add sudo support                           |
+| [vim-auto-save](https://github.com/907th/vim-auto-save)                 | auto save on insert mode exit              |
+| [vim-startify](https://github.com/mhinz/vim-startify)                   | cool startup thingy                        |
+| [vim-carbon-no-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)                   | best git integration around                |
+| [vim-surround](https://github.com/tpope/vim-surround)                   | surround stuff with stuff                  |
+| [vim-smoothie](https://github.com/psliwka/vim-smoothie)                 | super smooth scrolling                     |
+| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was   |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
+| [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
+| [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
+
 ## Keyboard shortcuts
 
 ## Credits
