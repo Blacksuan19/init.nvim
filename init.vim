@@ -56,6 +56,7 @@ Plug 'tpope/vim-surround'                               " surround stuff with st
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
+Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 
 call plug#end()
 
@@ -215,9 +216,9 @@ autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " Markdown
-" autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType markdown set spell
-" autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType markdown set spell
+autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
 
 " config files
 au BufReadPost,BufNewFile */polybar/* set filetype=dosini
