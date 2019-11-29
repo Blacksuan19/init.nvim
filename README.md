@@ -52,6 +52,7 @@ to check if your current environment is correctly set up run `:CheckHealth`.
 
 ### Tools
 
+- [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode) (not required but Recommended)
 - [tmux](https://github.com/tmux/tmux) (not required but recommended)
 - [jedi](https://github.com/davidhalter/jedi-vim)
 - [prettier](https://prettier.io/)
