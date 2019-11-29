@@ -1,15 +1,15 @@
-# An opinionated Neovim config for the minimalists
+# An opinionated Neovim config for the Minimalists
 
 ## Features
 
-- Single file (you don't want your dotfiles to be all vim)
+- Single file (you don't want your dotfiles to be all vim script)
 - Super minimal (~400 lines)
 - Super fast startup (less than 40ms!)
 - Lazy loading plugins
 - Highly customizable
 - Beautiful Material ocean color scheme
 - VSCode like autocompletion, multi cursor
-- Smooth Scrolling
+- Smooth Scrolling (its really smooth!)
 - Asynchronous Lint Engine
 - Simple, Intuitive shortcuts
 
@@ -17,12 +17,11 @@
 
 - Linux (not tested on other platforms)
 - Neovim (you can try regular vim)
-- properly set up environment
+- Properly set up environment
 
 ## Setup
 
-You need a properly set neovim environment, to check if your current environment
-is correctly setup run `:CheckHealth`.
+to check if your current environment is correctly set up run `:CheckHealth`.
 
 ### Enviroment
 
@@ -44,8 +43,8 @@ is correctly setup run `:CheckHealth`.
 
 ## Installation
 
-- clone this repo
-- run the installtion script `./install.sh`
+- `git clone https://github.com/Blacksuan19/init.nvim ~/.config/nvim`
+- Start `nvim` and it will do the rest
 
 ## Plugins
 
