@@ -14,7 +14,7 @@ call plug#begin()
 
 Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'vim-airline/vim-airline-themes'                   " airline themes
-Plug 'ryanoasis/vim-devicons'                           " powerline like icons for NERDTree
+Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'luochen1990/rainbow'                              " rainbow paranthesis
 Plug 'hzchirs/vim-material'                             " material color themes
 Plug 'junegunn/goyo.vim'                                " zen mode
@@ -41,7 +41,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'                               " actual snippets
 
 " visual
-Plug 'scrooloose/nerdtree'                              " open folder tree
 Plug 'jiangmiao/auto-pairs'                             " auto insert other paranthesis pairs
 Plug 'alvan/vim-closetag'                               " auto close html tags
 Plug 'Yggdroot/indentLine'                              " show indentation lines
@@ -139,21 +138,6 @@ set signcolumn=yes
 
 " ======================== Plugin Configurations ======================== "
 
-" NerdTree
-let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=0
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-let NERDTreeQuitOnOpen = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeIgnore = [
-            \ '\.vim$',
-            \ '\~$',
-            \ '.git',
-            \ '_site',
-            \]
-
 " Airline
 let g:airline_powerline_fonts = 0
 let g:airline#themes#clean#palette = 1
@@ -212,6 +196,9 @@ let g:ale_fixers = {
 \   'c' : ['clang-format'],
 \   'cpp' : ['clang-format'],
 \   'mips' : ['gcc'],
+\   'css' : ['prettier'],
+\   'html' : ['prettier'],
+\   'markdown' : ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 
@@ -285,11 +272,10 @@ autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
 
 " ================== Custom Functions ===================== "
 
-" start nerd tree and startify if there is no args()
+" start startify if there are no args()
 function! StartUp()
     if 0 == argc()
         Startify
-        NERDTree
     end
 endfunction
 
@@ -328,21 +314,12 @@ endfunction
 
 nnoremap <F5> :call Rotate()<CR>
 
-function! Notes()
-    tabnew
-    NERDTree /media/Dark-Files/Random/Notes
-endfunction
-
-nnoremap <F10> :call Notes()<CR>
-
 " ======================== Custom Mappings ====================== "
 
 " the essentials
 let mapleader=","
 nnoremap ; :
 nmap \ <leader>q
-map <F3> :NERDTreeToggle <CR>
-map <F4> :Tagbar <CR>
 map <F6> :Startify <CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>

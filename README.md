@@ -13,6 +13,15 @@
 - Asynchronous Lint Engine
 - Simple, Intuitive shortcuts
 
+### Supported Languages
+
+Neovim provies support for a wide range of languages by default, with the adition
+of [polyglot](https://github.com/sheerun/vim-polyglot) even more languages are supported.  
+There is also support for:
+
+- [liquid](https://shopify.github.io/liquid/)
+- mips assembly
+
 ## Requirements
 
 - Linux (not tested on other platforms)
