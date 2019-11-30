@@ -77,6 +77,7 @@ Plug 'farmergreg/vim-lastplace'                         " open files at the last
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
+
 call plug#end()
 
 
@@ -107,10 +108,6 @@ au BufEnter * set fo-=c fo-=r fo-=o                     " stop annying auto comm
 set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 
-" Transparent Background (For i3 and compton)
-highlight Normal guibg=NONE ctermbg=NONE
-highlight LineNr guibg=NONE ctermbg=NONE
-
 " Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/bin/python3')
 
@@ -119,16 +116,20 @@ let g:material_style='oceanic'
 set background=dark
 colorscheme vim-material
 let g:airline_theme='material'
-highlight Pmenu guibg=white guifg=black gui=bold
-highlight Comment gui=bold
+highlight Pmenu guibg='00010a' guifg=white              " popup menu colors
+highlight Comment gui=bold                              " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
-hi Search guibg=orange
-autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
+highlight clear SignColumn                              " use number color for sign colum color
+hi Search guibg=orange                                  " search string highlight color
+autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
+
+" colors for git(especially the gutter)
+hi DiffAdd guibg='#0f111a'
+hi DiffChange guibg='#0f111a'
 
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
-
 
 " performance tweaks
 set nocursorline
