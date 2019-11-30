@@ -169,18 +169,18 @@ there are some defaults that are not everyone's cup of tea (after all this is
 highly opinionated).
 
 - _Disabling autosave:_ set `let g:auto_save = 0`
-- _Disabling fix on save:_ set `let g:ale_fix_on_save = 0`
+- _Disabling format on save:_ set `let g:ale_fix_on_save = 0`
 - _removing words from completion:_ `CocList extensions` highlight extension then press Tab to show
   actions
 
-Most of the incldued plugins are highly customizable in nature (this is vim),
+Most of the included plugins are highly customizable in nature (this is vim),
 checkout [Plugins](#plugins)
 
 ## Demos
 
-[![asciicast](https://asciinema.org/a/284389.svg)](https://asciinema.org/a/284389)
-[![asciicast](https://asciinema.org/a/284386.svg)](https://asciinema.org/a/284386)
-[![asciicast](https://asciinema.org/a/284385.svg)](https://asciinema.org/a/284385)
+[![asciicast](https://asciinema.org/a/284399.svg)](https://asciinema.org/a/284399)
+[![asciicast](https://asciinema.org/a/284400.svg)](https://asciinema.org/a/284400)
+[![asciicast](https://asciinema.org/a/284401.svg)](https://asciinema.org/a/284401)
 
 ## Credits
 
