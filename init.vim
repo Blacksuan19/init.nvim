@@ -1,14 +1,26 @@
 
 " ============= Vim-Plug ============== "
 
-" install vim plug if not installed
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+
+let g:vim_bootstrap_langs = "c,erlang,go"
+let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+
+if !filereadable(vimplug_exists)
+  if !executable("curl")
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin()
+" Required:
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 " ================= looks and GUI stuff ================== "
 
@@ -65,7 +77,6 @@ Plug 'farmergreg/vim-lastplace'                         " open files at the last
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
-
 call plug#end()
 
 
