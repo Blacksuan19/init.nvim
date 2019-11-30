@@ -159,6 +159,12 @@ expose a hidden functionality within a plugin.
 | `F6`    | Startify                                                                   | Default          |
 | `F8`    | opens selection in carbon now sh (only in visual mode)                     | None             |
 
+## Demos
+
+[![asciicast](https://asciinema.org/a/284389.svg)](https://asciinema.org/a/284389)
+[![asciicast](https://asciinema.org/a/284386.svg)](https://asciinema.org/a/284386)
+[![asciicast](https://asciinema.org/a/284385.svg)](https://asciinema.org/a/284385)
+
 ## Credits
 
 All the Credit goes to the Neovim team for making most of the extensions
