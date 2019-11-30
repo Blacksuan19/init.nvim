@@ -160,3 +160,8 @@ expose a hidden functionality within a plugin.
 | `F8`    | opens selection in carbon now sh (only in visual mode)                     | None             |
 
 ## Credits
+
+All the Credit goes to the Neovim team for making most of the extensions
+possible and better (async), and to all the plugins developers, and the hacker
+who spend time Finding good shortcuts and tricks to make this an even more
+superb experience.
