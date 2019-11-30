@@ -1,3 +1,15 @@
 {
-    "suggest.noselect": false
+    "coc.preferences.colorSupport": true,
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.timeout": 2000,
+    "suggest.detailField": "abbr",
+    "suggest.snippetIndicator": "-",
+    "diagnostic.displayByAle": true,
+    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.signOffset": 999999,
+    "python.autoComplete.addBrackets": true,
+    "python.jediEnabled": true,
+    "highlight.colors.enable": true,
+    "highlight.document.enable": true,
+    "suggest.noselect": false,
 }
