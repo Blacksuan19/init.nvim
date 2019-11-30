@@ -327,10 +327,6 @@ nmap <leader>q :bd<CR>
 nmap <leader>w :w<CR>
 nmap <leader>f :Files<CR>
 nmap <leader>g :Goyo<CR>
-nmap <leader>h :RainbowParentheses!!<CR>
-nmap <leader>k :ColorToggle<CR>
-nnoremap <leader>W <nop>
-nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
@@ -342,9 +338,9 @@ nnoremap d "_d
 vnoremap d "_d
 
 " emulate windows copy, cut behavior
-noremap <LeftRelease> "+y<LeftRelease>
-noremap <C-c> "+y<CR>
-noremap <C-x> "+d<CR>
+vnoremap <LeftRelease> "+y<LeftRelease>
+vnoremap <C-c> "+y<CR>
+vnoremap <C-x> "+d<CR>
 
 " switch between splits using ctrl + {h,j,k,l}
 tnoremap <C-h> <C-\><C-N><C-w>h
