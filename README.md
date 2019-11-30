@@ -69,6 +69,11 @@ to check if your current environment is correctly set up run `:CheckHealth`.
 
 ## Plugins
 
+Thanks to vim-plug the plugins are lazy loaded (anything that is not needed for
+the current buffer is not loaded) for example opening a python file means all
+other non python related plugins are not loaded.  
+Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
+
 | Plugin                                                                  | Functionality                              |
 | ----------------------------------------------------------------------- | ------------------------------------------ |
 | [vim-airline](https://github.com/vim-airline/vim-airline)               | airline status line                        |
@@ -109,5 +114,49 @@ to check if your current environment is correctly set up run `:CheckHealth`.
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
 
 ## Keyboard shortcuts
+
+To learn the default vim shortcuts run `Tutor` and or checkout this [site](https://vim-adventures.com/).  
+Not a lot of changes have been done here, the plugins shortcuts are almost
+identical, check each plugin under the [plugins](#plugins) section for its key
+mappings, the changes i have made either make a function easier to access and or
+expose a hidden functionality within a plugin.
+
+#### Legend
+
+`,` == leader key  
+`S` == Shift key  
+`C` == ctrl key
+
+| Mapping | functionality                                                              | Replaced Mapping |
+| ------- | -------------------------------------------------------------------------- | ---------------- |
+| `;`     | commands key                                                               | :                |
+| `,r`    | reload nvim config                                                         | None             |
+| `,t`    | Trim white spaces(enabled by default with ALE)                             | None             |
+| `,q`    | close tab                                                                  | :q               |
+| `,w`    | save changes(tho save when existing insert mode is enabled by default)     | :q               |
+| `,f`    | fzf files viewer (shows project files with the ability to search)          | None             |
+| `,g`    | Goyo (zen mode)                                                            | Default          |
+| `,m`    | opens markdown preview (only in markdown files)                            | None             |
+| `,e`    | call :PlugInstall (install plugins)                                        | None             |
+| `,/`    | search in project folder (calls Ag)                                        | None             |
+| `jj`    | Escape                                                                     | Esc              |
+| `d`     | use a different register for deletion (so the deleted text wont be copied) | "\_d             |
+| `C-q`   | close all buffers and exit nvim                                            | None             |
+| `C-c`   | copy text to system clipboard (only in visual mode)                        | +y               |
+| `C-x`   | cut text to system clipboard (only in visual mode)                         | +d               |
+| `C-l`   | move to the split on the right                                             | Default          |
+| `C-k`   | move the split above                                                       | Default          |
+| `C-j`   | move to the split on below                                                 | Default          |
+| `C-h`   | Move the split to the left                                                 | Default          |
+| `C-c`   | highlights character for multi cursor selection (in normal mode)           | None             |
+| `C-a`   | Highlights word/selection for multi cursor selection                       | None             |
+| `ENTER` | insert blank line below in normal mode                                     | None             |
+| `ENTER` | inputs selected snippet in insert mode                                     | None             |
+| `Tab`   | cycles throw coc in insert mode                                            | None             |
+| `Tab`   | switch to the next buffer(tab)                                             | Default          |
+| `S-Tab` | switch to the previous buffer(tab)                                         | Default          |
+| `F5`    | Rotates splits in current view                                             | None             |
+| `F6`    | Startify                                                                   | Default          |
+| `F8`    | opens selection in carbon now sh (only in visual mode)                     | None             |
 
 ## Credits
