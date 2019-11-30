@@ -123,6 +123,7 @@ highlight NonText guibg=none
 highlight clear SignColumn                              " use number color for sign colum color
 hi Search guibg=orange                                  " search string highlight color
 autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
+hi NonText guifg=bg                                     " mask ~ on empty lines
 
 " colors for git(especially the gutter)
 hi DiffAdd guibg='#0f111a'
