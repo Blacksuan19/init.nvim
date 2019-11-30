@@ -159,6 +159,22 @@ expose a hidden functionality within a plugin.
 | `F6`    | Startify                                                                   | Default          |
 | `F8`    | opens selection in carbon now sh (only in visual mode)                     | None             |
 
+## Customizations
+
+Since the file is pretty small its very easy to interpret by even those who
+don't have any knowledge about vim script, most of the sections have comments
+about their functionality, and can be removed, commented out or swapped easily,
+there are some defaults that are not everyone's cup of tea (after all this is
+highly opinionated).
+
+- _Disabling autosave:_ set `let g:auto_save = 0`
+- _Disabling fix on save:_ set `let g:ale_fix_on_save = 0`
+- _removing words from completion:_ `CocList extensions` highlight extension then press Tab to show
+  actions
+
+Most of the incldued plugins are highly customizable in nature (this is vim),
+checkout [Plugins](#plugins)
+
 ## Demos
 
 [![asciicast](https://asciinema.org/a/284389.svg)](https://asciinema.org/a/284389)
