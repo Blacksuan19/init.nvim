@@ -77,6 +77,7 @@ Plug 'farmergreg/vim-lastplace'                         " open files at the last
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
+Plug 'majutsushi/tagbar'                                " a bar of tags
 
 call plug#end()
 
@@ -177,11 +178,16 @@ let g:airline#extensions#ale#enabled = 1                " ALE integration
 " use tab for completion trigger
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Navigate snippet placeholders using tab
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
+
+" Use enter to accept snippet expansion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -262,6 +268,8 @@ let g:auto_save_silent = 1
 " rainbow brackets
 let g:rainbow_active = 1
 
+" tagbar
+let g:tagbar_autofocus = 1
 
 " ======================== Filetype-Specific Configurations ============================= "
 
@@ -344,6 +352,7 @@ let mapleader=","
 nnoremap ; :
 nmap \ <leader>q
 map <F6> :Startify <CR>
+map <F4> :TagbarToggle<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
 nmap <leader>q :bd<CR>

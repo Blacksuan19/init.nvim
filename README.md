@@ -113,6 +113,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
 | [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
+| [Tagbar](https://github.com/majutsushi/tagbar)                          | list of tags                               |
 
 ## Keyboard shortcuts
 
