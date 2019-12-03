@@ -126,6 +126,8 @@ highlight clear SignColumn                              " use number color for s
 hi Search guibg=orange                                  " search string highlight color
 autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 hi NonText guifg=bg                                     " mask ~ on empty lines
+hi clear CursorLineNr                                   " use the theme color for relative number
+hi CursorLineNr gui=bold                                " make relative number bold
 
 " colors for git(especially the gutter)
 hi DiffAdd guibg='#0f111a'
