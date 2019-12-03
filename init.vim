@@ -213,7 +213,6 @@ let g:coc_global_extensions = [
             \'coc-ultisnips',
             \'coc-python',
             \'coc-xml',
-            \'coc-word',
             \'coc-syntax',
             \'coc-emoji',
             \'coc-git',
