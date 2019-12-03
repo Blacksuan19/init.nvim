@@ -98,6 +98,7 @@ set fillchars+=vert:\▏                                  " requires a patched n
 set wrap breakindent                                    " wrap long lines to the width sset by tw
 set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
+set relativenumber                                      " current line is 0
 set title                                               " tab title as file file
 set conceallevel=2                                      " set this so we womt break indentation plugin
 set splitright                                          " open vertical split to the right
