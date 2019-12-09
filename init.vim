@@ -61,7 +61,6 @@ Plug 'google/vim-searchindex'                           " add number of found ma
 " languages
 Plug 'sheerun/vim-polyglot'                             " many languages support
 Plug 'tpope/vim-liquid'                                 " liquid language support
-Plug 'harenome/vim-mipssyntax'                          " Mips Assembly support
 
 " other
 Plug 'tpope/vim-commentary'                             " better commenting
@@ -226,7 +225,6 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'c' : ['clang-format'],
 \   'cpp' : ['clang-format'],
-\   'mips' : ['gcc'],
 \   'css' : ['prettier'],
 \   'html' : ['prettier'],
 \   'markdown' : ['prettier'],
@@ -295,9 +293,6 @@ autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | St
 
 " auto html tags closing, enable for markdown files as well
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
-
-" mips assembly files
-autocmd BufReadPost,BufNewFile *.S set filetype=mips
 
 " disable autosave on kernel directory and also formatting on save (we dont wanna fuck this up)
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0

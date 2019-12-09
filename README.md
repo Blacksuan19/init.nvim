@@ -30,7 +30,6 @@ of [polyglot](https://github.com/sheerun/vim-polyglot) even more languages are s
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
-- mips assembly
 
 ## Requirements
 
@@ -99,7 +98,6 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string              |
 | [vim-polyglot](https://github.com/sheerun/vim-polyglot)                 | add syntax support for many languages      |
 | [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
-| [vim-mipssyntax](https://github.com/harenome/vim-mipssyntax)            | mips assembly syntax support               |
 | [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                 |
 | [vim-sensible](https://github.com/tpope/vim-sensible)                   | sensible defaults for vim                  |
 | [suda](https://github.com/lambdalisue/suda.vim)                         | add sudo support                           |
