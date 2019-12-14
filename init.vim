@@ -47,7 +47,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'                               " actual snippets
 
 " visual
-Plug 'jiangmiao/auto-pairs'                             " auto insert other paranthesis pairs
 Plug 'alvan/vim-closetag'                               " auto close html tags
 Plug 'Yggdroot/indentLine'                              " show indentation lines
 Plug 'google/vim-searchindex'                           " add number of found matching search items
@@ -193,6 +192,8 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " list of the extensions required
 let g:coc_global_extensions = [
             \'coc-yank',
@@ -209,8 +210,6 @@ let g:coc_global_extensions = [
             \'coc-python',
             \'coc-xml',
             \'coc-syntax',
-            \'coc-emoji',
-            \'coc-git',
             \]
 
 " ALE
