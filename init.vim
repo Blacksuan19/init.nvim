@@ -103,7 +103,8 @@ set undodir=~/.nvim/tmp                                 " undo temp file directo
 set nofoldenable                                        " disable folding
 
 
-" Python3 VirtualEnv
+" Python VirtualEnv
+let g:python_host_prog =  expand('/usr/bin/python')
 let g:python3_host_prog = expand('/usr/bin/python3')
 
 " Coloring
