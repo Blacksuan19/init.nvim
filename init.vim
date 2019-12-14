@@ -30,6 +30,7 @@ Plug 'ryanoasis/vim-devicons'                           " pretty icons everywher
 Plug 'luochen1990/rainbow'                              " rainbow paranthesis
 Plug 'hzchirs/vim-material'                             " material color themes
 Plug 'junegunn/goyo.vim'                                " zen mode
+Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 
 " ================= Functionalities ================= "
 
