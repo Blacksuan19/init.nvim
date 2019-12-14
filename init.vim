@@ -36,13 +36,6 @@ Plug 'junegunn/goyo.vim'                                " zen mode
 " auto completion, lang servers and stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'desmap/ale-sensible' | Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'css', 'less', 'scss', 'json',  'markdown',  'yaml', 'html'] }
-
-" markdown
-Plug 'jkramer/vim-checkbox', { 'for': 'markdown' }      " markdown checboxes
-Plug 'dkarter/bullets.vim'                              " markdown bullet lists
 
 " search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -90,7 +83,7 @@ set clipboard+=unnamedplus                              " use system clipboard b
 " ===================== Other Configurations ===================== "
 
 filetype plugin indent on                               " enable indentations
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent              " tab key actions
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab               " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
 set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
 set fillchars+=vert:\▏                                  " requires a patched nerd font (try furaCode)
@@ -99,15 +92,16 @@ set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
 set relativenumber                                      " current line is 0
 set title                                               " tab title as file file
-set conceallevel=2                                      " set this so we womt break indentation plugin
+set conceallevel=0                                      " set this so we womt break indentation plugin
 set splitright                                          " open vertical split to the right
 set splitbelow                                          " open horizontal split to the bottom
 set tw=80                                               " auto wrap lines that are longer than that
 set emoji                                               " enable emojis
-let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
-au BufEnter * set fo-=c fo-=r fo-=o                     " stop annying auto commenting on new lines
+set formatoptions-=cro                                  " stop annoying auto commenting on new lines
 set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
+set nofoldenable                                        " disable folding
+
 
 " Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/bin/python3')
@@ -128,7 +122,7 @@ hi NonText guifg=bg                                     " mask ~ on empty lines
 hi clear CursorLineNr                                   " use the theme color for relative number
 hi CursorLineNr gui=bold                                " make relative number bold
 
-" colors for git(especially the gutter)
+" colors for git (especially the gutter)
 hi DiffAdd guibg='#0f111a'
 hi DiffChange guibg='#0f111a'
 
@@ -202,7 +196,6 @@ let g:coc_snippet_next = '<tab>'
 let g:coc_global_extensions = [
             \'coc-yank',
             \'coc-highlight',
-            \'coc-prettier',
             \'coc-pairs',
             \'coc-json',
             \'coc-css',
@@ -228,8 +221,12 @@ let g:ale_fixers = {
 \   'css' : ['prettier'],
 \   'html' : ['prettier'],
 \   'markdown' : ['prettier'],
+\   'yaml': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_lint_on_text_changed = 'never'
 
 " indentLine
 let g:indentLine_char = '▏'
@@ -286,7 +283,6 @@ autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()
 
 " config files
 au BufReadPost,BufNewFile */polybar/* set filetype=dosini
-au BufReadPost,BufNewFile */termite/* set filetype=dosini
 
 " startify when there is no buffer (file open)
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif

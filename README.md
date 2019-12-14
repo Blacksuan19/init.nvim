@@ -1,5 +1,24 @@
 # An opinionated Neovim config for the Minimalists
 
+# Table of Contents
+
+- [An opinionated Neovim config for the Minimalists](#an-opinionated-neovim-config-for-the-minimalists)
+- [Table of Contents](#table-of-contents)
+  - [Why?](#why)
+  - [Features](#features)
+    - [Supported Languages](#supported-languages)
+  - [Requirements](#requirements)
+  - [Setup](#setup)
+    - [Enviroment](#enviroment)
+    - [Tools](#tools)
+  - [Installation](#installation)
+  - [Plugins](#plugins)
+  - [Keyboard shortcuts](#keyboard-shortcuts)
+    - [Legend](#legend)
+  - [Customizations](#customizations)
+  - [Demos](#demos)
+  - [Credits](#credits)
+
 ## Why?
 
 Modern vim distributions are really huge and bloated with way too many fancy features
@@ -39,7 +58,7 @@ There is also support for:
 
 ## Setup
 
-to check if your current environment is correctly set up run `:CheckHealth`.
+To check if your current environment is correctly set up run `:CheckHealth`.
 
 ### Enviroment
 
@@ -85,9 +104,6 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [coc.nvim](https://github.com/neoclide/coc.nvim)                        | async completion and more                  |
 | [ale-sensible](https://github.com/desmap/ale-sensible)                  | better ALE experience                      |
 | [ale](https://github.com/w0rp/ale)                                      | diagnostics, linting and more              |
-| [prettier](https://github.com/prettier/vim-prettier)                    | formatter for many languages               |
-| [vim-checbox](https://github.com/jkramer/vim-checkbox)                  | check boxes rendering in markdown          |
-| [bullets](https://github.com/dkarter/bullets.vim)                       | better lists in markdown                   |
 | [fzf](https://github.com/junegunn/fzf)                                  | fuzzy finder                               |
 | [fzf.vim](https://github.com/junegunn/fzf.vim)                          | fuzzy finder vim integration               |
 | [ultisnips](https://github.com/SirVer/ultisnips)                        | snippets engine                            |
