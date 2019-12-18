@@ -200,7 +200,6 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " list of the extensions required
 let g:coc_global_extensions = [
             \'coc-yank',
-            \'coc-highlight',
             \'coc-pairs',
             \'coc-json',
             \'coc-css',
