@@ -83,7 +83,7 @@ set clipboard+=unnamedplus                              " use system clipboard b
 " ===================== Other Configurations ===================== "
 
 filetype plugin indent on                               " enable indentations
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab               " tab key actions
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent            " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
 set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
 set fillchars+=vert:\▏                                  " requires a patched nerd font (try furaCode)
@@ -92,12 +92,13 @@ set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
 set relativenumber                                      " current line is 0
 set title                                               " tab title as file file
-set conceallevel=0                                      " set this so we womt break indentation plugin
+set conceallevel=2                                      " set this so we womt break indentation plugin
 set splitright                                          " open vertical split to the right
 set splitbelow                                          " open horizontal split to the bottom
 set tw=80                                               " auto wrap lines that are longer than that
 set emoji                                               " enable emojis
-set formatoptions-=cro                                  " stop annoying auto commenting on new lines
+let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
+au BufEnter * set fo-=c fo-=r fo-=o                     " stop annying auto commenting on new lines
 set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 set nofoldenable                                        " disable folding
