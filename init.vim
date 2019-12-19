@@ -70,6 +70,7 @@ Plug 'tpope/vim-eunuch'                                 " run common unix comman
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'majutsushi/tagbar'                                " a bar of tags
+Plug 'panozzaj/vim-autocorrect'                         " auto change words to others
 
 call plug#end()
 
@@ -282,6 +283,7 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown set spell
 autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
+autocmd filetype text, markdown call AutoCorrect()
 
 " config files
 au BufReadPost,BufNewFile */polybar/* set filetype=dosini

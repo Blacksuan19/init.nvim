@@ -2,22 +2,20 @@
 
 # Table of Contents
 
-- [An opinionated Neovim config for the Minimalists](#an-opinionated-neovim-config-for-the-minimalists)
-- [Table of Contents](#table-of-contents)
-  - [Why?](#why)
-  - [Features](#features)
-    - [Supported Languages](#supported-languages)
-  - [Requirements](#requirements)
-  - [Setup](#setup)
-    - [Enviroment](#enviroment)
-    - [Tools](#tools)
-  - [Installation](#installation)
-  - [Plugins](#plugins)
-  - [Keyboard shortcuts](#keyboard-shortcuts)
-    - [Legend](#legend)
-  - [Customizations](#customizations)
-  - [Demos](#demos)
-  - [Credits](#credits)
+- [Why?](#why)
+- [Features](#features)
+  - [Supported Languages](#supported-languages)
+- [Requirements](#requirements)
+- [Setup](#setup)
+  - [Enviroment](#enviroment)
+  - [Tools](#tools)
+- [Installation](#installation)
+- [Plugins](#plugins)
+- [Keyboard shortcuts](#keyboard-shortcuts)
+  - [Legend](#legend)
+- [Customizations](#customizations)
+- [Demos](#demos)
+- [Credits](#credits)
 
 ## Why?
 
@@ -110,7 +108,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-snippets](https://github.com/honza/vim-snippets)                   | snippets for many languages                |
 | [auto-pairs](https://github.com/jiangmiao/auto-pairs)                   | auto brackets closing                      |
 | [vim-closetag](https://github.com/alvan/vim-closetag)                   | auto html tag closing                      |
-| [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indtent lines                         |
+| [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indent lines                          |
 | [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string              |
 | [vim-polyglot](https://github.com/sheerun/vim-polyglot)                 | add syntax support for many languages      |
 | [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
@@ -128,6 +126,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
 | [Tagbar](https://github.com/majutsushi/tagbar)                          | list of tags                               |
+| [vim-autocorrect](https://github.com/panozzaj/vim-autocorrect)          | auto change words to others                |
 
 ## Keyboard shortcuts
 
