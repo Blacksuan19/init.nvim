@@ -224,6 +224,7 @@ let g:ale_fixers = {
 \   'html' : ['prettier'],
 \   'markdown' : ['prettier'],
 \   'yaml': ['prettier'],
+\   'json': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
@@ -282,7 +283,7 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown set spell
 autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
-autocmd filetype text, markdown call AutoCorrect()
+autocmd filetype markdown :call AutoCorrect()
 
 " config files
 au BufReadPost,BufNewFile */polybar/* set filetype=dosini
