@@ -37,13 +37,13 @@ distro avoids, KISS!
 - Beautiful Material ocean color scheme
 - VSCode like autocompletion, multi cursor
 - Smooth Scrolling (its really smooth!)
+- file previews in fzf
 - Asynchronous Lint Engine
 - Simple, Intuitive shortcuts
 
 ### Supported Languages
 
-Neovim provies support for a wide range of languages by default, with the adition
-of [polyglot](https://github.com/sheerun/vim-polyglot) even more languages are supported.  
+Neovim provies support for a wide range of languages by default.
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
@@ -75,6 +75,7 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 - clang (much better C and C++)
 - [fuzzy finder (fzf)](https://github.com/junegunn/fzf)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [bat](https://github.com/sharkdp/bat)
 - [the silver searcher (Ag)](https://github.com/ggreer/the_silver_searcher)
 - [Terminal markdown viewer](https://github.com/axiros/terminal_markdown_viewer)
 
@@ -106,11 +107,9 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [fzf.vim](https://github.com/junegunn/fzf.vim)                          | fuzzy finder vim integration               |
 | [ultisnips](https://github.com/SirVer/ultisnips)                        | snippets engine                            |
 | [vim-snippets](https://github.com/honza/vim-snippets)                   | snippets for many languages                |
-| [auto-pairs](https://github.com/jiangmiao/auto-pairs)                   | auto brackets closing                      |
 | [vim-closetag](https://github.com/alvan/vim-closetag)                   | auto html tag closing                      |
 | [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indent lines                          |
 | [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string              |
-| [vim-polyglot](https://github.com/sheerun/vim-polyglot)                 | add syntax support for many languages      |
 | [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
 | [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                 |
 | [vim-sensible](https://github.com/tpope/vim-sensible)                   | sensible defaults for vim                  |
@@ -122,11 +121,10 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-surround](https://github.com/tpope/vim-surround)                   | surround stuff with stuff                  |
 | [vim-smoothie](https://github.com/psliwka/vim-smoothie)                 | super smooth scrolling                     |
 | [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was   |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
 | [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
 | [Tagbar](https://github.com/majutsushi/tagbar)                          | list of tags                               |
-| [vim-autocorrect](https://github.com/panozzaj/vim-autocorrect)          | auto change words to others                |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
 
 ## Keyboard shortcuts
 
@@ -192,6 +190,7 @@ checkout [Plugins](#plugins)
 
 ## Demos
 
+![fzf preview](https://github.com/Blacksuan19/init.nvim/blob/master/fzf.png)
 [![asciicast](https://asciinema.org/a/284399.svg)](https://asciinema.org/a/284399)
 [![asciicast](https://asciinema.org/a/284400.svg)](https://asciinema.org/a/284400)
 [![asciicast](https://asciinema.org/a/284401.svg)](https://asciinema.org/a/284401)
