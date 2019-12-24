@@ -52,7 +52,6 @@ Plug 'Yggdroot/indentLine'                              " show indentation lines
 Plug 'google/vim-searchindex'                           " add number of found matching search items
 
 " languages
-Plug 'sheerun/vim-polyglot'                             " many languages support
 Plug 'tpope/vim-liquid'                                 " liquid language support
 
 " other
@@ -66,11 +65,10 @@ Plug 'tpope/vim-fugitive'                               " git support
 Plug 'tpope/vim-surround'                               " surround stuff with stuff
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
-Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'majutsushi/tagbar'                                " a bar of tags
-Plug 'panozzaj/vim-autocorrect'                         " auto change words to others
+Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
 
 call plug#end()
 
@@ -216,16 +214,16 @@ let g:coc_global_extensions = [
 
 " ALE
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier'],
-\   'c' : ['clang-format'],
-\   'cpp' : ['clang-format'],
-\   'css' : ['prettier'],
-\   'html' : ['prettier'],
-\   'markdown' : ['prettier'],
-\   'yaml': ['prettier'],
-\   'json': ['prettier'],
-\}
+            \'*': ['remove_trailing_lines', 'trim_whitespace'],
+            \'javascript': ['prettier'],
+            \'c' : ['clang-format'],
+            \'cpp' : ['clang-format'],
+            \'css' : ['prettier'],
+            \'html' : ['prettier'],
+            \'markdown' : ['prettier'],
+            \'yaml': ['prettier'],
+            \'json': ['prettier'],
+            \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
@@ -234,27 +232,6 @@ let g:ale_lint_on_text_changed = 'never'
 " indentLine
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
-
-" fzf-vim
-let g:FZF_DEFAULT_COMMAND = 'rg --hidden --ignore .git -g ""'
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit' }
-let g:fzf_colors = {
-            \ 'fg':      ['fg', 'Normal'],
-            \ 'bg':      ['bg', 'Normal'],
-            \ 'hl':      ['fg', 'Comment'],
-            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-            \ 'hl+':     ['fg', 'Statement'],
-            \ 'info':    ['fg', 'Type'],
-            \ 'border':  ['fg', 'Ignore'],
-            \ 'prompt':  ['fg', 'Character'],
-            \ 'pointer': ['fg', 'Exception'],
-            \ 'marker':  ['fg', 'Keyword'],
-            \ 'spinner': ['fg', 'Label'],
-            \ 'header':  ['fg', 'Comment'] }
 
 " startify
 let g:startify_session_persistence = 1
@@ -273,22 +250,15 @@ let g:tagbar_autofocus = 1
 
 " ======================== Filetype-Specific Configurations ============================= "
 
-
-" HTML, XML, Css
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
 " Markdown
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown set spell
 autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
-autocmd filetype markdown :call AutoCorrect()
 
 " config files
 au BufReadPost,BufNewFile */polybar/* set filetype=dosini
 
-" startify when there is no buffer (file open)
+" startify when there is no buffer or args
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 
 " auto html tags closing, enable for markdown files as well
@@ -299,15 +269,6 @@ autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
 
 " ================== Custom Functions ===================== "
-
-" start startify if there are no args()
-function! StartUp()
-    if 0 == argc()
-        Startify
-    end
-endfunction
-
-autocmd VimEnter * call StartUp()
 
 " Trim Whitespaces
 function! TrimWhitespace()
@@ -342,6 +303,45 @@ endfunction
 
 nnoremap <F5> :call Rotate()<CR>
 
+" fzf with file icons and previews
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+" Files + devicons
+function! Fzf_dev()
+  let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
+  function! s:files()
+    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+
+    return l:result
+  endfunction
+
+  function! s:edit_file(item)
+    let l:pos = stridx(a:item, ' ')
+    let l:file_path = a:item[pos+1:-1]
+    execute 'silent e' l:file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'down':    '40%' })
+endfunction
+
 " ======================== Custom Mappings ====================== "
 
 " the essentials
@@ -353,8 +353,9 @@ map <F4> :TagbarToggle<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
 nmap <leader>q :bd<CR>
+nnoremap <silent> <leader>f :call Fzf_dev()<CR>
+nmap <leader>b :Buffers<CR>
 nmap <leader>w :w<CR>
-nmap <leader>f :Files<CR>
 nmap <leader>g :Goyo<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
@@ -385,10 +386,19 @@ noremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+"" coc mappings
+
 " multi cursor shortcuts
 nmap <silent> <C-c> <Plug>(coc-cursors-position)
 nmap <silent> <C-a> <Plug>(coc-cursors-word)
 xmap <silent> <C-a> <Plug>(coc-cursors-range)
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" for global rename
+nmap <leader>rn <Plug>(coc-rename)
 
 " new line in normal mode and back
 map <Enter> o<ESC>
