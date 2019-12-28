@@ -36,7 +36,7 @@ Plug 'gregsexton/MatchTag'                              " highlight matching htm
 
 " auto completion, lang servers and stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'desmap/ale-sensible' | Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -57,7 +57,6 @@ Plug 'tpope/vim-liquid'                                 " liquid language suppor
 " other
 Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'tpope/vim-sensible'                               " sensible defaults
-Plug 'lambdalisue/suda.vim'                             " save as sudo
 Plug '907th/vim-auto-save'                              " auto save changes
 Plug 'mhinz/vim-startify'                               " cool start up screen
 Plug 'kristijanhusak/vim-carbon-now-sh'                 " lit code screenshots
@@ -228,6 +227,9 @@ let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '✘'
+let g:ale_sign_info = ''
 
 " indentLine
 let g:indentLine_char = '▏'
