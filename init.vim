@@ -130,8 +130,8 @@ hi DiffChange guibg='#0f111a'
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 " Ale
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
+highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500
+highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#FFA500
 
 " performance tweaks
 set nocursorline
