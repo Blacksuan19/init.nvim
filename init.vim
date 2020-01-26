@@ -31,6 +31,7 @@ Plug 'luochen1990/rainbow'                              " rainbow paranthesis
 Plug 'hzchirs/vim-material'                             " material color themes
 Plug 'junegunn/goyo.vim'                                " zen mode
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
+Plug 'easymotion/vim-easymotion'
 
 " ================= Functionalities ================= "
 
@@ -254,7 +255,11 @@ let g:rainbow_active = 1
 " tagbar
 let g:tagbar_autofocus = 1
 
-" FZF
+" easymotion
+let g:EasyMotion_startofline = 0                        " keep cursor column when JK motion
+let g:EasyMotion_smartcase = 1                          " ignore case
+
+"" FZF
 
 " general
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
@@ -448,3 +453,17 @@ map <leader>/ :Ag<CR>
 
 " carbon sh now
 vnoremap <F8> :CarbonNowSh<CR>
+
+"" easymotion stuff
+
+" search beahvior
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+" quick navigation
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
