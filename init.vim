@@ -61,13 +61,13 @@ Plug '907th/vim-auto-save'                              " auto save changes
 Plug 'mhinz/vim-startify'                               " cool start up screen
 Plug 'kristijanhusak/vim-carbon-now-sh'                 " lit code screenshots
 Plug 'tpope/vim-fugitive'                               " git support
-Plug 'tpope/vim-surround'                               " surround stuff with stuff
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'majutsushi/tagbar'                                " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
+Plug 'machakann/vim-sandwich'                           " make sandwiches
 
 call plug#end()
 
