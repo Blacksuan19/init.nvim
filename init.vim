@@ -129,6 +129,10 @@ hi DiffChange guibg='#0f111a'
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
+" Ale
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
 " performance tweaks
 set nocursorline
 set nocursorcolumn
