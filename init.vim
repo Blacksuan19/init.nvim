@@ -250,6 +250,19 @@ let g:rainbow_active = 1
 " tagbar
 let g:tagbar_autofocus = 1
 
+" FZF
+
+" general
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
+
+" use rg by default
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
 " ======================== Filetype-Specific Configurations ============================= "
 
 " Markdown
@@ -305,12 +318,6 @@ endfunction
 
 nnoremap <F5> :call Rotate()<CR>
 
-" fzf with file icons and previews
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
 
 " floating fzf window with borders
 function! CreateCenteredFloatingWindow()
@@ -335,9 +342,6 @@ function! CreateCenteredFloatingWindow()
     call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
     au BufWipeout <buffer> exe 'bw '.s:buf
 endfunction
-
-" set as the default for all fzf windows
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
 " Files + devicons + floating fzf
 function! Fzf_dev()
@@ -367,7 +371,7 @@ function! Fzf_dev()
   call fzf#run({
         \ 'source': <sid>files(),
         \ 'sink':   function('s:edit_file'),
-        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'options': '-m --reverse ' . l:fzf_files_options,
         \ 'down':    '40%',
         \ 'window': 'call CreateCenteredFloatingWindow()'})
 
