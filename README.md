@@ -19,7 +19,7 @@
 
 ## Why?
 
-Modern vim distributions are really huge and bloated with way too many fancy features
+Modern Vim distributions are really huge and bloated with way too many fancy features
 that you won't ever use or need, for example directory trees like Nerd tree, you
 don't need a tree, you can view a project structure with fzf which is faster and has search.
 Another example is [ThinkVim](https://github.com/hardcoreplayers/ThinkVim) has a
@@ -29,21 +29,21 @@ distro avoids, KISS!
 
 ## Features
 
-- Single file (you don't want your dotfiles to be all vim script)
+- Single file (you don't want your dotfiles to be all Vim script)
 - Super minimal (~400 lines)
 - Super fast startup (less than 40ms!)
 - Lazy loading plugins
 - Highly customizable
 - Beautiful Material ocean color scheme
-- VSCode like autocompletion, multi cursor
+- Vscode like auto completion, multi cursor
 - Smooth Scrolling (its really smooth!)
-- file previews in fzf
+- floating window + borders + file previews on fzf(see [demos](#demos))
 - Asynchronous Lint Engine
 - Simple, Intuitive shortcuts
 
 ### Supported Languages
 
-Neovim provies support for a wide range of languages by default.
+Neovim provides support for a wide range of languages by default.
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
@@ -51,14 +51,14 @@ There is also support for:
 ## Requirements
 
 - Linux (not tested on other platforms)
-- Neovim (you can try regular vim)
+- Neovim (you can try regular Vim)
 - Properly set up environment
 
 ## Setup
 
 To check if your current environment is correctly set up run `:CheckHealth`.
 
-### Enviroment
+### Environment
 
 - python
   - python3 `pip3 install --user pynvim`
@@ -190,7 +190,8 @@ checkout [Plugins](#plugins)
 
 ## Demos
 
-![fzf preview](https://github.com/Blacksuan19/init.nvim/blob/master/fzf.png)
+![fzf preview](https://github.com/Blacksuan19/init.nvim/blob/master/Screens/fzf.png)
+![Ag preview](https://github.com/Blacksuan19/init.nvim/blob/master/Screens/ag.png)
 [![asciicast](https://asciinema.org/a/284399.svg)](https://asciinema.org/a/284399)
 [![asciicast](https://asciinema.org/a/284400.svg)](https://asciinema.org/a/284400)
 [![asciicast](https://asciinema.org/a/284401.svg)](https://asciinema.org/a/284401)
