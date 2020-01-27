@@ -118,7 +118,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-startify](https://github.com/mhinz/vim-startify)                   | cool startup thingy                        |
 | [vim-carbon-no-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                   | best git integration around                |
-| [vim-sandwitch](https://github.com/machakann/vim-sandwich)              | surround stuff with stuff                  |
+| [vim-sandwich](https://github.com/machakann/vim-sandwich)               | surround stuff with stuff                  |
 | [vim-smoothie](https://github.com/psliwka/vim-smoothie)                 | super smooth scrolling                     |
 | [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was   |
 | [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
