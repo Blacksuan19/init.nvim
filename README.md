@@ -123,7 +123,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was   |
 | [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
-| [Tagbar](https://github.com/majutsushi/tagbar)                          | list of tags                               |
+| [Vista](https://github.com/liuchengxu/vista.vim)                        | list of tags                               |
 | [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
 
 ## Keyboard shortcuts
