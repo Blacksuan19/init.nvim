@@ -66,7 +66,7 @@ Plug 'psliwka/vim-smoothie'                             " some very smooth ass s
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
-Plug 'majutsushi/tagbar'                                " a bar of tags
+Plug 'liuchengxu/vista.vim'                             " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 
@@ -174,7 +174,7 @@ let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
 let g:airline#extensions#ale#enabled = 1                " ALE integration
-
+let airline#extensions#vista#enabled = 1                " vista integration
 " coc
 " use tab for completion trigger
 inoremap <silent><expr> <TAB>
@@ -393,10 +393,11 @@ let mapleader=","
 nnoremap ; :
 nmap \ <leader>q
 map <F6> :Startify <CR>
-map <F4> :TagbarToggle<CR>
+map <F4> :Vista!!<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
 nmap <leader>q :bd<CR>
+map <leader>v :Vista finder<CR>
 nnoremap <silent> <leader>f :call Fzf_dev()<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>w :w<CR>
