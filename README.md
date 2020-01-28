@@ -151,7 +151,13 @@ expose a hidden functionality within a plugin.
 | `,g`    | Goyo (zen mode)                                                            | Default          |
 | `,m`    | opens markdown preview (only in markdown files)                            | None             |
 | `,e`    | call :PlugInstall (install plugins)                                        | None             |
+| `,v`    | search in vista tags                                                       | None             |
 | `,/`    | search in project folder (calls Ag)                                        | None             |
+| `,rn`   | rename globally                                                            | None             |
+| `,l`    | easymotion to the left                                                     | None             |
+| `,h`    | easymotion to the right                                                    | None             |
+| `,j`    | easymotion to the bottom                                                   | None             |
+| `,k`    | easymotion to the top                                                      | None             |
 | `jj`    | Escape                                                                     | Esc              |
 | `d`     | use a different register for deletion (so the deleted text wont be copied) | "\_d             |
 | `C-q`   | close all buffers and exit nvim                                            | None             |
@@ -168,9 +174,14 @@ expose a hidden functionality within a plugin.
 | `Tab`   | cycles throw coc in insert mode                                            | None             |
 | `Tab`   | switch to the next buffer(tab)                                             | Default          |
 | `S-Tab` | switch to the previous buffer(tab)                                         | Default          |
+| `F4`    | Open vista (tags viewer)                                                   | none             |
 | `F5`    | Rotates splits in current view                                             | None             |
 | `F6`    | Startify                                                                   | Default          |
 | `F8`    | opens selection in carbon now sh (only in visual mode)                     | None             |
+| `]g`    | next diagnostic                                                            | None             |
+| `[g`    | Previous diagnostic                                                        | None             |
+
+|
 
 ## Customizations
 
