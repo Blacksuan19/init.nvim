@@ -354,7 +354,7 @@ endfunction
 
 " Files + devicons + floating fzf
 function! Fzf_dev()
-  let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
+  let l:fzf_files_options = '--preview "bat --line-range :'.&lines.' --theme="OneHalfDark" --style=numbers,changes --color always {2..-1}"'
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
     return s:prepend_icon(l:files)
@@ -450,7 +450,7 @@ map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
 " for project wide search
-map <leader>/ :Ag<CR>
+map <leader>/ :Rg<CR>
 
 " carbon sh now
 vnoremap <F8> :CarbonNowSh<CR>
