@@ -7,7 +7,7 @@
   - [Supported Languages](#supported-languages)
 - [Requirements](#requirements)
 - [Setup](#setup)
-  - [Enviroment](#enviroment)
+  - [Enviroment](#Environment)
   - [Tools](#tools)
 - [Installation](#installation)
 - [Plugins](#plugins)
@@ -76,10 +76,11 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 - [fuzzy finder (fzf)](https://github.com/junegunn/fzf)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [bat](https://github.com/sharkdp/bat)
-- [the silver searcher (Ag)](https://github.com/ggreer/the_silver_searcher)
 - [Terminal markdown viewer](https://github.com/axiros/terminal_markdown_viewer)
 
 ## Installation
+
+After installing the requirements:
 
 - `git clone https://github.com/Blacksuan19/init.nvim ~/.config/nvim`
 - Start `nvim` and it will do the rest

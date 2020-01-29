@@ -1,4 +1,3 @@
-
 " ============= Vim-Plug ============== "
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -15,11 +14,9 @@ if !filereadable(vimplug_exists)
   echo ""
   silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   let g:not_finish_vimplug = "yes"
-
   autocmd VimEnter * PlugInstall
 endif
 
-" Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 " ================= looks and GUI stuff ================== "
@@ -31,7 +28,6 @@ Plug 'luochen1990/rainbow'                              " rainbow parenthesis
 Plug 'hzchirs/vim-material'                             " material color themes
 Plug 'junegunn/goyo.vim'                                " Zen mode
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
-Plug 'easymotion/vim-easymotion'
 
 " ================= Functionalities ================= "
 
@@ -40,7 +36,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 
 " search
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                                " fuzzy search integration
 
 " snippets
@@ -69,7 +64,7 @@ Plug 'wellle/tmux-complete.vim'                         " complete words from a 
 Plug 'liuchengxu/vista.vim'                             " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
-
+Plug 'easymotion/vim-easymotion'                        " make movement a lot faster and easier
 call plug#end()
 
 
