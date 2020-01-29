@@ -152,7 +152,7 @@ expose a hidden functionality within a plugin.
 | `,m`    | opens markdown preview (only in markdown files)                            | None             |
 | `,e`    | call :PlugInstall (install plugins)                                        | None             |
 | `,v`    | search in vista tags                                                       | None             |
-| `,/`    | search in project folder (calls Ag)                                        | None             |
+| `,/`    | search in project folder (calls Rg)                                        | None             |
 | `,rn`   | rename globally                                                            | None             |
 | `,l`    | easymotion to the left                                                     | None             |
 | `,h`    | easymotion to the right                                                    | None             |
