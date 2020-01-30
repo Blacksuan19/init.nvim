@@ -4,7 +4,7 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,erlang,go"
-let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+let g:vim_bootstrap_editor = "nvim"				" Nvim or Vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -27,15 +27,15 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'vim-airline/vim-airline-themes'                   " airline themes
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
-Plug 'luochen1990/rainbow'                              " rainbow paranthesis
+Plug 'luochen1990/rainbow'                              " rainbow parenthesis
 Plug 'hzchirs/vim-material'                             " material color themes
-Plug 'junegunn/goyo.vim'                                " zen mode
+Plug 'junegunn/goyo.vim'                                " Zen mode
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 Plug 'easymotion/vim-easymotion'
 
 " ================= Functionalities ================= "
 
-" auto completion, lang servers and stuff
+" auto completion, Lang servers and stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 
@@ -60,14 +60,14 @@ Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'tpope/vim-sensible'                               " sensible defaults
 Plug '907th/vim-auto-save'                              " auto save changes
 Plug 'mhinz/vim-startify'                               " cool start up screen
-Plug 'kristijanhusak/vim-carbon-now-sh'                 " lit code screenshots
+Plug 'kristijanhusak/vim-carbon-now-sh'                 " lit code Screenshots
 Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'majutsushi/tagbar'                                " a bar of tags
-Plug 'tpope/vim-eunuch'                                 " run common unix commands inside vim
+Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 
 call plug#end()
@@ -85,19 +85,19 @@ filetype plugin indent on                               " enable indentations
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent            " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
 set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
-set fillchars+=vert:\▏                                  " requires a patched nerd font (try furaCode)
-set wrap breakindent                                    " wrap long lines to the width sset by tw
+set fillchars+=vert:\▏                                  " requires a patched nerd font (try FiraCode)
+set wrap breakindent                                    " wrap long lines to the width set by tw
 set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
 set relativenumber                                      " current line is 0
 set title                                               " tab title as file file
-set conceallevel=2                                      " set this so we womt break indentation plugin
+set conceallevel=2                                      " set this so we wont break indentation plugin
 set splitright                                          " open vertical split to the right
 set splitbelow                                          " open horizontal split to the bottom
 set tw=80                                               " auto wrap lines that are longer than that
 set emoji                                               " enable emojis
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
-au BufEnter * set fo-=c fo-=r fo-=o                     " stop annying auto commenting on new lines
+au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 set nofoldenable                                        " disable folding
@@ -116,7 +116,7 @@ highlight Pmenu guibg='00010a' guifg=white              " popup menu colors
 highlight Comment gui=bold                              " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
-highlight clear SignColumn                              " use number color for sign colum color
+highlight clear SignColumn                              " use number color for sign column color
 hi Search guibg=orange                                  " search string highlight color
 autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 hi NonText guifg=bg                                     " mask ~ on empty lines
@@ -454,9 +454,9 @@ map <leader>/ :Ag<CR>
 " carbon sh now
 vnoremap <F8> :CarbonNowSh<CR>
 
-"" easymotion stuff
+"" easy motion stuff
 
-" search beahvior
+" search behavior
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
