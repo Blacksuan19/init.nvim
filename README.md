@@ -1,6 +1,6 @@
 # An opinionated Neovim config for the Minimalists
 
-# Table of Contents
+## Table of Contents
 
 - [Why?](#why)
 - [Features](#features)
@@ -12,7 +12,7 @@
 - [Installation](#installation)
 - [Plugins](#plugins)
 - [Keyboard shortcuts](#keyboard-shortcuts)
-  - [Legend](#legend)
+  - [FZF](#fzf-keyboard-shortcuts)
 - [Customizations](#customizations)
 - [Demos](#demos)
 - [Credits](#credits)
@@ -182,7 +182,13 @@ expose a hidden functionality within a plugin.
 | `]g`    | next diagnostic                                                            | None             |
 | `[g`    | Previous diagnostic                                                        | None             |
 
-|
+### FZF keyboard shortcuts
+
+| Mapping | Functionality                 |
+| ------- | ----------------------------- |
+| `C-x`   | Open file in horizontal split |
+| `C-v`   | Open file in vertical split   |
+| `C-t`   | Open file in new tab          |
 
 ## Customizations
 
