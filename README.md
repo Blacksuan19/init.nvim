@@ -47,6 +47,7 @@ Neovim provides support for a wide range of languages by default.
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
+- [dart](https://dark.dev)
 
 ## Requirements
 
@@ -112,6 +113,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indent lines                          |
 | [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string              |
 | [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
+| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)         | dart language support                      |
 | [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                 |
 | [vim-sensible](https://github.com/tpope/vim-sensible)                   | sensible defaults for vim                  |
 | [suda](https://github.com/lambdalisue/suda.vim)                         | add sudo support                           |
@@ -181,6 +183,10 @@ expose a hidden functionality within a plugin.
 | `F8`    | opens selection in carbon now sh (only in visual mode)                     | None             |
 | `]g`    | next diagnostic                                                            | None             |
 | `[g`    | Previous diagnostic                                                        | None             |
+| `gd`    | jump to definition(using coc)                                              | None             |
+| `gy`    | jump to type definition(using coc)                                         | None             |
+| `gi`    | jump to implementation(using coc)                                          | None             |
+| `gr`    | jump to references (using coc)                                             | None             |
 
 ### FZF keyboard shortcuts
 

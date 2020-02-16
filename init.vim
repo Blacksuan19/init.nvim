@@ -211,6 +211,7 @@ let g:coc_global_extensions = [
             \'coc-python',
             \'coc-xml',
             \'coc-syntax',
+            \'coc-flutter'
             \]
 
 " ALE
@@ -454,6 +455,12 @@ nmap <leader>rn <Plug>(coc-rename)
 " new line in normal mode and back
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
+
+" jump stuff
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " for project wide search
 map <leader>/ :Rg<CR>
