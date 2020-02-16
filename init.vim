@@ -49,6 +49,7 @@ Plug 'google/vim-searchindex'                           " add number of found ma
 
 " languages
 Plug 'tpope/vim-liquid'                                 " liquid language support
+Plug 'dart-lang/dart-vim-plugin'
 
 " other
 Plug 'tpope/vim-commentary'                             " better commenting
@@ -97,7 +98,6 @@ set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 set nofoldenable                                        " disable folding
 
-
 " Python VirtualEnv
 let g:python_host_prog =  expand('/usr/bin/python')
 let g:python3_host_prog = expand('/usr/bin/python3')
@@ -128,6 +128,8 @@ hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 " Ale
 highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500
 highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#FFA500
+highlight ALEVirtualTextError ctermfg=9 ctermbg=15 guifg=#C30500
+highlight ALEVirtualTextWarning ctermfg=11 ctermbg=15 guifg=#FFA500
 
 " performance tweaks
 set nocursorline
@@ -230,6 +232,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = '✘'
 let g:ale_sign_info = ''
+let g:ale_virtualtext_cursor = 1
 
 " indentLine
 let g:indentLine_char = '▏'

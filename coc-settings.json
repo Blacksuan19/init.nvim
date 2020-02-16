@@ -9,5 +9,6 @@
   "diagnostic.signOffset": 999999,
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": true,
-  "suggest.noselect": false
+  "suggest.noselect": false,
+  "flutter.lsp.initialization.closingLabels": true
 }
