@@ -187,6 +187,7 @@ expose a hidden functionality within a plugin.
 | `gy`    | jump to type definition(using coc)                                         | None             |
 | `gi`    | jump to implementation(using coc)                                          | None             |
 | `gr`    | jump to references (using coc)                                             | None             |
+| `S-k`   | show current symbol documentation                                          | None             |
 
 ### FZF keyboard shortcuts
 

@@ -278,9 +278,6 @@ autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown set spell
 autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
 
-" config files
-au BufReadPost,BufNewFile */polybar/* set filetype=dosini
-
 " startify when there is no buffer or args
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 
@@ -292,13 +289,6 @@ autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
 
 " ================== Custom Functions ===================== "
-
-" Trim Whitespaces
-function! TrimWhitespace()
-    let l:save = winsaveview()
-    %s/\\\@<!\s\+$//e
-    call winrestview(l:save)
-endfunction
 
 " markdown files preview inside (you need to install mdv)
 function! TerminalPreviewMarkdown()
@@ -393,6 +383,15 @@ function! Fzf_dev()
 
 endfunction
 
+" show docs on things with K
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " ======================== Custom Mappings ====================== "
 
 " the essentials
@@ -402,7 +401,6 @@ nmap \ <leader>q
 map <F6> :Startify <CR>
 map <F4> :Vista!!<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>t :call TrimWhitespace()<CR>
 nmap <leader>q :bd<CR>
 map <leader>v :Vista finder<CR>
 nnoremap <silent> <leader>f :call Fzf_dev()<CR>
@@ -461,6 +459,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " for project wide search
 map <leader>/ :Rg<CR>
