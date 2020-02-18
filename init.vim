@@ -269,7 +269,7 @@ let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
 " fzf preview
@@ -278,7 +278,7 @@ let g:fzf_preview_command = 'bat --color=always --theme="OneHalfDark" --style=nu
 let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard'
 let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages --glob "!.git/*"'
 let g:fzf_preview_git_status_command = "git status --short --untracked-files=all | awk '{if (substr($0,2,1) !~ / /) print $2}'"
-let g:fzf_preview_grep_cmd = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always"'
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --hidden --color "always" --glob "!.git/*"'
 let g:fzf_preview_use_dev_icons = 1
 let g:fzf_binary_preview_command = 'echo "{} is a binary file"'
 
