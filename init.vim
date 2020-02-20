@@ -98,6 +98,7 @@ set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 set nofoldenable                                        " disable folding
 set inccommand=nosplit                                  " visual feedback while substituting
+let loaded_netrw = 0
 
 " Python VirtualEnv
 let g:python_host_prog =  expand('/usr/bin/python')
@@ -242,6 +243,8 @@ let g:indentLine_color_gui = '#363949'
 
 " startify
 let g:startify_session_persistence = 1
+let g:startify_fortune_use_unicode = 1
+let g:startify_enable_special = 0
 
 " auto save file changes
 let g:auto_save = 1                                     " enable AutoSave on Vim startup
@@ -284,12 +287,23 @@ let g:fzf_binary_preview_command = 'echo "{} is a binary file"'
 
 " ======================== Filetype-Specific Configurations ============================= "
 
+" open help in vertical split
+autocmd FileType help wincmd L
+
 " Markdown
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown set spell
 
-" startify when there is no buffer or args
+" startify when there is no open buffer left
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+
+" open startify on start
+autocmd VimEnter * if argc() == 0 | Startify | endif
+
+" open files preview on enter and provided arg is a folder
+autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Startify | endif
+autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | execute 'cd' fnameescape(argv()[0])  | endif
+autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | FzfPreviewDirectoryFiles | endif
 
 " auto html tags closing, enable for markdown files as well
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
