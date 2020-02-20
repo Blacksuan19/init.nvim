@@ -190,11 +190,14 @@ expose a hidden functionality within a plugin.
 
 ### FZF keyboard shortcuts
 
-| Mapping | Functionality                 |
-| ------- | ----------------------------- |
-| `C-x`   | Open file in horizontal split |
-| `C-v`   | Open file in vertical split   |
-| `C-t`   | Open file in new tab          |
+| Mapping | Functionality                             |
+| ------- | ----------------------------------------- |
+| `C-x`   | Open file in horizontal split             |
+| `C-v`   | Open file in vertical split               |
+| `C-t`   | Open file in new tab                      |
+| `C-d`   | scroll preview down (like in normal mode) |
+| `C-u`   | Scroll preview up                         |
+| `?`     | turn off/on preview                       |
 
 ## Customizations
 
