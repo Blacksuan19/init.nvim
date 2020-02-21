@@ -35,9 +35,9 @@ Plug 'gregsexton/MatchTag'                              " highlight matching htm
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 
-" search
+" fuzzy stuff
 Plug 'junegunn/fzf.vim'                                " fuzzy search integration
-
+Plug 'yuki-ycino/fzf-preview.vim'                      " previews everywhere
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'                               " actual snippets
@@ -97,6 +97,7 @@ au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto com
 set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 set nofoldenable                                        " disable folding
+set inccommand=nosplit                                  " visual feedback while substituting
 
 " Python VirtualEnv
 let g:python_host_prog =  expand('/usr/bin/python')
@@ -112,7 +113,7 @@ highlight Comment gui=bold                              " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
 highlight clear SignColumn                              " use number color for sign column color
-hi Search guibg=orange                                  " search string highlight color
+hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
 autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 hi NonText guifg=bg                                     " mask ~ on empty lines
 hi clear CursorLineNr                                   " use the theme color for relative number
@@ -261,7 +262,7 @@ let g:EasyMotion_smartcase = 1                          " ignore case
 "" FZF
 
 " general
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+let g:fzf_layout = { 'window': 'call fzf_preview#window#create_centered_floating_window()' }
 let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
 
 " use rg by default
@@ -271,12 +272,21 @@ if executable('rg')
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
+" fzf preview
+let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages --glob "!.git/*"'
+let g:fzf_preview_command = 'bat --color=always --theme="OneHalfDark" --style=numbers,changes {-1}'
+let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard'
+let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages --glob "!.git/*"'
+let g:fzf_preview_git_status_command = "git status --short --untracked-files=all | awk '{if (substr($0,2,1) !~ / /) print $2}'"
+let g:fzf_preview_grep_cmd = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always"'
+let g:fzf_preview_use_dev_icons = 1
+let g:fzf_binary_preview_command = 'echo "{} is a binary file"'
+
 " ======================== Filetype-Specific Configurations ============================= "
 
 " Markdown
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType markdown set spell
-autocmd FileType markdown map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
 
 " startify when there is no buffer or args
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
@@ -290,99 +300,6 @@ autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
 
 " ================== Custom Functions ===================== "
 
-" markdown files preview inside (you need to install mdv)
-function! TerminalPreviewMarkdown()
-    vsp | terminal ! mdv %
-endfu
-
-" tabs manipulation
-function! Rotate() " switch between horizontal and vertical split mode for open splits
-    " save the original position, jump to the first window
-    let initial = winnr()
-    exe 1 . "wincmd w"
-
-    wincmd l
-    if winnr() != 1
-        " succeeded moving to the right window
-        wincmd J                " make it the bot window
-    else
-        " cannot move to the right, so we are at the top
-        wincmd H                " make it the left window
-    endif
-
-    " restore cursor to the initial window
-    exe initial . "wincmd w"
-endfunction
-
-nnoremap <F5> :call Rotate()<CR>
-
-
-" floating fzf window with borders
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
-
-" Files + devicons + floating fzf
-function! Fzf_dev()
-  let l:fzf_files_options = '--preview "bat --line-range :'.&lines.' --theme="OneHalfDark" --style=numbers,changes --color always {2..-1}" --expect=ctrl-v,ctrl-x,ctrl-t'
-  function! s:files()
-    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let l:result = []
-    for l:candidate in a:candidates
-      let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-      call add(l:result, printf('%s %s', l:icon, l:candidate))
-    endfor
-
-    return l:result
-  endfunction
-
-    function! s:edit_file(lines)
-        if len(a:lines) < 2 | return | endif
-
-        let l:cmd = get({'ctrl-x': 'split',
-                         \ 'ctrl-v': 'vertical split',
-                         \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
-
-        for l:item in a:lines[1:]
-            let l:pos = stridx(l:item, ' ')
-            let l:file_path = l:item[pos+1:-1]
-            execute 'silent '. l:cmd . ' ' . l:file_path
-        endfor
-    endfunction
-
-    call fzf#run({
-        \ 'source': <sid>files(),
-        \ 'sink*':   function('s:edit_file'),
-        \ 'options': '-m --reverse ' . l:fzf_files_options,
-        \ 'down':    '40%',
-        \ 'window': 'call CreateCenteredFloatingWindow()'})
-
-endfunction
-
 " show docs on things with K
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -394,7 +311,7 @@ endfunction
 
 " ======================== Custom Mappings ====================== "
 
-" the essentials
+"" the essentials
 let mapleader=","
 nnoremap ; :
 nmap \ <leader>q
@@ -403,8 +320,10 @@ map <F4> :Vista!!<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>q :bd<CR>
 map <leader>v :Vista finder<CR>
-nnoremap <silent> <leader>f :call Fzf_dev()<CR>
-nmap <leader>b :Buffers<CR>
+nnoremap <silent> <leader>f :FzfPreviewDirectoryFiles<CR>
+nmap <leader>b :FzfPreviewBuffers<CR>
+nmap <leader>c :FzfPreviewGitStatus<CR>
+map <leader>/ :Rg<CR>
 nmap <leader>w :w<CR>
 nmap <leader>g :Goyo<CR>
 nmap <Tab> :bnext<CR>
@@ -437,7 +356,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "" coc mappings
-
 " multi cursor shortcuts
 nmap <silent> <C-c> <Plug>(coc-cursors-position)
 nmap <silent> <C-a> <Plug>(coc-cursors-word)
@@ -462,14 +380,10 @@ nmap <silent> gr <Plug>(coc-references)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" for project wide search
-map <leader>/ :Rg<CR>
-
 " carbon sh now
 vnoremap <F8> :CarbonNowSh<CR>
 
 "" easy motion stuff
-
 " search behavior
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
