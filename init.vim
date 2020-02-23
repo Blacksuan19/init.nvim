@@ -37,7 +37,7 @@ Plug 'w0rp/ale'
 
 " fuzzy stuff
 Plug 'junegunn/fzf.vim'                                " fuzzy search integration
-Plug 'yuki-ycino/fzf-preview.vim'                      " previews everywhere
+
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'                               " actual snippets
@@ -49,7 +49,7 @@ Plug 'google/vim-searchindex'                           " add number of found ma
 
 " languages
 Plug 'tpope/vim-liquid'                                 " liquid language support
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin'                        " dart language support
 
 " other
 Plug 'tpope/vim-commentary'                             " better commenting
@@ -265,34 +265,23 @@ let g:EasyMotion_smartcase = 1                          " ignore case
 "" FZF
 
 " general
-let g:fzf_layout = { 'window': 'call fzf_preview#window#create_centered_floating_window()' }
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
 
 " use rg by default
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
-
-" fzf preview
-let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages --glob "!.git/*"'
-let g:fzf_preview_command = 'bat --color=always --theme="OneHalfDark" --style=numbers,changes {-1}'
-let g:fzf_preview_git_files_command = 'git ls-files --exclude-standard'
-let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages --glob "!.git/*"'
-let g:fzf_preview_git_status_command = "git status --short --untracked-files=all | awk '{if (substr($0,2,1) !~ / /) print $2}'"
-let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --hidden --color "always" --glob "!.git/*"'
-let g:fzf_preview_use_dev_icons = 1
-let g:fzf_binary_preview_command = 'echo "{} is a binary file"'
 
 " ======================== Filetype-Specific Configurations ============================= "
 
+" enable spell only if file type is normal text
+let spellable = ['markdown', 'gitcommit', 'txt', 'text']
+autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
+
 " open help in vertical split
 autocmd FileType help wincmd L
-
-" Markdown
-autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType markdown set spell
 
 " startify when there is no open buffer left
 autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
@@ -303,7 +292,7 @@ autocmd VimEnter * if argc() == 0 | Startify | endif
 " open files preview on enter and provided arg is a folder
 autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Startify | endif
 autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | execute 'cd' fnameescape(argv()[0])  | endif
-autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | FzfPreviewDirectoryFiles | endif
+autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Files | endif
 
 " auto html tags closing, enable for markdown files as well
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
@@ -313,6 +302,45 @@ autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
 
 " ================== Custom Functions ===================== "
+
+" files window with preview
+command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+
+" advanced grep(faster with preview)
+function! RipgrepFzf(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+
+" floating fzf window with borders
+function! CreateCenteredFloatingWindow()
+    let width = min([&columns - 4, max([80, &columns - 20])])
+    let height = min([&lines - 4, max([20, &lines - 10])])
+    let top = ((&lines - height) / 2) - 1
+    let left = (&columns - width) / 2
+    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+
+    let top = "╭" . repeat("─", width - 2) . "╮"
+    let mid = "│" . repeat(" ", width - 2) . "│"
+    let bot = "╰" . repeat("─", width - 2) . "╯"
+    let lines = [top] + repeat([mid], height - 2) + [bot]
+    let s:buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    call nvim_open_win(s:buf, v:true, opts)
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
+    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    au BufWipeout <buffer> exe 'bw '.s:buf
+endfunction
 
 " show docs on things with K
 function! s:show_documentation()
@@ -334,9 +362,9 @@ map <F4> :Vista!!<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>q :bd<CR>
 map <leader>v :Vista finder<CR>
-nnoremap <silent> <leader>f :FzfPreviewDirectoryFiles<CR>
-nmap <leader>b :FzfPreviewBuffers<CR>
-nmap <leader>c :FzfPreviewGitStatus<CR>
+nnoremap <silent> <leader>f :Files<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>c :Commands<CR>
 map <leader>/ :Rg<CR>
 nmap <leader>w :w<CR>
 nmap <leader>g :Goyo<CR>
@@ -409,3 +437,6 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+
+" fugitive mappings
+map <leader>d :Gdiffsplit<CR>

@@ -93,41 +93,40 @@ the current buffer is not loaded) for example opening a python file means all
 other non python related plugins are not loaded.  
 Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
 
-| Plugin                                                                  | Functionality                                 |
-| ----------------------------------------------------------------------- | --------------------------------------------- |
-| [vim-airline](https://github.com/vim-airline/vim-airline)               | airline status line                           |
-| [airline-themes](https://github.com/vim-airline/vim-airline-themes)     | airline themes                                |
-| [devicons](https://github.com/ryanoasis/vim-devicons)                   | icons everywhere                              |
-| [rainbow](https://github.com/luochen1990/rainbow)                       | rainbow parenthesis                           |
-| [vim-material](https://github.com/hzchirs/vim-material)                 | material themes                               |
-| [goyo](https://github.com/junegunn/goyo.vim)                            | focus mode                                    |
-| [coc.nvim](https://github.com/neoclide/coc.nvim)                        | async completion and more                     |
-| [ale-sensible](https://github.com/desmap/ale-sensible)                  | better ALE experience                         |
-| [ale](https://github.com/w0rp/ale)                                      | diagnostics, linting and more                 |
-| [fzf](https://github.com/junegunn/fzf)                                  | fuzzy finder                                  |
-| [fzf.vim](https://github.com/junegunn/fzf.vim)                          | fuzzy finder vim integration                  |
-| [ultisnips](https://github.com/SirVer/ultisnips)                        | snippets engine                               |
-| [vim-snippets](https://github.com/honza/vim-snippets)                   | snippets for many languages                   |
-| [vim-closetag](https://github.com/alvan/vim-closetag)                   | auto html tag closing                         |
-| [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indent lines                             |
-| [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string                 |
-| [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                       |
-| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)         | dart language support                         |
-| [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                    |
-| [vim-sensible](https://github.com/tpope/vim-sensible)                   | sensible defaults for vim                     |
-| [suda](https://github.com/lambdalisue/suda.vim)                         | add sudo support                              |
-| [vim-auto-save](https://github.com/907th/vim-auto-save)                 | auto save on insert mode exit                 |
-| [vim-startify](https://github.com/mhinz/vim-startify)                   | cool startup thingy                           |
-| [vim-carbon-no-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh    |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)                   | best git integration around                   |
-| [vim-sandwich](https://github.com/machakann/vim-sandwich)               | surround stuff with stuff                     |
-| [vim-smoothie](https://github.com/psliwka/vim-smoothie)                 | super smooth scrolling                        |
-| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was      |
-| [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control               |
-| [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                         |
-| [Vista](https://github.com/liuchengxu/vista.vim)                        | list of tags                                  |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                    |
-| [fzf-preview](https://github.com/yuki-ycino/fzf-preview.vim)            | fzf floating windows with previews everywhere |
+| Plugin                                                                  | Functionality                              |
+| ----------------------------------------------------------------------- | ------------------------------------------ |
+| [vim-airline](https://github.com/vim-airline/vim-airline)               | airline status line                        |
+| [airline-themes](https://github.com/vim-airline/vim-airline-themes)     | airline themes                             |
+| [devicons](https://github.com/ryanoasis/vim-devicons)                   | icons everywhere                           |
+| [rainbow](https://github.com/luochen1990/rainbow)                       | rainbow parenthesis                        |
+| [vim-material](https://github.com/hzchirs/vim-material)                 | material themes                            |
+| [goyo](https://github.com/junegunn/goyo.vim)                            | focus mode                                 |
+| [coc.nvim](https://github.com/neoclide/coc.nvim)                        | async completion and more                  |
+| [ale-sensible](https://github.com/desmap/ale-sensible)                  | better ALE experience                      |
+| [ale](https://github.com/w0rp/ale)                                      | diagnostics, linting and more              |
+| [fzf](https://github.com/junegunn/fzf)                                  | fuzzy finder                               |
+| [fzf.vim](https://github.com/junegunn/fzf.vim)                          | fuzzy finder vim integration               |
+| [ultisnips](https://github.com/SirVer/ultisnips)                        | snippets engine                            |
+| [vim-snippets](https://github.com/honza/vim-snippets)                   | snippets for many languages                |
+| [vim-closetag](https://github.com/alvan/vim-closetag)                   | auto html tag closing                      |
+| [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indent lines                          |
+| [vim-searchindex](https://github.com/google/vim-searchindex)            | show index of a search string              |
+| [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
+| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)         | dart language support                      |
+| [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                 |
+| [vim-sensible](https://github.com/tpope/vim-sensible)                   | sensible defaults for vim                  |
+| [suda](https://github.com/lambdalisue/suda.vim)                         | add sudo support                           |
+| [vim-auto-save](https://github.com/907th/vim-auto-save)                 | auto save on insert mode exit              |
+| [vim-startify](https://github.com/mhinz/vim-startify)                   | cool startup thingy                        |
+| [vim-carbon-no-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)                   | best git integration around                |
+| [vim-sandwich](https://github.com/machakann/vim-sandwich)               | surround stuff with stuff                  |
+| [vim-smoothie](https://github.com/psliwka/vim-smoothie)                 | super smooth scrolling                     |
+| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was   |
+| [vim-cool](https://github.com/romainl/vim-cool)                         | better search highlight control            |
+| [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
+| [Vista](https://github.com/liuchengxu/vista.vim)                        | list of tags                               |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
 
 ## Keyboard shortcuts
 
@@ -154,7 +153,8 @@ expose a hidden functionality within a plugin.
 | `,g`    | Goyo (zen mode)                                                            | Default          |
 | `,e`    | call :PlugInstall (install plugins)                                        | None             |
 | `,v`    | search in vista tags                                                       | None             |
-| `,c`    | show git status in fzf                                                     | None             |
+| `,c`    | show list of editor commands in fzf                                        | None             |
+| `,d`    | show git diff in splits                                                    | None             |
 | `,/`    | search in project folder (calls Rg)                                        | None             |
 | `,rn`   | rename globally                                                            | None             |
 | `,l`    | easymotion to the left                                                     | None             |
@@ -190,14 +190,11 @@ expose a hidden functionality within a plugin.
 
 ### FZF keyboard shortcuts
 
-| Mapping | Functionality                             |
-| ------- | ----------------------------------------- |
-| `C-x`   | Open file in horizontal split             |
-| `C-v`   | Open file in vertical split               |
-| `C-t`   | Open file in new tab                      |
-| `C-d`   | scroll preview down (like in normal mode) |
-| `C-u`   | Scroll preview up                         |
-| `?`     | turn off/on preview                       |
+| Mapping | Functionality                 |
+| ------- | ----------------------------- |
+| `C-x`   | Open file in horizontal split |
+| `C-v`   | Open file in vertical split   |
+| `C-t`   | Open file in new tab          |
 
 ## Customizations
 
