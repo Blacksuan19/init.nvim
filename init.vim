@@ -98,7 +98,8 @@ set undofile                                            " enable persistent undo
 set undodir=~/.nvim/tmp                                 " undo temp file directory
 set nofoldenable                                        " disable folding
 set inccommand=nosplit                                  " visual feedback while substituting
-let loaded_netrw = 0
+let loaded_netrw = 0                                    " diable netew
+let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
 
 " Python VirtualEnv
 let g:python_host_prog =  expand('/usr/bin/python')
