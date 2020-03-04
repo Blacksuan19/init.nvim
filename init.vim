@@ -1,4 +1,4 @@
-" ============= Vim-Plug ============== "
+"{{{ ============= Vim-Plug ============== "
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
@@ -19,7 +19,9 @@ endif
 
 call plug#begin(expand('~/.config/nvim/plugged'))
 
-" ================= looks and GUI stuff ================== "
+"}}}
+
+"{{{ ================= looks and GUI stuff ================== "
 
 Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'vim-airline/vim-airline-themes'                   " airline themes
@@ -29,7 +31,9 @@ Plug 'hzchirs/vim-material'                             " material color themes
 Plug 'junegunn/goyo.vim'                                " Zen mode
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 
-" ================= Functionalities ================= "
+"}}}
+
+"{{{ ================= Functionalities ================= "
 
 " auto completion, Lang servers and stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -45,22 +49,19 @@ Plug 'honza/vim-snippets'                               " actual snippets
 " visual
 Plug 'alvan/vim-closetag'                               " auto close html tags
 Plug 'Yggdroot/indentLine'                              " show indentation lines
-Plug 'google/vim-searchindex'                           " add number of found matching search items
 
 " languages
 Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'dart-lang/dart-vim-plugin'                        " dart language support
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
 
 " other
 Plug 'tpope/vim-commentary'                             " better commenting
-Plug 'tpope/vim-sensible'                               " sensible defaults
-Plug '907th/vim-auto-save'                              " auto save changes
 Plug 'mhinz/vim-startify'                               " cool start up screen
 Plug 'kristijanhusak/vim-carbon-now-sh'                 " lit code Screenshots
 Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
-Plug 'romainl/vim-cool'                                 " disable hl until another search is performed
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'liuchengxu/vista.vim'                             " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
@@ -68,15 +69,13 @@ Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'easymotion/vim-easymotion'                        " make movement a lot faster and easier
 call plug#end()
 
+"}}}
 
-" ==================== general config ======================== "
+"{{{ ==================== general config ======================== "
 
 set termguicolors                                       " Opaque Background
 set mouse=a                                             " enable mouse scrolling
 set clipboard+=unnamedplus                              " use system clipboard by default
-
-" ===================== Other Configurations ===================== "
-
 filetype plugin indent on                               " enable indentations
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent            " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
@@ -90,13 +89,15 @@ set title                                               " tab title as file file
 set conceallevel=2                                      " set this so we wont break indentation plugin
 set splitright                                          " open vertical split to the right
 set splitbelow                                          " open horizontal split to the bottom
-set tw=80                                               " auto wrap lines that are longer than that
+set tw=90                                               " auto wrap lines that are longer than that
 set emoji                                               " enable emojis
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
+set history=1000                                        " history limit
+set backspace=indent,eol,start                          " sensible backspacing
 set undofile                                            " enable persistent undo
-set undodir=~/.nvim/tmp                                 " undo temp file directory
-set nofoldenable                                        " disable folding
+set undodir=/tmp                                        " undo temp file directory
+set foldlevel=0                                         " open all folds by default
 set inccommand=nosplit                                  " visual feedback while substituting
 let loaded_netrw = 0                                    " diable netew
 let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
@@ -120,6 +121,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 hi NonText guifg=bg                                     " mask ~ on empty lines
 hi clear CursorLineNr                                   " use the theme color for relative number
 hi CursorLineNr gui=bold                                " make relative number bold
+hi EasyMotionMoveHL guibg=#b16286 guifg=#ebdbb2 gui=NONE
 
 " colors for git (especially the gutter)
 hi DiffAdd guibg='#0f111a'
@@ -160,8 +162,9 @@ if exists('$TMUX')
     let &t_EI .= "\e[=2c"
  endif
 
+"}}}
 
-" ======================== Plugin Configurations ======================== "
+"{{{ ======================== Plugin Configurations ======================== "
 
 " Airline
 let g:airline_powerline_fonts = 0
@@ -247,17 +250,8 @@ let g:startify_session_persistence = 1
 let g:startify_fortune_use_unicode = 1
 let g:startify_enable_special = 0
 
-" auto save file changes
-let g:auto_save = 1                                     " enable AutoSave on Vim startup
-let g:auto_save_no_updatetime = 1                       " do not change the 'updatetime' option
-let g:auto_save_in_insert_mode = 0                      " do not save while in insert mode
-let g:auto_save_silent = 1
-
 " rainbow brackets
 let g:rainbow_active = 1
-
-" tagbar
-let g:tagbar_autofocus = 1
 
 " easymotion
 let g:EasyMotion_startofline = 0                        " keep cursor column when JK motion
@@ -267,7 +261,7 @@ let g:EasyMotion_smartcase = 1                          " ignore case
 
 " general
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-let $FZF_DEFAULT_OPTS="--reverse " " top to bottom
+let $FZF_DEFAULT_OPTS="--reverse "                      " top to bottom
 
 " use rg by default
 if executable('rg')
@@ -275,7 +269,13 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
 
-" ======================== Filetype-Specific Configurations ============================= "
+"}}}
+
+"{{{ ======================== Filetype-Specific Configurations ============================= "
+
+" auto save file if buff is modified
+autocmd InsertLeave * update
+autocmd TextChanged * update
 
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text']
@@ -302,7 +302,8 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
 
-" ================== Custom Functions ===================== "
+"}}}
+"{{{ ================== Custom Functions ===================== "
 
 " files window with preview
 command! -bang -nargs=? -complete=dir Files
@@ -352,7 +353,8 @@ function! s:show_documentation()
   endif
 endfunction
 
-" ======================== Custom Mappings ====================== "
+"}}}
+"{{{ ======================== Custom Mappings ====================== "
 
 "" the essentials
 let mapleader=","
@@ -441,3 +443,8 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 " fugitive mappings
 map <leader>d :Gdiffsplit<CR>
+
+" disable hl with 2 esc
+noremap <silent><esc> <esc>:noh<CR><esc>
+
+"}}}
