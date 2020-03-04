@@ -67,6 +67,7 @@ Plug 'liuchengxu/vista.vim'                             " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'easymotion/vim-easymotion'                        " make movement a lot faster and easier
+Plug '907th/vim-auto-save'                              " nothing beats this
 call plug#end()
 
 "}}}
@@ -178,6 +179,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
 let g:airline#extensions#ale#enabled = 1                " ALE integration
 let airline#extensions#vista#enabled = 1                " vista integration
+
 " coc
 " use tab for completion trigger
 inoremap <silent><expr> <TAB>
@@ -217,7 +219,8 @@ let g:coc_global_extensions = [
             \'coc-python',
             \'coc-xml',
             \'coc-syntax',
-            \'coc-flutter'
+            \'coc-flutter',
+            \'coc-git'
             \]
 
 " ALE
@@ -231,6 +234,7 @@ let g:ale_fixers = {
             \'markdown' : ['prettier'],
             \'yaml': ['prettier'],
             \'json': ['prettier'],
+            \'python': ['autopep8'],
             \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
@@ -240,6 +244,7 @@ let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = '✘'
 let g:ale_sign_info = ''
 let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_prefix = '❯❯❯ '
 
 " indentLine
 let g:indentLine_char = '▏'
@@ -257,6 +262,10 @@ let g:rainbow_active = 1
 let g:EasyMotion_startofline = 0                        " keep cursor column when JK motion
 let g:EasyMotion_smartcase = 1                          " ignore case
 
+" auto save
+let g:auto_save        = 1
+let g:auto_save_silent = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
 "" FZF
 
 " general
@@ -272,10 +281,6 @@ endif
 "}}}
 
 "{{{ ======================== Filetype-Specific Configurations ============================= "
-
-" auto save file if buff is modified
-autocmd InsertLeave * update
-autocmd TextChanged * update
 
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text']
@@ -440,6 +445,12 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " fugitive mappings
 map <leader>d :Gdiffsplit<CR>
