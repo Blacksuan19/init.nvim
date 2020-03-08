@@ -123,7 +123,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
 | [Vista](https://github.com/liuchengxu/vista.vim)                        | list of tags                               |
 | [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
-| [semshi](https://github.com/numirias/semshi)                            |
+| [semshi](https://github.com/numirias/semshi)                            | better highlighting for python             |
 
 ## Keyboard shortcuts
 
