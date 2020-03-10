@@ -266,6 +266,7 @@ let g:EasyMotion_smartcase = 1                          " ignore case
 let g:auto_save        = 1
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
+
 "" FZF
 
 " general
@@ -306,6 +307,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
 " disable autosave on kernel directory and also formatting on save (we dont wanna fuck this up)
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0
 autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
+
+" python stuff
+autocmd FileType python nnoremap <leader>rn :Semshi rename
 
 "}}}
 "{{{ ================== Custom Functions ===================== "
