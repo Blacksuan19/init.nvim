@@ -11,6 +11,8 @@
   "python.jediEnabled": true,
   "suggest.noselect": false,
   "flutter.lsp.initialization.closingLabels": true,
+  "suggest.removeDuplicateItems": true,
+  "suggest.minTriggerInputLength": 3,
   "suggest.completionItemKindLabels": {
     "function": "\uf794",
     "method": "\uf6a6",
