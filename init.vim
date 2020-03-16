@@ -28,7 +28,6 @@ Plug 'vim-airline/vim-airline-themes'                   " airline themes
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'luochen1990/rainbow'                              " rainbow parenthesis
 Plug 'hzchirs/vim-material'                             " material color themes
-Plug 'junegunn/goyo.vim'                                " Zen mode
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 
 "}}}
@@ -37,7 +36,6 @@ Plug 'gregsexton/MatchTag'                              " highlight matching htm
 
 " auto completion, Lang servers and stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'w0rp/ale'
 
 " fuzzy stuff
 Plug 'junegunn/fzf.vim'                                " fuzzy search integration
@@ -131,12 +129,6 @@ hi DiffChange guibg='#0f111a'
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
-" Ale
-highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500
-highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#FFA500
-highlight ALEVirtualTextError ctermfg=9 ctermbg=15 guifg=#C30500
-highlight ALEVirtualTextWarning ctermfg=11 ctermbg=15 guifg=#FFA500
-
 " performance tweaks
 set nocursorline
 set nocursorcolumn
@@ -177,11 +169,10 @@ let g:airline_section_z = airline#section#create(['%3p%%  ',
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let g:airline#extensions#ale#enabled = 1                " ALE integration
 let airline#extensions#vista#enabled = 1                " vista integration
 
-" coc
-" use tab for completion trigger
+"" coc
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -217,34 +208,14 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-ultisnips',
             \'coc-python',
+            \'coc-diagnostic',
+            \'coc-clangd',
+            \'coc-prettier',
             \'coc-xml',
             \'coc-syntax',
             \'coc-flutter',
             \'coc-git'
             \]
-
-" ALE
-let g:ale_fixers = {
-            \'*': ['remove_trailing_lines', 'trim_whitespace'],
-            \'javascript': ['prettier'],
-            \'c' : ['clang-format'],
-            \'cpp' : ['clang-format'],
-            \'css' : ['prettier'],
-            \'html' : ['prettier'],
-            \'markdown' : ['prettier'],
-            \'yaml': ['prettier'],
-            \'json': ['prettier'],
-            \'python': ['autopep8'],
-            \}
-let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_sign_warning = '⚠'
-let g:ale_sign_error = '✘'
-let g:ale_sign_info = ''
-let g:ale_virtualtext_cursor = 1
-let g:ale_virtualtext_prefix = '❯❯❯ '
 
 " indentLine
 let g:indentLine_char = '▏'
@@ -266,6 +237,9 @@ let g:EasyMotion_smartcase = 1                          " ignore case
 let g:auto_save        = 1
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
+
+" semshi settings
+let g:semshi#error_sign	= v:false                       " let ms python lsp handle this
 
 "" FZF
 
@@ -304,15 +278,20 @@ autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Files | endif
 " auto html tags closing, enable for markdown files as well
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
 
-" disable autosave on kernel directory and also formatting on save (we dont wanna fuck this up)
-autocmd BufRead,BufNewFile */Dark-Ages/* let b:auto_save = 0
-autocmd BufRead,BufNewFile */Dark-Ages/* let b:ale_fix_on_save = 0
-
 " python stuff
 autocmd FileType python nnoremap <leader>rn :Semshi rename
 
 "}}}
 "{{{ ================== Custom Functions ===================== "
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" coc prettier function
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " files window with preview
 command! -bang -nargs=? -complete=dir Files
@@ -379,7 +358,7 @@ nmap <leader>b :Buffers<CR>
 nmap <leader>c :Commands<CR>
 map <leader>/ :Rg<CR>
 nmap <leader>w :w<CR>
-nmap <leader>g :Goyo<CR>
+map <leader>s :Format<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
@@ -431,7 +410,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " carbon sh now
@@ -449,12 +427,6 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " fugitive mappings
 map <leader>d :Gdiffsplit<CR>
