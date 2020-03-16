@@ -1,18 +1,28 @@
 {
+  // normal settings
   "coc.preferences.colorSupport": true,
+  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "coc.preferences.formatOnInsertLeave": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "html",
+    "css",
+    "python",
+    "dart",
+    "json",
+    "markdown",
+    "typescript"
+  ],
+
+  // suggest settings
+  "suggest.noselect": false,
+  "suggest.detailField": "abbr",
+  "suggest.snippetIndicator": "",
+  "suggest.removeDuplicateItems": true,
   "suggest.triggerAfterInsertEnter": true,
   "suggest.timeout": 2000,
-  "suggest.detailField": "abbr",
-  "suggest.snippetIndicator": "~",
-  "diagnostic.displayByAle": true,
-  "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.signOffset": 999999,
-  "python.autoComplete.addBrackets": true,
-  "python.jediEnabled": true,
-  "suggest.noselect": false,
-  "flutter.lsp.initialization.closingLabels": true,
-  "suggest.removeDuplicateItems": true,
-  "suggest.minTriggerInputLength": 3,
+  "suggest.minTriggerInputLength": 1,
   "suggest.completionItemKindLabels": {
     "function": "\uf794",
     "method": "\uf6a6",
@@ -39,5 +49,28 @@
     "reference": "\uf87a",
     "typeParameter": "\uf278",
     "default": "\uf29c"
-  }
+  },
+
+  // diagnostic settings
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.signOffset": 999999,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "ஐ",
+  "diagnostic.refreshAfterSave": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+  "diagnostic.virtualText": true,
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.locationlist": true,
+
+  // list settings
+  "list.source.grep.command": "rg",
+
+  // other stuff (language specific)
+  "python.autoComplete.addBrackets": true,
+  "python.jediEnabled": false,
+  "flutter.lsp.initialization.closingLabels": true
 }

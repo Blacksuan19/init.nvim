@@ -13,6 +13,7 @@
 - [Plugins](#plugins)
 - [Keyboard shortcuts](#keyboard-shortcuts)
   - [FZF](#fzf-keyboard-shortcuts)
+- [Custom Commands](#Custom-commands)
 - [Customizations](#customizations)
 - [Demos](#demos)
 - [Credits](#credits)
@@ -71,7 +72,6 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 
 - [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode) (not required but Recommended)
 - [tmux](https://github.com/tmux/tmux) (not required but recommended)
-- [jedi](https://github.com/davidhalter/jedi-vim)
 - [prettier](https://prettier.io/)
 - clang (much better C and C++)
 - [fuzzy finder (fzf)](https://github.com/junegunn/fzf)
@@ -94,36 +94,33 @@ the current buffer is not loaded) for example opening a python file means all
 other non python related plugins are not loaded.  
 Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
 
-| Plugin                                                                  | Functionality                              |
-| ----------------------------------------------------------------------- | ------------------------------------------ |
-| [vim-airline](https://github.com/vim-airline/vim-airline)               | airline status line                        |
-| [airline-themes](https://github.com/vim-airline/vim-airline-themes)     | airline themes                             |
-| [devicons](https://github.com/ryanoasis/vim-devicons)                   | icons everywhere                           |
-| [rainbow](https://github.com/luochen1990/rainbow)                       | rainbow parenthesis                        |
-| [vim-material](https://github.com/hzchirs/vim-material)                 | material themes                            |
-| [goyo](https://github.com/junegunn/goyo.vim)                            | focus mode                                 |
-| [coc.nvim](https://github.com/neoclide/coc.nvim)                        | async completion and more                  |
-| [ale](https://github.com/w0rp/ale)                                      | diagnostics, linting and more              |
-| [fzf](https://github.com/junegunn/fzf)                                  | fuzzy finder                               |
-| [fzf.vim](https://github.com/junegunn/fzf.vim)                          | fuzzy finder vim integration               |
-| [ultisnips](https://github.com/SirVer/ultisnips)                        | snippets engine                            |
-| [vim-snippets](https://github.com/honza/vim-snippets)                   | snippets for many languages                |
-| [vim-closetag](https://github.com/alvan/vim-closetag)                   | auto html tag closing                      |
-| [indentLine](https://github.com/Yggdroot/indentLine)                    | auto indent lines                          |
-| [vim-liquid](https://github.com/tpope/vim-liquid)                       | liquid language support                    |
-| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)         | dart language support                      |
-| [vim-commentary](https://github.com/tpope/vim-commentary)               | better comments everywhere                 |
-| [vim-auto-save](https://github.com/907th/vim-auto-save)                 | auto save on insert mode exit              |
-| [vim-startify](https://github.com/mhinz/vim-startify)                   | cool startup thingy                        |
-| [vim-carbon-no-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)                   | best git integration around                |
-| [vim-sandwich](https://github.com/machakann/vim-sandwich)               | surround stuff with stuff                  |
-| [vim-smoothie](https://github.com/psliwka/vim-smoothie)                 | super smooth scrolling                     |
-| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)            | open a file in the last place cursor was   |
-| [tmux-complete](https://github.com/wellle/tmux-complete.vim)            | tmux panes completion                      |
-| [Vista](https://github.com/liuchengxu/vista.vim)                        | list of tags                               |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)                       | some common Linux commands                 |
-| [semshi](https://github.com/numirias/semshi)                            | better highlighting for python             |
+| Plugin                                                                   | Functionality                              |
+| ------------------------------------------------------------------------ | ------------------------------------------ |
+| [vim-airline](https://github.com/vim-airline/vim-airline)                | airline status line                        |
+| [airline-themes](https://github.com/vim-airline/vim-airline-themes)      | airline themes                             |
+| [devicons](https://github.com/ryanoasis/vim-devicons)                    | icons everywhere                           |
+| [rainbow](https://github.com/luochen1990/rainbow)                        | rainbow parenthesis                        |
+| [vim-material](https://github.com/hzchirs/vim-material)                  | material themes                            |
+| [coc.nvim](https://github.com/neoclide/coc.nvim)                         | async completion and more                  |
+| [fzf.vim](https://github.com/junegunn/fzf.vim)                           | fuzzy finder vim integration               |
+| [ultisnips](https://github.com/SirVer/ultisnips)                         | snippets engine                            |
+| [vim-snippets](https://github.com/honza/vim-snippets)                    | snippets for many languages                |
+| [vim-closetag](https://github.com/alvan/vim-closetag)                    | auto html tag closing                      |
+| [indentLine](https://github.com/Yggdroot/indentLine)                     | auto indent lines                          |
+| [vim-liquid](https://github.com/tpope/vim-liquid)                        | liquid language support                    |
+| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)          | dart language support                      |
+| [vim-commentary](https://github.com/tpope/vim-commentary)                | better comments everywhere                 |
+| [vim-auto-save](https://github.com/907th/vim-auto-save)                  | auto save on insert mode exit              |
+| [vim-startify](https://github.com/mhinz/vim-startify)                    | cool startup thingy                        |
+| [vim-carbon-now-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)                    | best git integration around                |
+| [vim-sandwich](https://github.com/machakann/vim-sandwich)                | surround stuff with stuff                  |
+| [vim-smoothie](https://github.com/psliwka/vim-smoothie)                  | super smooth scrolling                     |
+| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)             | open a file in the last place cursor was   |
+| [tmux-complete](https://github.com/wellle/tmux-complete.vim)             | tmux panes completion                      |
+| [Vista](https://github.com/liuchengxu/vista.vim)                         | list of tags                               |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)                        | some common Linux commands                 |
+| [semshi](https://github.com/numirias/semshi)                             | better highlighting for python             |
 
 ## Keyboard shortcuts
 
@@ -147,7 +144,6 @@ expose a hidden functionality within a plugin.
 | `,q`         | close tab                                                                  | :q               |
 | `,w`         | save changes(tho save when existing insert mode is enabled by default)     | :q               |
 | `,f`         | fzf files viewer (shows project files with the ability to search)          | None             |
-| `,g`         | Goyo (zen mode)                                                            | Default          |
 | `,e`         | call :PlugInstall (install plugins)                                        | None             |
 | `,v`         | search in vista tags                                                       | None             |
 | `,c`         | show list of editor commands in fzf                                        | None             |
@@ -158,6 +154,7 @@ expose a hidden functionality within a plugin.
 | `,h`         | easymotion to the right                                                    | None             |
 | `,j`         | easymotion to the bottom                                                   | None             |
 | `,k`         | easymotion to the top                                                      | None             |
+| `,s`         | format file with any available formatter                                   | None             |
 | `jj`         | Escape                                                                     | Esc              |
 | `d`          | use a different register for deletion (so the deleted text wont be copied) | "\_d             |
 | `C-q`        | close all buffers and exit nvim                                            | None             |
@@ -194,6 +191,14 @@ expose a hidden functionality within a plugin.
 | `C-v`   | Open file in vertical split   |
 | `C-t`   | Open file in new tab          |
 
+## Custom commands
+
+| Command  | Functionality                            |
+| -------- | ---------------------------------------- |
+| Format   | format file with any available formatter |
+| Prettier | format file using prettier(if supported) |
+| OR       | organize imports                         |
+
 ## Customizations
 
 Since the file is pretty small its very easy to interpret by even those who
@@ -203,9 +208,6 @@ there are some defaults that are not everyone's cup of tea (after all this is
 highly opinionated).
 
 - _Disabling autosave:_ set `let g:auto_save = 0`
-- _Disabling format on save:_ set `let g:ale_fix_on_save = 0`
-- _removing words from completion:_ `CocList extensions` highlight extension then press Tab to show
-  actions
 
 Most of the included plugins are highly customizable in nature (this is vim),
 checkout [Plugins](#plugins)
