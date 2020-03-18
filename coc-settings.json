@@ -2,13 +2,10 @@
   // normal settings
   "coc.preferences.colorSupport": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
-  "coc.preferences.formatOnInsertLeave": true,
-  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "html",
     "css",
-    "python",
     "dart",
     "json",
     "markdown",
@@ -63,8 +60,8 @@
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": true,
-  "diagnostic.messageTarget": "echo",
   "diagnostic.locationlist": true,
+  "diagnostic.enableMessage": "never",
 
   // list settings
   "list.source.grep.command": "rg",
