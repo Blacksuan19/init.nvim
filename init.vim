@@ -208,7 +208,6 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-ultisnips',
             \'coc-python',
-            \'coc-diagnostic',
             \'coc-clangd',
             \'coc-prettier',
             \'coc-xml',
