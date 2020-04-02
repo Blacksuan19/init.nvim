@@ -111,7 +111,7 @@ set background=dark
 colorscheme vim-material
 let g:airline_theme='material'
 highlight Pmenu guibg='00010a' guifg=white              " popup menu colors
-highlight Comment gui=bold                              " bold comments
+highlight Comment gui=italic cterm=italic               " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
 highlight clear SignColumn                              " use number color for sign column color
