@@ -134,6 +134,7 @@ set nocursorline
 set nocursorcolumn
 set scrolljump=5
 set lazyredraw
+set redrawtime=10000
 set synmaxcol=180
 set re=1
 
