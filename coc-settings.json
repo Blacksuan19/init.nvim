@@ -65,9 +65,15 @@
 
   // list settings
   "list.source.grep.command": "rg",
-
   // other stuff (language specific)
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": false,
-  "flutter.lsp.initialization.closingLabels": true
+  "flutter.lsp.initialization.closingLabels": true,
+
+  // git settings
+  "git.topRemovedSign.text": "▌",
+  "git.changeRemovedSign.text": "▌",
+  "git.removedSign.text": "▌",
+  "git.addedSign.text": "▌",
+  "git.changedSign.text": "▌"
 }

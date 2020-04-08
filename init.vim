@@ -1,4 +1,4 @@
-"{{{ ============= Vim-Plug ============== "
+" ============= Vim-Plug ============== "{{{
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
@@ -21,7 +21,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 
 "}}}
 
-"{{{ ================= looks and GUI stuff ================== "
+" ================= looks and GUI stuff ================== "{{{
 
 Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'vim-airline/vim-airline-themes'                   " airline themes
@@ -32,7 +32,7 @@ Plug 'gregsexton/MatchTag'                              " highlight matching htm
 
 "}}}
 
-"{{{ ================= Functionalities ================= "
+" ================= Functionalities ================= "{{{
 
 " auto completion, Lang servers and stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -70,7 +70,7 @@ call plug#end()
 
 "}}}
 
-"{{{ ==================== general config ======================== "
+" ==================== general config ======================== "{{{
 
 set termguicolors                                       " Opaque Background
 set mouse=a                                             " enable mouse scrolling
@@ -123,8 +123,9 @@ hi CursorLineNr gui=bold                                " make relative number b
 hi EasyMotionMoveHL guibg=#b16286 guifg=#ebdbb2 gui=NONE
 
 " colors for git (especially the gutter)
-hi DiffAdd guibg='#0f111a'
-hi DiffChange guibg='#0f111a'
+hi DiffAdd  guibg=#0f111a guifg=#43a047
+hi DiffChange guibg=#0f111a guifg=#fdd835
+hi DiffRemoved guibg=#0f111a guifg=#e53935
 
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
@@ -158,7 +159,7 @@ if exists('$TMUX')
 
 "}}}
 
-"{{{ ======================== Plugin Configurations ======================== "
+" ======================== Plugin Configurations ======================== "{{{
 
 " Airline
 let g:airline_powerline_fonts = 0
@@ -255,7 +256,7 @@ endif
 
 "}}}
 
-"{{{ ======================== Filetype-Specific Configurations ============================= "
+" ======================== Auto Commands ============================= "{{{
 
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text']
@@ -281,8 +282,16 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
 " python stuff
 autocmd FileType python nnoremap <leader>rn :Semshi rename
 
+" relative numbers on normal mode only
+augroup numbertoggle
+  autocmd!
+  autocmd InsertLeave * set relativenumber
+  autocmd InsertEnter * set norelativenumber
+augroup END
+
 "}}}
-"{{{ ================== Custom Functions ===================== "
+
+" ================== Custom Functions ===================== "{{{
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -342,7 +351,8 @@ function! s:show_documentation()
 endfunction
 
 "}}}
-"{{{ ======================== Custom Mappings ====================== "
+
+" ======================== Custom Mappings ====================== "{{{
 
 "" the essentials
 let mapleader=","
