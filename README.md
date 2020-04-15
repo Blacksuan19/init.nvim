@@ -48,7 +48,7 @@ Neovim provides support for a wide range of languages by default.
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
-- [dart](https://dark.dev)
+- [dart](https://dart.dev)
 
 ## Requirements
 
