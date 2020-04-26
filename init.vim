@@ -24,7 +24,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " ================= looks and GUI stuff ================== "{{{
 
 Plug 'vim-airline/vim-airline'                          " airline status bar
-Plug 'vim-airline/vim-airline-themes'                   " airline themes
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'luochen1990/rainbow'                              " rainbow parenthesis
 Plug 'hzchirs/vim-material'                             " material color themes
@@ -84,7 +83,8 @@ set wrap breakindent                                    " wrap long lines to the
 set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
 set relativenumber                                      " current line is 0
-set title                                               " tab title as file file
+set title                                               " tab title as file name
+set noshowmode                                          " dont show current mode below statusline
 set conceallevel=2                                      " set this so we wont break indentation plugin
 set splitright                                          " open vertical split to the right
 set splitbelow                                          " open horizontal split to the bottom
@@ -109,7 +109,6 @@ let g:python3_host_prog = expand('/usr/bin/python3')
 let g:material_style='oceanic'
 set background=dark
 colorscheme vim-material
-let g:airline_theme='material'
 highlight Pmenu guibg='#00010a' guifg=white              " popup menu colors
 highlight Comment gui=italic cterm=italic               " bold comments
 highlight Normal gui=none
@@ -162,6 +161,7 @@ if exists('$TMUX')
 " ======================== Plugin Configurations ======================== "{{{
 
 " Airline
+let g:airline_theme='material'
 let g:airline_powerline_fonts = 0
 let g:airline#themes#clean#palette = 1
 call airline#parts#define_raw('linenr', '%l')
@@ -170,6 +170,7 @@ let g:airline_section_z = airline#section#create(['%3p%%  ',
             \ g:airline_symbols.linenr .' ', 'linenr', ':%c '])
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
 let airline#extensions#vista#enabled = 1                " vista integration
 
@@ -375,9 +376,11 @@ noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
 inoremap jj <ESC>
 
-" use a different buffer for dd
+" use a different buffer for delete and paste
 nnoremap d "_d
 vnoremap d "_d
+vnoremap p "_dP
+nnoremap x "_x
 
 " emulate windows copy, cut behavior
 vnoremap <LeftRelease> "+y<LeftRelease>
