@@ -260,7 +260,7 @@ endif
 " ======================== Auto Commands ============================= "{{{
 
 " enable spell only if file type is normal text
-let spellable = ['markdown', 'gitcommit', 'txt', 'text']
+let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid']
 autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
 
 " open help in vertical split
