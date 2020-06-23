@@ -136,7 +136,7 @@ expose a hidden functionality within a plugin.
 `S` == Shift key  
 `C` == ctrl key
 
-| Mapping      | functionality                                                              | Replaced Mapping |
+| Mapping      | functionality                                                              | Old Mapping |
 | ------------ | -------------------------------------------------------------------------- | ---------------- |
 | `;`          | commands key                                                               | :                |
 | `,r`         | reload Nvim config                                                         | None             |
