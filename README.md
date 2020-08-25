@@ -125,52 +125,47 @@ expose a hidden functionality within a plugin.
 
 #### Legend
 
-`,` == leader key
-`S` == Shift key
-`C` == ctrl key
+`,` == leader key </br>
+`S` == Shift key </br>
+`C` == ctrl key </br>
 
-| Mapping      | functionality                                                              | Old Mapping |
-| ------------ | -------------------------------------------------------------------------- | ----------- |
-| `;`          | commands key                                                               | :           |
-| `,r`         | reload Nvim config                                                         | None        |
-| `,q`         | close tab                                                                  | :q          |
-| `,w`         | save changes(tho save when existing insert mode is enabled by default)     | :q          |
-| `,f`         | fzf files viewer (shows project files with the ability to search)          | None        |
-| `,e`         | call :PlugInstall (install plugins)                                        | None        |
-| `,t`         | search current file tags                                                   | None        |
-| `,c`         | show list of editor commands in fzf                                        | None        |
-| `,d`         | show git diff in splits                                                    | None        |
-| `,/`         | search in project folder (calls Rg)                                        | None        |
-| `,rn`        | rename globally                                                            | None        |
-| `,a`         | run cocAction on visual selection or where the cursor is                   | None        |
-| `,s`         | format file with any available formatter                                   | None        |
-| `jj`         | Escape                                                                     | Esc         |
-| `d`          | use a different register for deletion (so the deleted text wont be copied) | "\_d        |
-| `C-q`        | close all buffers and exit nvim                                            | None        |
-| `C-c`        | copy text to system clipboard (only in visual mode)                        | +y          |
-| `C-x`        | cut text to system clipboard (only in visual mode)                         | +d          |
-| `C-l`        | move to the split on the right                                             | Default     |
-| `C-k`        | move the split above                                                       | Default     |
-| `C-j`        | move to the split on below                                                 | Default     |
-| `C-h`        | Move the split to the left                                                 | Default     |
-| `C-c`        | highlights character for multi cursor selection (in normal mode)           | None        |
-| `C-a`        | Highlights word/selection for multi cursor selection                       | None        |
-| `ENTER`      | insert blank line below in normal mode                                     | None        |
-| `ENTER`      | inputs selected snippet in insert mode                                     | None        |
-| `Tab`        | cycles throw coc in insert mode                                            | None        |
-| `Tab`        | switch to the next buffer(tab)                                             | Default     |
-| `S-Tab`      | switch to the previous buffer(tab)                                         | Default     |
-| `F5`         | Trim white spaces                                                          | None        |
-| `F6`         | Startify                                                                   | Default     |
-| `F8`         | opens selection in carbon now sh (only in visual mode)                     | None        |
-| `]g`         | next diagnostic                                                            | None        |
-| `[g`         | Previous diagnostic                                                        | None        |
-| `gd`         | jump to definition(using coc)                                              | None        |
-| `gy`         | jump to type definition(using coc)                                         | None        |
-| `gi`         | jump to implementation(using coc)                                          | None        |
-| `gr`         | jump to references (using coc)                                             | None        |
-| `S-k`        | show current symbol documentation                                          | None        |
-| `<esc><esc>` | disable search highlighting for current search                             | None        |
+| Mapping      | functionality                                        | Old Mapping |
+| ------------ | ---------------------------------------------------- | ----------- |
+| `;`          | commands key                                         | :           |
+| `,r`         | reload Nvim config                                   | None        |
+| `,q`         | close tab                                            | :q          |
+| `,w`         | save changes                                         | :q          |
+| `,f`         | fzf files viewer                                     | None        |
+| `,e`         | call :PlugInstall (install plugins)                  | None        |
+| `,t`         | search current file tags                             | None        |
+| `,c`         | show list of editor commands in fzf                  | None        |
+| `,d`         | show git diff in splits                              | None        |
+| `,/`         | search in current folder                             | None        |
+| `,rn`        | rename globally                                      | None        |
+| `,a`         | run cocAction                                        | None        |
+| `,s`         | format file with any available formatter             | None        |
+| `,gc`        | git commits                                          | None        |
+| `,sh`        | search search history using fzf                      | None        |
+| `C-q`        | close all buffers and exit nvim                      | None        |
+| `C-l`        | move to the split on the right                       | Default     |
+| `C-k`        | move the split above                                 | Default     |
+| `C-j`        | move to the split on below                           | Default     |
+| `C-h`        | Move the split to the left                           | Default     |
+| `C-c`        | highlights character for multi cursor selection      | None        |
+| `C-a`        | Highlights word/selection for multi cursor selection | None        |
+| `Tab`        | switch to the next buffer(normal mode)               | Default     |
+| `S-Tab`      | switch to the previous buffer(tab)                   | Default     |
+| `S-k`        | show current symbol documentation                    | None        |
+| `F1`         | open Mappings for current mode                       | None        |
+| `F5`         | Trim white spaces                                    | None        |
+| `F6`         | Startify                                             | Default     |
+| `]g`         | next diagnostic                                      | None        |
+| `[g`         | Previous diagnostic                                  | None        |
+| `gd`         | jump to definition(using coc)                        | None        |
+| `gy`         | jump to type definition(using coc)                   | None        |
+| `gi`         | jump to implementation(using coc)                    | None        |
+| `gr`         | jump to references (using coc)                       | None        |
+| `<esc><esc>` | disable search highlighting for current search       | None        |
 
 ### FZF keyboard shortcuts
 
@@ -186,6 +181,7 @@ expose a hidden functionality within a plugin.
 | ------- | ---------------------------------------- |
 | Format  | format file with any available formatter |
 | OR      | organize imports                         |
+| Rg      | Advanced Grep                            |
 
 ## Customizations
 
