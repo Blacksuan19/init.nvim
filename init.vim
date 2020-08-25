@@ -303,7 +303,7 @@ nmap <leader>q :bd<CR>
 nnoremap <silent> <leader>f :Files<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>c :Commands<CR>
-nmap <leader>t :Btags<CR>
+nmap <leader>t :BTags<CR>
 map <leader>/ :Rg<CR>
 nmap <leader>w :w<CR>
 map <leader>s :Format<CR>

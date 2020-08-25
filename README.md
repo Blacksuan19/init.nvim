@@ -137,7 +137,7 @@ expose a hidden functionality within a plugin.
 | `,w`         | save changes(tho save when existing insert mode is enabled by default)     | :q          |
 | `,f`         | fzf files viewer (shows project files with the ability to search)          | None        |
 | `,e`         | call :PlugInstall (install plugins)                                        | None        |
-| `,t`         | search in ctags using fzf                                                  | None        |
+| `,t`         | search current file tags                                                   | None        |
 | `,c`         | show list of editor commands in fzf                                        | None        |
 | `,d`         | show git diff in splits                                                    | None        |
 | `,/`         | search in project folder (calls Rg)                                        | None        |
