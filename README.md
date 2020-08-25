@@ -207,11 +207,17 @@ checkout [Plugins](#plugins)
 
 ## Demos
 
-![fzf preview](./Screens/fzf.png)
-![Ag preview](./Screens/ag.png)
-[![asciicast](https://asciinema.org/a/284399.svg)](https://asciinema.org/a/284399)
-[![asciicast](https://asciinema.org/a/284400.svg)](https://asciinema.org/a/284400)
-[![asciicast](https://asciinema.org/a/284401.svg)](https://asciinema.org/a/284401)
+### Project files with fzf
+
+![fzf preview](./Screens/screen1.png)
+
+### Project wide search with fzf
+
+![Rg preview](./Screens/screen2.png)
+
+### workflow demo
+
+[![Workflow Demo](https://img.youtube.com/vi/_R2K0MrGLLI/0.jpg)](https://www.youtube.com/watch?v=_R2K0MrGLLI)
 
 ## Credits
 
