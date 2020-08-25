@@ -47,7 +47,6 @@ Neovim provides support for a wide range of languages by default.
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
-- [dart](https://dart.dev)
 
 ## Requirements
 
@@ -93,27 +92,26 @@ the current buffer is not loaded) for example opening a python file means all
 other non python related plugins are not loaded.
 Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
 
-| Plugin                                                          | Functionality                  |
-| --------------------------------------------------------------- | ------------------------------ |
-| [vim-airline](https://github.com/vim-airline/vim-airline)       | airline status line            |
-| [devicons](https://github.com/ryanoasis/vim-devicons)           | icons everywhere               |
-| [rainbow](https://github.com/luochen1990/rainbow)               | rainbow parenthesis            |
-| [vim-material](https://github.com/hzchirs/vim-material)         | material themes                |
-| [coc.nvim](https://github.com/neoclide/coc.nvim)                | async completion and more      |
-| [fzf.vim](https://github.com/junegunn/fzf.vim)                  | fuzzy finder vim integration   |
-| [ultisnips](https://github.com/SirVer/ultisnips)                | snippets engine                |
-| [vim-snippets](https://github.com/honza/vim-snippets)           | snippets for many languages    |
-| [indentLine](https://github.com/Yggdroot/indentLine)            | auto indent lines              |
-| [vim-liquid](https://github.com/tpope/vim-liquid)               | liquid language support        |
-| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin) | dart language support          |
-| [vim-commentary](https://github.com/tpope/vim-commentary)       | better comments everywhere     |
-| [vim-startify](https://github.com/mhinz/vim-startify)           | cool startup thingy            |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)           | best git integration around    |
-| [vim-sandwich](https://github.com/machakann/vim-sandwich)       | surround stuff with stuff      |
-| [vim-smoothie](https://github.com/psliwka/vim-smoothie)         | super smooth scrolling         |
-| [tmux-complete](https://github.com/wellle/tmux-complete.vim)    | tmux panes completion          |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)               | some common Linux commands     |
-| [semshi](https://github.com/numirias/semshi)                    | better highlighting for python |
+| Plugin                                                       | Functionality                  |
+| ------------------------------------------------------------ | ------------------------------ |
+| [vim-airline](https://github.com/vim-airline/vim-airline)    | airline status line            |
+| [devicons](https://github.com/ryanoasis/vim-devicons)        | icons everywhere               |
+| [rainbow](https://github.com/luochen1990/rainbow)            | rainbow parenthesis            |
+| [vim-material](https://github.com/hzchirs/vim-material)      | material themes                |
+| [coc.nvim](https://github.com/neoclide/coc.nvim)             | async completion and more      |
+| [fzf.vim](https://github.com/junegunn/fzf.vim)               | fuzzy finder vim integration   |
+| [ultisnips](https://github.com/SirVer/ultisnips)             | snippets engine                |
+| [vim-snippets](https://github.com/honza/vim-snippets)        | snippets for many languages    |
+| [indentLine](https://github.com/Yggdroot/indentLine)         | auto indent lines              |
+| [vim-liquid](https://github.com/tpope/vim-liquid)            | liquid language support        |
+| [vim-commentary](https://github.com/tpope/vim-commentary)    | better comments everywhere     |
+| [vim-startify](https://github.com/mhinz/vim-startify)        | cool startup thingy            |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)        | best git integration around    |
+| [vim-sandwich](https://github.com/machakann/vim-sandwich)    | surround stuff with stuff      |
+| [vim-smoothie](https://github.com/psliwka/vim-smoothie)      | super smooth scrolling         |
+| [tmux-complete](https://github.com/wellle/tmux-complete.vim) | tmux panes completion          |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)            | some common Linux commands     |
+| [semshi](https://github.com/numirias/semshi)                 | better highlighting for python |
 
 ## Keyboard shortcuts
 
