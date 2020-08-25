@@ -300,20 +300,14 @@ nmap \ <leader>q
 map <F6> :Startify <CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>q :bd<CR>
-nnoremap <silent> <leader>f :Files<CR>
-nmap <leader>b :Buffers<CR>
-nmap <leader>c :Commands<CR>
-nmap <leader>t :BTags<CR>
-map <leader>/ :Rg<CR>
 nmap <leader>w :w<CR>
 map <leader>s :Format<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
-inoremap jj <ESC>
 
-" use a different buffer for delete and paste
+" use a different register for delete and paste
 nnoremap d "_d
 vnoremap d "_d
 vnoremap p "_dP
@@ -325,10 +319,6 @@ vnoremap <C-c> "+y<CR>
 vnoremap <C-x> "+d<CR>
 
 " switch between splits using ctrl + {h,j,k,l}
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
 inoremap <C-h> <C-\><C-N><C-w>h
 inoremap <C-j> <C-\><C-N><C-w>j
 inoremap <C-k> <C-\><C-N><C-w>k
@@ -338,7 +328,27 @@ noremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"" coc mappings
+" disable hl with 2 esc
+noremap <silent><esc> <esc>:noh<CR><esc>
+
+" trim white spaces
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"" FZF
+nnoremap <silent> <leader>f :Files<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>c :Commands<CR>
+nmap <leader>t :BTags<CR>
+nmap <leader>/ :Rg<CR>
+nmap <leader>gc :Commits<CR>
+nmap <leader>sh :History/<CR>
+
+" show mapping on all modes with F8
+nmap <F1> <plug>(fzf-maps-n)
+imap <F1> <plug>(fzf-maps-i)
+vmap <F1> <plug>(fzf-maps-x)
+
+"" coc
 " multi cursor shortcuts
 nmap <silent> <C-c> <Plug>(coc-cursors-position)
 nmap <silent> <C-a> <Plug>(coc-cursors-word)
@@ -367,12 +377,6 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " fugitive mappings
-map <leader>d :Gdiffsplit<CR>
-
-" disable hl with 2 esc
-noremap <silent><esc> <esc>:noh<CR><esc>
-
-" trim white spaces
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nmap <leader>d :Gdiffsplit<CR>
 
 "}}}
