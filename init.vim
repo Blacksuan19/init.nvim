@@ -198,17 +198,17 @@ let g:coc_global_extensions = [
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
+let g:indentLine_fileTypeExclude = ['startify']
 
 " startify
+let g:startify_padding_left = 60
 let g:startify_session_persistence = 1
-let g:startify_fortune_use_unicode = 1
 let g:startify_enable_special = 0
 let g:startify_lists = [
-    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-    \ { 'type': 'files',     'header': ['   MRU']            },
-    \ { 'type': 'sessions',  'header': ['   Sessions']       },
-    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-    \ { 'type': 'commands',  'header': ['   Commands']       },
+    \ { 'type': 'dir'       },
+    \ { 'type': 'files'     },
+    \ { 'type': 'sessions'  },
+    \ { 'type': 'bookmarks' },
     \ ]
 
 " rainbow brackets
@@ -279,6 +279,10 @@ function! RipgrepFzf(query, fullscreen)
     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
+" startify file icons
+function! StartifyEntryFormat()
+    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
 
 " show docs on things with K
 function! s:show_documentation()
@@ -378,5 +382,27 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " fugitive mappings
 nmap <leader>d :Gdiffsplit<CR>
+
+"}}}
+
+" =============== custom header ================ "{{{
+
+" put this here because it cuts throw half the screen
+let g:startify_custom_header = [
+ \ '',
+ \ '',
+ \ '',
+ \ '                                                                                                            ▟▙            ',
+ \ '                                                                                                            ▝▘            ',
+ \ '                                                                    ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
+ \ '                                                                    ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
+ \ '                                                                    ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
+ \ '                                                                    ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
+ \ '                                                                    ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
+ \ '',
+ \ '',
+ \ '',
+ \ '',
+ \]
 
 "}}}

@@ -1,4 +1,4 @@
-# An opinionated Neovim config for the Minimalists
+![startify](./Screens/screen0.png)
 
 ## Table of Contents
 
