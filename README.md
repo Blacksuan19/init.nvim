@@ -93,31 +93,27 @@ the current buffer is not loaded) for example opening a python file means all
 other non python related plugins are not loaded.
 Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
 
-| Plugin                                                          | Functionality                            |
-| --------------------------------------------------------------- | ---------------------------------------- |
-| [vim-airline](https://github.com/vim-airline/vim-airline)       | airline status line                      |
-| [devicons](https://github.com/ryanoasis/vim-devicons)           | icons everywhere                         |
-| [rainbow](https://github.com/luochen1990/rainbow)               | rainbow parenthesis                      |
-| [vim-material](https://github.com/hzchirs/vim-material)         | material themes                          |
-| [coc.nvim](https://github.com/neoclide/coc.nvim)                | async completion and more                |
-| [fzf.vim](https://github.com/junegunn/fzf.vim)                  | fuzzy finder vim integration             |
-| [ultisnips](https://github.com/SirVer/ultisnips)                | snippets engine                          |
-| [vim-snippets](https://github.com/honza/vim-snippets)           | snippets for many languages              |
-| [vim-closetag](https://github.com/alvan/vim-closetag)           | auto html tag closing                    |
-| [indentLine](https://github.com/Yggdroot/indentLine)            | auto indent lines                        |
-| [vim-liquid](https://github.com/tpope/vim-liquid)               | liquid language support                  |
-| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin) | dart language support                    |
-| [vim-commentary](https://github.com/tpope/vim-commentary)       | better comments everywhere               |
-| [vim-auto-save](https://github.com/907th/vim-auto-save)         | auto save on insert mode exit            |
-| [vim-startify](https://github.com/mhinz/vim-startify)           | cool startup thingy                      |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)           | best git integration around              |
-| [vim-sandwich](https://github.com/machakann/vim-sandwich)       | surround stuff with stuff                |
-| [vim-smoothie](https://github.com/psliwka/vim-smoothie)         | super smooth scrolling                   |
-| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)    | open a file in the last place cursor was |
-| [tmux-complete](https://github.com/wellle/tmux-complete.vim)    | tmux panes completion                    |
-| [Vista](https://github.com/liuchengxu/vista.vim)                | list of tags                             |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)               | some common Linux commands               |
-| [semshi](https://github.com/numirias/semshi)                    | better highlighting for python           |
+| Plugin                                                          | Functionality                  |
+| --------------------------------------------------------------- | ------------------------------ |
+| [vim-airline](https://github.com/vim-airline/vim-airline)       | airline status line            |
+| [devicons](https://github.com/ryanoasis/vim-devicons)           | icons everywhere               |
+| [rainbow](https://github.com/luochen1990/rainbow)               | rainbow parenthesis            |
+| [vim-material](https://github.com/hzchirs/vim-material)         | material themes                |
+| [coc.nvim](https://github.com/neoclide/coc.nvim)                | async completion and more      |
+| [fzf.vim](https://github.com/junegunn/fzf.vim)                  | fuzzy finder vim integration   |
+| [ultisnips](https://github.com/SirVer/ultisnips)                | snippets engine                |
+| [vim-snippets](https://github.com/honza/vim-snippets)           | snippets for many languages    |
+| [indentLine](https://github.com/Yggdroot/indentLine)            | auto indent lines              |
+| [vim-liquid](https://github.com/tpope/vim-liquid)               | liquid language support        |
+| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin) | dart language support          |
+| [vim-commentary](https://github.com/tpope/vim-commentary)       | better comments everywhere     |
+| [vim-startify](https://github.com/mhinz/vim-startify)           | cool startup thingy            |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)           | best git integration around    |
+| [vim-sandwich](https://github.com/machakann/vim-sandwich)       | surround stuff with stuff      |
+| [vim-smoothie](https://github.com/psliwka/vim-smoothie)         | super smooth scrolling         |
+| [tmux-complete](https://github.com/wellle/tmux-complete.vim)    | tmux panes completion          |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)               | some common Linux commands     |
+| [semshi](https://github.com/numirias/semshi)                    | better highlighting for python |
 
 ## Keyboard shortcuts
 
@@ -141,7 +137,7 @@ expose a hidden functionality within a plugin.
 | `,w`         | save changes(tho save when existing insert mode is enabled by default)     | :q          |
 | `,f`         | fzf files viewer (shows project files with the ability to search)          | None        |
 | `,e`         | call :PlugInstall (install plugins)                                        | None        |
-| `,v`         | search in vista tags                                                       | None        |
+| `,t`         | search in ctags using fzf                                                  | None        |
 | `,c`         | show list of editor commands in fzf                                        | None        |
 | `,d`         | show git diff in splits                                                    | None        |
 | `,/`         | search in project folder (calls Rg)                                        | None        |
@@ -164,7 +160,6 @@ expose a hidden functionality within a plugin.
 | `Tab`        | cycles throw coc in insert mode                                            | None        |
 | `Tab`        | switch to the next buffer(tab)                                             | Default     |
 | `S-Tab`      | switch to the previous buffer(tab)                                         | Default     |
-| `F4`         | Open vista (tags viewer)                                                   | none        |
 | `F5`         | Trim white spaces                                                          | None        |
 | `F6`         | Startify                                                                   | Default     |
 | `F8`         | opens selection in carbon now sh (only in visual mode)                     | None        |
@@ -204,7 +199,7 @@ highly opinionated).
   plugin settings
 
 - **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions` variable and
-  then uninstall it via :CocUninstall pluginname
+  then uninstall it via :CocUninstall plugin name
 
 - **Disabling indentation dots:** set `let g:indentLine_leadingSpaceEnabled = 1`
 
