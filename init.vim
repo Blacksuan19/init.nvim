@@ -1,20 +1,10 @@
 " ============= Vim-Plug ============== "{{{
 
-let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
-let g:vim_bootstrap_langs = "c,erlang,go"
-let g:vim_bootstrap_editor = "nvim"				" Nvim or Vim
-
-if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  let g:not_finish_vimplug = "yes"
-  autocmd VimEnter * PlugInstall
+" auto-install vim-plug
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
 call plug#begin(expand('~/.config/nvim/plugged'))
@@ -34,6 +24,7 @@ Plug 'gregsexton/MatchTag'                              " highlight matching htm
 " ================= Functionalities ================= "{{{
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
 Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
 Plug 'SirVer/ultisnips'                                 " snippets manager
 Plug 'honza/vim-snippets'                               " actual snippets
@@ -45,9 +36,7 @@ Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'mhinz/vim-startify'                               " cool start up screen
 Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
-Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
-Plug 'liuchengxu/vista.vim'                             " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 call plug#end()
@@ -83,6 +72,7 @@ set undodir=/tmp                                        " undo temp file directo
 set foldlevel=0                                         " open all folds by default
 set inccommand=nosplit                                  " visual feedback while substituting
 set showtabline=2                                       " always show tabline
+set grepprg=rg\ --vimgrep                               " use rg as default grepper
 
 " performance tweaks
 set nocursorline
@@ -157,7 +147,6 @@ let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let airline#extensions#vista#enabled = 0                " vista integration
 
 "" coc
 inoremap <silent><expr> <TAB>
@@ -208,13 +197,18 @@ let g:coc_global_extensions = [
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
-let g:indentLine_leadingSpaceEnabled = 1                " enable leading space dots
-
 
 " startify
 let g:startify_session_persistence = 1
 let g:startify_fortune_use_unicode = 1
 let g:startify_enable_special = 0
+let g:startify_lists = [
+    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+    \ { 'type': 'files',     'header': ['   MRU']            },
+    \ { 'type': 'sessions',  'header': ['   Sessions']       },
+    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+    \ { 'type': 'commands',  'header': ['   Commands']       },
+    \ ]
 
 " rainbow brackets
 let g:rainbow_active = 1
@@ -223,20 +217,20 @@ let g:rainbow_active = 1
 let g:semshi#error_sign	= v:false                       " let ms python lsp handle this
 
 "" FZF
-" general
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-let $FZF_DEFAULT_OPTS="--reverse "                      " top to bottom
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-" use rg by default
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-endif
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
+let g:fzf_tags_command = 'ctags -R'
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**'"
 
 "}}}
 
-" ======================== Auto Commands ============================= "{{{
-
+" ======================== Commands ============================= "{{{
 
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 autocmd FileType help wincmd L                          " open help in vertical split
@@ -249,23 +243,31 @@ augroup startifier
     autocmd VimEnter * if argc() == 0 | Startify | endif
 augroup END
 
-" python stuff
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" python renaming
 autocmd FileType python nnoremap <leader>rn :Semshi rename <CR>
+
+" format with available file format formatter
+command! -nargs=0 Format :call CocAction('format')
+
+" organize imports
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" files in fzf
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
+
+" advanced grep
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 "}}}
 
 " ================== Custom Functions ===================== "{{{
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-" files window with preview
-command! -bang -nargs=? -complete=dir Files
-        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
 
 " advanced grep(faster with preview)
 function! RipgrepFzf(query, fullscreen)
@@ -275,31 +277,7 @@ function! RipgrepFzf(query, fullscreen)
     let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
-command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
-" floating fzf window with borders
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
 
 " show docs on things with K
 function! s:show_documentation()
@@ -319,13 +297,12 @@ let mapleader=","
 nnoremap ; :
 nmap \ <leader>q
 map <F6> :Startify <CR>
-map <F4> :Vista!!<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>q :bd<CR>
-map <leader>v :Vista finder<CR>
 nnoremap <silent> <leader>f :Files<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>c :Commands<CR>
+nmap <leader>t :Btags<CR>
 map <leader>/ :Rg<CR>
 nmap <leader>w :w<CR>
 map <leader>s :Format<CR>
