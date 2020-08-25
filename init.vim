@@ -171,7 +171,6 @@ let g:coc_global_extensions = [
             \'coc-syntax',
             \'coc-git',
             \'coc-marketplace',
-            \ 'coc-spell-checker',
             \]
 
 " indentLine
@@ -193,10 +192,18 @@ let g:startify_lists = [
     \ { 'type': 'commands' },
     \ ]
 
+" bookmark examples
+let  g:startify_bookmarks =  [
+    \ {'v': '~/.config/nvim'},
+    \ {'d': '~/.dotfiles' }
+    \ ]
+
+" custom commands
 let g:startify_commands = [
     \ {'ch':  ['Health Check', ':checkhealth']},
     \ {'ps': ['Plugins status', ':PlugStatus']},
-    \ {'pu': ['Update plugins',':PlugUpdate | PlugUpgrade']},
+    \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
+    \ {'uc': ['Update coc Plugins', ':CocUpdate']},
     \ {'h':  ['Help', ':help']},
     \ ]
 
