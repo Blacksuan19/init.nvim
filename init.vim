@@ -30,7 +30,6 @@ Plug 'SirVer/ultisnips'                                 " snippets manager
 Plug 'honza/vim-snippets'                               " actual snippets
 Plug 'Yggdroot/indentLine'                              " show indentation lines
 Plug 'tpope/vim-liquid'                                 " liquid language support
-Plug 'dart-lang/dart-vim-plugin'                        " dart language support
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
 Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'mhinz/vim-startify'                               " cool start up screen
@@ -149,29 +148,12 @@ let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if t
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
 
 "" coc
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Navigate snippet placeholders using tab
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 
-" Use enter to accept snippet expansion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" list of the extensions required
+" list of the extensions to make sure are always installed
 let g:coc_global_extensions = [
             \'coc-yank',
             \'coc-pairs',
@@ -182,13 +164,11 @@ let g:coc_global_extensions = [
             \'coc-yaml',
             \'coc-lists',
             \'coc-snippets',
-            \'coc-ultisnips',
             \'coc-python',
             \'coc-clangd',
             \'coc-prettier',
             \'coc-xml',
             \'coc-syntax',
-            \'coc-flutter',
             \'coc-git',
             \'coc-marketplace',
             \ 'coc-spell-checker',
@@ -245,6 +225,9 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**'"
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 autocmd FileType help wincmd L                          " open help in vertical split
 
+" coc completion popup
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 augroup startifier
     " startify when there is no open buffer left
     autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
@@ -291,6 +274,12 @@ endfunction
 " startify file icons
 function! StartifyEntryFormat()
     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
+
+" check if last inserted char is a backspace (used by coc pmenu)
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " show docs on things with K
@@ -362,6 +351,17 @@ imap <F1> <plug>(fzf-maps-i)
 vmap <F1> <plug>(fzf-maps-x)
 
 "" coc
+
+" use tab to navigate snippet placeholders
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Use enter to accept snippet expansion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
 " multi cursor shortcuts
 nmap <silent> <C-c> <Plug>(coc-cursors-position)
 nmap <silent> <C-a> <Plug>(coc-cursors-word)
