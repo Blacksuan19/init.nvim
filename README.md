@@ -1,4 +1,6 @@
-![startify](./Screens/screen0.png)
+<p align="center">
+<img src="./Screens/screen0.png">
+</p>
 
 ## Table of Contents
 
@@ -198,10 +200,14 @@ highly opinionated).
 - **Installing CoC plugins:** open `:CocList` and search for marketplace, you can find all
   available plugins here
 
-Most of the included plugins are highly customizable in nature and the init file contains
-too many comments that appropriately explain everything, each plugin contains a help file
-(i hope) that cant be accesses right from inside nvim itself.
-checkout [Plugins](#plugins)
+- **Adding Bookmarks:** to add bookmarks to the start page, find `g:startify_bookmarks` in
+  `init.nvim` and add the a new bookmark just like the already present ones, the dictionary
+  key is the shortcut you will use to quickly jump to that folder from the start page and
+  the value is the path to targeted folder
+
+for more customizations read throw the config file, there are comments everywhere and its
+easy to interpret, you can also checkout linked the github pages for each plugin for even
+more options.
 
 ## Demos
 
