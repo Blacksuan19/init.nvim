@@ -190,6 +190,7 @@ let g:coc_global_extensions = [
             \'coc-syntax',
             \'coc-flutter',
             \'coc-git',
+            \'coc-marketplace',
             \ 'coc-spell-checker',
             \]
 

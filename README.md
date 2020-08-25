@@ -199,9 +199,10 @@ highly opinionated).
   plugin settings
 
 - **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions` variable and
-  then uninstall it via :CocUninstall plugin name
+  then uninstall it via `:CocUninstall` plugin name
 
-- **Disabling indentation dots:** set `let g:indentLine_leadingSpaceEnabled = 1`
+- **Installing CoC plugins:** open `:CocList` and search for marketplace, you can find all
+  available plugins here
 
 Most of the included plugins are highly customizable in nature and the init file contains
 too many comments that appropriately explain everything, each plugin contains a help file
