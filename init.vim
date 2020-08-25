@@ -204,11 +204,20 @@ let g:indentLine_fileTypeExclude = ['startify']
 let g:startify_padding_left = 60
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
+let g:startify_change_to_vcs_root = 1
 let g:startify_lists = [
     \ { 'type': 'dir'       },
     \ { 'type': 'files'     },
     \ { 'type': 'sessions'  },
     \ { 'type': 'bookmarks' },
+    \ { 'type': 'commands' },
+    \ ]
+
+let g:startify_commands = [
+    \ {'ch':  ['Health Check', ':checkhealth']},
+    \ {'ps': ['Plugins status', ':PlugStatus']},
+    \ {'pu': ['Update plugins',':PlugUpdate | PlugUpgrade']},
+    \ {'h':  ['Help', ':help']},
     \ ]
 
 " rainbow brackets
