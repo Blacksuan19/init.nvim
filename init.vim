@@ -33,29 +33,16 @@ Plug 'gregsexton/MatchTag'                              " highlight matching htm
 
 " ================= Functionalities ================= "{{{
 
-" auto completion, Lang servers and stuff
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" fuzzy stuff
-Plug 'junegunn/fzf.vim'                                " fuzzy search integration
-
-" snippets
-Plug 'SirVer/ultisnips'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
+Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
+Plug 'SirVer/ultisnips'                                 " snippets manager
 Plug 'honza/vim-snippets'                               " actual snippets
-
-" visual
-Plug 'alvan/vim-closetag'                               " auto close html tags
 Plug 'Yggdroot/indentLine'                              " show indentation lines
-
-" languages
 Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'dart-lang/dart-vim-plugin'                        " dart language support
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
-
-" other
 Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'mhinz/vim-startify'                               " cool start up screen
-Plug 'kristijanhusak/vim-carbon-now-sh'                 " lit code Screenshots
 Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'farmergreg/vim-lastplace'                         " open files at the last edited place
@@ -63,8 +50,6 @@ Plug 'wellle/tmux-complete.vim'                         " complete words from a 
 Plug 'liuchengxu/vista.vim'                             " a bar of tags
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
-Plug 'easymotion/vim-easymotion'                        " make movement a lot faster and easier
-Plug '907th/vim-auto-save'                              " nothing beats this
 call plug#end()
 
 "}}}
@@ -75,7 +60,8 @@ set termguicolors                                       " Opaque Background
 set mouse=a                                             " enable mouse scrolling
 set clipboard+=unnamedplus                              " use system clipboard by default
 filetype plugin indent on                               " enable indentations
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent            " tab key actions
+set tabstop=4 softtabstop=4 shiftwidth=4 autoindent     " tab width
+set expandtab smarttab                                  " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
 set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
 set fillchars+=vert:\▏                                  " requires a patched nerd font (try FiraCode)
@@ -90,44 +76,13 @@ set splitright                                          " open vertical split to
 set splitbelow                                          " open horizontal split to the bottom
 set tw=90                                               " auto wrap lines that are longer than that
 set emoji                                               " enable emojis
-let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
-au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 set history=1000                                        " history limit
 set backspace=indent,eol,start                          " sensible backspacing
 set undofile                                            " enable persistent undo
 set undodir=/tmp                                        " undo temp file directory
 set foldlevel=0                                         " open all folds by default
 set inccommand=nosplit                                  " visual feedback while substituting
-let loaded_netrw = 0                                    " diable netew
-let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
-
-" Python VirtualEnv
-let g:python_host_prog =  expand('/usr/bin/python')
-let g:python3_host_prog = expand('/usr/bin/python3')
-
-" Coloring
-let g:material_style='oceanic'
-set background=dark
-colorscheme vim-material
-highlight Pmenu guibg='#00010a' guifg=white              " popup menu colors
-highlight Comment gui=italic cterm=italic               " bold comments
-highlight Normal gui=none
-highlight NonText guibg=none
-highlight clear SignColumn                              " use number color for sign column color
-hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
-autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
-hi NonText guifg=bg                                     " mask ~ on empty lines
-hi clear CursorLineNr                                   " use the theme color for relative number
-hi CursorLineNr gui=bold                                " make relative number bold
-hi EasyMotionMoveHL guibg=#b16286 guifg=#ebdbb2 gui=NONE
-
-" colors for git (especially the gutter)
-hi DiffAdd  guibg=#0f111a guifg=#43a047
-hi DiffChange guibg=#0f111a guifg=#fdd835
-hi DiffRemoved guibg=#0f111a guifg=#e53935
-
-" coc multi cursor highlight color
-hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+set showtabline=2                                       " always show tabline
 
 " performance tweaks
 set nocursorline
@@ -142,10 +97,36 @@ set re=1
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+
+" Python VirtualEnv
+let g:python_host_prog =  expand('/usr/bin/python')
+let g:python3_host_prog = expand('/usr/bin/python3')
+
+" Themeing
+let g:material_style = 'oceanic'
+colorscheme vim-material
+highlight Pmenu guibg='#00010a' guifg=white              " popup menu colors
+highlight Comment gui=italic cterm=italic               " bold comments
+highlight Normal gui=none
+highlight NonText guibg=none
+highlight clear SignColumn                              " use number color for sign column color
+hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
+autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
+hi NonText guifg=bg                                     " mask ~ on empty lines
+hi clear CursorLineNr                                   " use the theme color for relative number
+hi CursorLineNr gui=bold                                " make relative number bold
+
+" colors for git (especially the gutter)
+hi DiffAdd  guibg=#0f111a guifg=#43a047
+hi DiffChange guibg=#0f111a guifg=#fdd835
+hi DiffRemoved guibg=#0f111a guifg=#e53935
+
+" coc multi cursor highlight color
+hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 " tmux cursor shape
 if exists('$TMUX')
@@ -160,6 +141,10 @@ if exists('$TMUX')
 
 " ======================== Plugin Configurations ======================== "{{{
 
+"" built in plugins
+let loaded_netrw = 0                                    " diable netew
+let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
+
 " Airline
 let g:airline_theme='material'
 let g:airline_powerline_fonts = 0
@@ -172,10 +157,9 @@ let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let airline#extensions#vista#enabled = 1                " vista integration
+let airline#extensions#vista#enabled = 0                " vista integration
 
 "" coc
-
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -216,12 +200,16 @@ let g:coc_global_extensions = [
             \'coc-xml',
             \'coc-syntax',
             \'coc-flutter',
-            \'coc-git'
+            \'coc-git',
+            \ 'coc-spell-checker',
             \]
 
 " indentLine
-let g:indentLine_char = '▏'
-let g:indentLine_color_gui = '#363949'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_setColors = 0
+let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
+let g:indentLine_leadingSpaceEnabled = 1                " enable leading space dots
+
 
 " startify
 let g:startify_session_persistence = 1
@@ -231,20 +219,10 @@ let g:startify_enable_special = 0
 " rainbow brackets
 let g:rainbow_active = 1
 
-" easymotion
-let g:EasyMotion_startofline = 0                        " keep cursor column when JK motion
-let g:EasyMotion_smartcase = 1                          " ignore case
-
-" auto save
-let g:auto_save        = 1
-let g:auto_save_silent = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
-
 " semshi settings
 let g:semshi#error_sign	= v:false                       " let ms python lsp handle this
 
 "" FZF
-
 " general
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 let $FZF_DEFAULT_OPTS="--reverse "                      " top to bottom
@@ -259,36 +237,20 @@ endif
 
 " ======================== Auto Commands ============================= "{{{
 
-" enable spell only if file type is normal text
-let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid']
-autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
 
-" open help in vertical split
-autocmd FileType help wincmd L
+au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
+autocmd FileType help wincmd L                          " open help in vertical split
 
-" startify when there is no open buffer left
-autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+augroup startifier
+    " startify when there is no open buffer left
+    autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 
-" open startify on start
-autocmd VimEnter * if argc() == 0 | Startify | endif
-
-" open files preview on enter and provided arg is a folder
-autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Startify | endif
-autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | execute 'cd' fnameescape(argv()[0])  | endif
-autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Files | endif
-
-" auto html tags closing, enable for markdown files as well
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.md'
+    " open startify on start
+    autocmd VimEnter * if argc() == 0 | Startify | endif
+augroup END
 
 " python stuff
-autocmd FileType python nnoremap <leader>rn :Semshi rename
-
-" relative numbers on normal mode only
-augroup numbertoggle
-  autocmd!
-  autocmd InsertLeave * set relativenumber
-  autocmd InsertEnter * set norelativenumber
-augroup END
+autocmd FileType python nnoremap <leader>rn :Semshi rename <CR>
 
 "}}}
 
@@ -298,10 +260,7 @@ augroup END
 command! -nargs=0 Format :call CocAction('format')
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" coc prettier function
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " files window with preview
 command! -bang -nargs=? -complete=dir Files
@@ -423,28 +382,19 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" other coc actions
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" carbon sh now
-vnoremap <F8> :CarbonNowSh<CR>
-
-"" easy motion stuff
-" search behavior
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-
-" quick navigation
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
 
 " fugitive mappings
 map <leader>d :Gdiffsplit<CR>
 
 " disable hl with 2 esc
 noremap <silent><esc> <esc>:noh<CR><esc>
+
+" trim white spaces
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 "}}}
