@@ -60,20 +60,53 @@
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": true,
-  "diagnostic.locationlist": true,
   "diagnostic.enableMessage": "never",
 
   // list settings
   "list.source.grep.command": "rg",
-  // other stuff (language specific)
-  "python.autoComplete.addBrackets": true,
-  "python.jediEnabled": false,
-  "flutter.lsp.initialization.closingLabels": true,
 
   // git settings
   "git.topRemovedSign.text": "▌",
   "git.changeRemovedSign.text": "▌",
   "git.removedSign.text": "▌",
   "git.addedSign.text": "▌",
-  "git.changedSign.text": "▌"
+  "git.changedSign.text": "▌",
+
+  // spell checker settings
+  "cSpell.enabledLanguageIds": [
+    "csharp",
+    "go",
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "php",
+    "plaintext",
+    "typescript",
+    "typescriptreact",
+    "yml",
+    "gitcommit"
+  ],
+  "cSpell.userWords": [
+    "Fira",
+    "Neovim",
+    "Startify",
+    "autopep",
+    "autosave",
+    "closetag",
+    "distro",
+    "dotfiles",
+    "easymotion",
+    "lastplace",
+    "nvim",
+    "pynvim",
+    "ripgrep",
+    "semshi",
+    "ultisnips"
+  ],
+
+  // other stuff (language specific)
+  "python.autoComplete.addBrackets": true,
+  "python.jediEnabled": false,
+  "flutter.lsp.initialization.closingLabels": true,
+  "html.autoClosingTags": true
 }

@@ -7,7 +7,7 @@
   - [Supported Languages](#supported-languages)
 - [Requirements](#requirements)
 - [Setup](#setup)
-  - [Enviroment](#Environment)
+  - [Environment](#Environment)
   - [Tools](#tools)
 - [Installation](#installation)
 - [Plugins](#plugins)
@@ -39,7 +39,6 @@ distro avoids, KISS!
 - Vscode like auto completion, multi cursor
 - Smooth Scrolling (its really smooth!)
 - floating window + borders + file previews on fzf(see [demos](#demos))
-- Asynchronous Lint Engine
 - Simple, Intuitive shortcuts
 
 ### Supported Languages
@@ -91,40 +90,38 @@ After installing the requirements:
 
 Thanks to vim-plug the plugins are lazy loaded (anything that is not needed for
 the current buffer is not loaded) for example opening a python file means all
-other non python related plugins are not loaded.  
+other non python related plugins are not loaded.
 Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
 
-| Plugin                                                                   | Functionality                              |
-| ------------------------------------------------------------------------ | ------------------------------------------ |
-| [vim-airline](https://github.com/vim-airline/vim-airline)                | airline status line                        |
-| [airline-themes](https://github.com/vim-airline/vim-airline-themes)      | airline themes                             |
-| [devicons](https://github.com/ryanoasis/vim-devicons)                    | icons everywhere                           |
-| [rainbow](https://github.com/luochen1990/rainbow)                        | rainbow parenthesis                        |
-| [vim-material](https://github.com/hzchirs/vim-material)                  | material themes                            |
-| [coc.nvim](https://github.com/neoclide/coc.nvim)                         | async completion and more                  |
-| [fzf.vim](https://github.com/junegunn/fzf.vim)                           | fuzzy finder vim integration               |
-| [ultisnips](https://github.com/SirVer/ultisnips)                         | snippets engine                            |
-| [vim-snippets](https://github.com/honza/vim-snippets)                    | snippets for many languages                |
-| [vim-closetag](https://github.com/alvan/vim-closetag)                    | auto html tag closing                      |
-| [indentLine](https://github.com/Yggdroot/indentLine)                     | auto indent lines                          |
-| [vim-liquid](https://github.com/tpope/vim-liquid)                        | liquid language support                    |
-| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)          | dart language support                      |
-| [vim-commentary](https://github.com/tpope/vim-commentary)                | better comments everywhere                 |
-| [vim-auto-save](https://github.com/907th/vim-auto-save)                  | auto save on insert mode exit              |
-| [vim-startify](https://github.com/mhinz/vim-startify)                    | cool startup thingy                        |
-| [vim-carbon-now-sh](https://github.com/kristijanhusak/vim-carbon-now-sh) | cool screen shots powered by carbon now sh |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)                    | best git integration around                |
-| [vim-sandwich](https://github.com/machakann/vim-sandwich)                | surround stuff with stuff                  |
-| [vim-smoothie](https://github.com/psliwka/vim-smoothie)                  | super smooth scrolling                     |
-| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)             | open a file in the last place cursor was   |
-| [tmux-complete](https://github.com/wellle/tmux-complete.vim)             | tmux panes completion                      |
-| [Vista](https://github.com/liuchengxu/vista.vim)                         | list of tags                               |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)                        | some common Linux commands                 |
-| [semshi](https://github.com/numirias/semshi)                             | better highlighting for python             |
+| Plugin                                                          | Functionality                            |
+| --------------------------------------------------------------- | ---------------------------------------- |
+| [vim-airline](https://github.com/vim-airline/vim-airline)       | airline status line                      |
+| [devicons](https://github.com/ryanoasis/vim-devicons)           | icons everywhere                         |
+| [rainbow](https://github.com/luochen1990/rainbow)               | rainbow parenthesis                      |
+| [vim-material](https://github.com/hzchirs/vim-material)         | material themes                          |
+| [coc.nvim](https://github.com/neoclide/coc.nvim)                | async completion and more                |
+| [fzf.vim](https://github.com/junegunn/fzf.vim)                  | fuzzy finder vim integration             |
+| [ultisnips](https://github.com/SirVer/ultisnips)                | snippets engine                          |
+| [vim-snippets](https://github.com/honza/vim-snippets)           | snippets for many languages              |
+| [vim-closetag](https://github.com/alvan/vim-closetag)           | auto html tag closing                    |
+| [indentLine](https://github.com/Yggdroot/indentLine)            | auto indent lines                        |
+| [vim-liquid](https://github.com/tpope/vim-liquid)               | liquid language support                  |
+| [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin) | dart language support                    |
+| [vim-commentary](https://github.com/tpope/vim-commentary)       | better comments everywhere               |
+| [vim-auto-save](https://github.com/907th/vim-auto-save)         | auto save on insert mode exit            |
+| [vim-startify](https://github.com/mhinz/vim-startify)           | cool startup thingy                      |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)           | best git integration around              |
+| [vim-sandwich](https://github.com/machakann/vim-sandwich)       | surround stuff with stuff                |
+| [vim-smoothie](https://github.com/psliwka/vim-smoothie)         | super smooth scrolling                   |
+| [vim-lastplace](https://github.com/farmergreg/vim-lastplace)    | open a file in the last place cursor was |
+| [tmux-complete](https://github.com/wellle/tmux-complete.vim)    | tmux panes completion                    |
+| [Vista](https://github.com/liuchengxu/vista.vim)                | list of tags                             |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)               | some common Linux commands               |
+| [semshi](https://github.com/numirias/semshi)                    | better highlighting for python           |
 
 ## Keyboard shortcuts
 
-To learn the default Vim shortcuts run `Tutor` and or checkout this [site](https://vim-adventures.com/).  
+To learn the default Vim shortcuts run `Tutor` and or checkout this [site](https://vim-adventures.com/).
 Not a lot of changes have been done here, the plugins shortcuts are almost
 identical, check each plugin under the [plugins](#plugins) section for its key
 mappings, the changes i have made either make a function easier to access and or
@@ -132,56 +129,53 @@ expose a hidden functionality within a plugin.
 
 #### Legend
 
-`,` == leader key  
-`S` == Shift key  
+`,` == leader key
+`S` == Shift key
 `C` == ctrl key
 
 | Mapping      | functionality                                                              | Old Mapping |
-| ------------ | -------------------------------------------------------------------------- | ---------------- |
-| `;`          | commands key                                                               | :                |
-| `,r`         | reload Nvim config                                                         | None             |
-| `,t`         | Trim white spaces(enabled by default with ALE)                             | None             |
-| `,q`         | close tab                                                                  | :q               |
-| `,w`         | save changes(tho save when existing insert mode is enabled by default)     | :q               |
-| `,f`         | fzf files viewer (shows project files with the ability to search)          | None             |
-| `,e`         | call :PlugInstall (install plugins)                                        | None             |
-| `,v`         | search in vista tags                                                       | None             |
-| `,c`         | show list of editor commands in fzf                                        | None             |
-| `,d`         | show git diff in splits                                                    | None             |
-| `,/`         | search in project folder (calls Rg)                                        | None             |
-| `,rn`        | rename globally                                                            | None             |
-| `,l`         | easymotion to the left                                                     | None             |
-| `,h`         | easymotion to the right                                                    | None             |
-| `,j`         | easymotion to the bottom                                                   | None             |
-| `,k`         | easymotion to the top                                                      | None             |
-| `,s`         | format file with any available formatter                                   | None             |
-| `jj`         | Escape                                                                     | Esc              |
-| `d`          | use a different register for deletion (so the deleted text wont be copied) | "\_d             |
-| `C-q`        | close all buffers and exit nvim                                            | None             |
-| `C-c`        | copy text to system clipboard (only in visual mode)                        | +y               |
-| `C-x`        | cut text to system clipboard (only in visual mode)                         | +d               |
-| `C-l`        | move to the split on the right                                             | Default          |
-| `C-k`        | move the split above                                                       | Default          |
-| `C-j`        | move to the split on below                                                 | Default          |
-| `C-h`        | Move the split to the left                                                 | Default          |
-| `C-c`        | highlights character for multi cursor selection (in normal mode)           | None             |
-| `C-a`        | Highlights word/selection for multi cursor selection                       | None             |
-| `ENTER`      | insert blank line below in normal mode                                     | None             |
-| `ENTER`      | inputs selected snippet in insert mode                                     | None             |
-| `Tab`        | cycles throw coc in insert mode                                            | None             |
-| `Tab`        | switch to the next buffer(tab)                                             | Default          |
-| `S-Tab`      | switch to the previous buffer(tab)                                         | Default          |
-| `F4`         | Open vista (tags viewer)                                                   | none             |
-| `F6`         | Startify                                                                   | Default          |
-| `F8`         | opens selection in carbon now sh (only in visual mode)                     | None             |
-| `]g`         | next diagnostic                                                            | None             |
-| `[g`         | Previous diagnostic                                                        | None             |
-| `gd`         | jump to definition(using coc)                                              | None             |
-| `gy`         | jump to type definition(using coc)                                         | None             |
-| `gi`         | jump to implementation(using coc)                                          | None             |
-| `gr`         | jump to references (using coc)                                             | None             |
-| `S-k`        | show current symbol documentation                                          | None             |
-| `<esc><esc>` | disable search highlighting for current search                             | None             |
+| ------------ | -------------------------------------------------------------------------- | ----------- |
+| `;`          | commands key                                                               | :           |
+| `,r`         | reload Nvim config                                                         | None        |
+| `,q`         | close tab                                                                  | :q          |
+| `,w`         | save changes(tho save when existing insert mode is enabled by default)     | :q          |
+| `,f`         | fzf files viewer (shows project files with the ability to search)          | None        |
+| `,e`         | call :PlugInstall (install plugins)                                        | None        |
+| `,v`         | search in vista tags                                                       | None        |
+| `,c`         | show list of editor commands in fzf                                        | None        |
+| `,d`         | show git diff in splits                                                    | None        |
+| `,/`         | search in project folder (calls Rg)                                        | None        |
+| `,rn`        | rename globally                                                            | None        |
+| `,a`         | run cocAction on visual selection or where the cursor is                   | None        |
+| `,s`         | format file with any available formatter                                   | None        |
+| `jj`         | Escape                                                                     | Esc         |
+| `d`          | use a different register for deletion (so the deleted text wont be copied) | "\_d        |
+| `C-q`        | close all buffers and exit nvim                                            | None        |
+| `C-c`        | copy text to system clipboard (only in visual mode)                        | +y          |
+| `C-x`        | cut text to system clipboard (only in visual mode)                         | +d          |
+| `C-l`        | move to the split on the right                                             | Default     |
+| `C-k`        | move the split above                                                       | Default     |
+| `C-j`        | move to the split on below                                                 | Default     |
+| `C-h`        | Move the split to the left                                                 | Default     |
+| `C-c`        | highlights character for multi cursor selection (in normal mode)           | None        |
+| `C-a`        | Highlights word/selection for multi cursor selection                       | None        |
+| `ENTER`      | insert blank line below in normal mode                                     | None        |
+| `ENTER`      | inputs selected snippet in insert mode                                     | None        |
+| `Tab`        | cycles throw coc in insert mode                                            | None        |
+| `Tab`        | switch to the next buffer(tab)                                             | Default     |
+| `S-Tab`      | switch to the previous buffer(tab)                                         | Default     |
+| `F4`         | Open vista (tags viewer)                                                   | none        |
+| `F5`         | Trim white spaces                                                          | None        |
+| `F6`         | Startify                                                                   | Default     |
+| `F8`         | opens selection in carbon now sh (only in visual mode)                     | None        |
+| `]g`         | next diagnostic                                                            | None        |
+| `[g`         | Previous diagnostic                                                        | None        |
+| `gd`         | jump to definition(using coc)                                              | None        |
+| `gy`         | jump to type definition(using coc)                                         | None        |
+| `gi`         | jump to implementation(using coc)                                          | None        |
+| `gr`         | jump to references (using coc)                                             | None        |
+| `S-k`        | show current symbol documentation                                          | None        |
+| `<esc><esc>` | disable search highlighting for current search                             | None        |
 
 ### FZF keyboard shortcuts
 
@@ -193,11 +187,10 @@ expose a hidden functionality within a plugin.
 
 ## Custom commands
 
-| Command  | Functionality                            |
-| -------- | ---------------------------------------- |
-| Format   | format file with any available formatter |
-| Prettier | format file using prettier(if supported) |
-| OR       | organize imports                         |
+| Command | Functionality                            |
+| ------- | ---------------------------------------- |
+| Format  | format file with any available formatter |
+| OR      | organize imports                         |
 
 ## Customizations
 
@@ -207,15 +200,23 @@ about their functionality, and can be removed, commented out or swapped easily,
 there are some defaults that are not everyone's cup of tea (after all this is
 highly opinionated).
 
-- _Disabling autosave:_ set `let g:auto_save = 0`
+- **Disabling Plugins:** comment out the plug's 'Plugin/name' line from config and also remove the
+  plugin settings
 
-Most of the included plugins are highly customizable in nature (this is vim),
+- **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions` variable and
+  then uninstall it via :CocUninstall pluginname
+
+- **Disabling indentation dots:** set `let g:indentLine_leadingSpaceEnabled = 1`
+
+Most of the included plugins are highly customizable in nature and the init file contains
+too many comments that appropriately explain everything, each plugin contains a help file
+(i hope) that cant be accesses right from inside nvim itself.
 checkout [Plugins](#plugins)
 
 ## Demos
 
-![fzf preview](https://github.com/Blacksuan19/init.nvim/blob/master/Screens/fzf.png)
-![Ag preview](https://github.com/Blacksuan19/init.nvim/blob/master/Screens/ag.png)
+![fzf preview](./Screens/fzf.png)
+![Ag preview](./Screens/ag.png)
 [![asciicast](https://asciinema.org/a/284399.svg)](https://asciinema.org/a/284399)
 [![asciicast](https://asciinema.org/a/284400.svg)](https://asciinema.org/a/284400)
 [![asciicast](https://asciinema.org/a/284401.svg)](https://asciinema.org/a/284401)
