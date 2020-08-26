@@ -316,7 +316,9 @@ nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
 
-" use a different register for delete and paste
+" use a different register for change, delete and paste
+nnoremap c "_c
+vnoremap c "_c
 nnoremap d "_d
 vnoremap d "_d
 vnoremap p "_dP
