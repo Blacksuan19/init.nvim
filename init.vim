@@ -250,9 +250,14 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**'"
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 autocmd FileType help wincmd L                          " open help in vertical split
 
+" enable spell only if file type is normal text
+let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
+autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
+
 " coc completion popup
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" autostart startify
 augroup startifier
     " startify when there is no open buffer left
     autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
