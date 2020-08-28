@@ -14,8 +14,7 @@
 - [Installation](#installation)
 - [Plugins](#plugins)
 - [Keyboard shortcuts](#keyboard-shortcuts)
-  - [FZF](#fzf-keyboard-shortcuts)
-- [Custom Commands](#Custom-commands)
+- [Custom Commands](#custom-commands)
 - [Customizations](#customizations)
 - [Demos](#demos)
 - [Credits](#credits)
@@ -117,63 +116,80 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 
 ## Keyboard shortcuts
 
-To learn the default Vim shortcuts run `Tutor` and or checkout this [site](https://vim-adventures.com/).
-Not a lot of changes have been done here, the plugins shortcuts are almost
-identical, check each plugin under the [plugins](#plugins) section for its key
-mappings, the changes i have made either make a function easier to access and or
-expose a hidden functionality within a plugin.
+To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventures](https://vim-adventures.com/).
 
-#### Legend
+#### Essentials
 
-`,` == leader key </br>
-`S` == Shift key </br>
-`C` == ctrl key </br>
+| Mapping      | functionality                        |
+| ------------ | ------------------------------------ |
+| `;`          | commands key                         |
+| `,`          | leader key                           |
+| `leader + r` | reload nvim config                   |
+| `leader + w` | save changes                         |
+| `leader + e` | call :PlugInstall (install plug-ins) |
+| `F5`         | trim white spaces                    |
+| `F6`         | open Startify                        |
 
-| Mapping      | functionality                                        | Old Mapping |
-| ------------ | ---------------------------------------------------- | ----------- |
-| `;`          | commands key                                         | :           |
-| `,r`         | reload Nvim config                                   | None        |
-| `,q`         | close tab                                            | :q          |
-| `,w`         | save changes                                         | :q          |
-| `,f`         | fzf files viewer                                     | None        |
-| `,e`         | call :PlugInstall (install plugins)                  | None        |
-| `,t`         | search current file tags                             | None        |
-| `,c`         | show list of editor commands in fzf                  | None        |
-| `,d`         | show git diff in splits                              | None        |
-| `,/`         | search in current folder                             | None        |
-| `,rn`        | rename globally                                      | None        |
-| `,a`         | run cocAction                                        | None        |
-| `,s`         | format file with any available formatter             | None        |
-| `,gc`        | git commits                                          | None        |
-| `,sh`        | search search history using fzf                      | None        |
-| `C-q`        | close all buffers and exit nvim                      | None        |
-| `C-l`        | move to the split on the right                       | Default     |
-| `C-k`        | move the split above                                 | Default     |
-| `C-j`        | move to the split on below                           | Default     |
-| `C-h`        | Move the split to the left                           | Default     |
-| `C-c`        | highlights character for multi cursor selection      | None        |
-| `C-a`        | Highlights word/selection for multi cursor selection | None        |
-| `Tab`        | switch to the next buffer(normal mode)               | Default     |
-| `S-Tab`      | switch to the previous buffer(tab)                   | Default     |
-| `S-k`        | show current symbol documentation                    | None        |
-| `F1`         | open Mappings for current mode                       | None        |
-| `F5`         | Trim white spaces                                    | None        |
-| `F6`         | Startify                                             | Default     |
-| `]g`         | next diagnostic                                      | None        |
-| `[g`         | Previous diagnostic                                  | None        |
-| `gd`         | jump to definition(using coc)                        | None        |
-| `gy`         | jump to type definition(using coc)                   | None        |
-| `gi`         | jump to implementation(using coc)                    | None        |
-| `gr`         | jump to references (using coc)                       | None        |
-| `<esc><esc>` | disable search highlighting for current search       | None        |
+#### Navigation
 
-### FZF keyboard shortcuts
+| Mapping      | functionality                          |
+| ------------ | -------------------------------------- |
+| `leader + q` | close tab                              |
+| `ctrl + q`   | close all buffers and exit             |
+| `ctrl + l`   | move to the split on the right         |
+| `ctrl + k`   | move the split above                   |
+| `ctrl + j`   | move to the split on below             |
+| `ctrl + h`   | move the split to the left             |
+| `Tab`        | switch to the next buffer(normal mode) |
+| `S-Tab`      | switch to the previous buffer          |
+
+#### IDE Features
+
+| Mapping       | functionality                                        |
+| ------------- | ---------------------------------------------------- |
+| `leader + rn` | rename globally                                      |
+| `leader + a`  | run cocAction                                        |
+| `leader + s`  | format file with any available formatter             |
+| `leader + jd` | jump to definition(using coc)                        |
+| `leader + jy` | jump to type definition(using coc)                   |
+| `leader + ji` | jump to implementation(using coc)                    |
+| `leader + jr` | jump to references (using coc)                       |
+| `ctrl + c`    | highlights character for multi cursor selection      |
+| `ctrl + a`    | highlights word/selection for multi cursor selection |
+| `shift + k`   | show current symbol documentation                    |
+| `]g`          | next diagnostic                                      |
+| `[g`          | Previous diagnostic                                  |
+
+#### FZF windows
+
+| Mapping       | functionality                            |
+| ------------- | ---------------------------------------- |
+| `leader + f`  | files viewer                             |
+| `leader + c`  | show editor commands                     |
+| `leader + /`  | search in current folder files           |
+| `leader + sh` | search / history                         |
+| `F1`          | show keyboard shortcuts for current mode |
+| `leader + b`  | show open buffers                        |
+| `leader + t`  | search current file tags                 |
+
+#### In FZF
+
+these only work on an open fzf window
 
 | Mapping | Functionality                 |
 | ------- | ----------------------------- |
-| `C-x`   | Open file in horizontal split |
-| `C-v`   | Open file in vertical split   |
-| `C-t`   | Open file in new tab          |
+| `C-x`   | open file in horizontal split |
+| `C-v`   | open file in vertical split   |
+| `C-t`   | open file in new tab          |
+
+#### Git
+
+| Mapping       | functionality            |
+| ------------- | ------------------------ |
+| `leader + gd` | show git diff in splits  |
+| `leader + gc` | git commits              |
+| `leader + gb` | git blame                |
+| `leader + gs` | git status in fzf window |
 
 ## Custom commands
 
@@ -181,7 +197,7 @@ expose a hidden functionality within a plugin.
 | ------- | ---------------------------------------- |
 | Format  | format file with any available formatter |
 | OR      | organize imports                         |
-| Rg      | Advanced Grep                            |
+| Rg      | advanced Grep                            |
 
 ## Customizations
 
@@ -226,6 +242,6 @@ more options.
 ## Credits
 
 All the Credit goes to the Neovim team for making most of the extensions
-possible and better (async), and to all the plugins developers, and the hacker
+possible and better (async), and to all the plugins developers, and the hackers
 who spend time Finding good shortcuts and tricks to make this an even more
 superb experience.
