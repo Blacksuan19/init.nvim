@@ -339,8 +339,7 @@ nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
 
-" use a different register for change, delete and paste
-nnoremap c "_c
+" use a different register for delete and paste
 nnoremap d "_d
 vnoremap d "_d
 vnoremap p "_dP
@@ -374,6 +373,7 @@ nmap <leader>c :Commands<CR>
 nmap <leader>t :BTags<CR>
 nmap <leader>/ :Rg<CR>
 nmap <leader>gc :Commits<CR>
+nmap <leader>gs :GFiles?<CR>
 nmap <leader>sh :History/<CR>
 
 " show mapping on all modes with F8
@@ -410,10 +410,10 @@ map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
 " jump stuff
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <leader>jd <Plug>(coc-definition)
+nmap <leader>jy <Plug>(coc-type-definition)
+nmap <leader>ji <Plug>(coc-implementation)
+nmap <leader>jr <Plug>(coc-references)
 
 " other coc actions
 vmap <leader>a <Plug>(coc-codeaction-selected)
@@ -421,6 +421,7 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " fugitive mappings
-nmap <leader>d :Gdiffsplit<CR>
+nmap <leader>gd :Gdiffsplit<CR>
+nmap <leader>gb :Gblame<CR>
 
 "}}}
