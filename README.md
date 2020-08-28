@@ -127,6 +127,7 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | `leader + r` | reload nvim config                   |
 | `leader + w` | save changes                         |
 | `leader + e` | call :PlugInstall (install plug-ins) |
+| `Enter`      | enter empty line in normal mode      |
 | `F5`         | trim white spaces                    |
 | `F6`         | open Startify                        |
 
@@ -145,20 +146,20 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 
 #### IDE Features
 
-| Mapping       | functionality                                        |
-| ------------- | ---------------------------------------------------- |
-| `leader + rn` | rename globally                                      |
-| `leader + a`  | run cocAction                                        |
-| `leader + s`  | format file with any available formatter             |
-| `leader + jd` | jump to definition(using coc)                        |
-| `leader + jy` | jump to type definition(using coc)                   |
-| `leader + ji` | jump to implementation(using coc)                    |
-| `leader + jr` | jump to references (using coc)                       |
-| `ctrl + c`    | highlights character for multi cursor selection      |
-| `ctrl + a`    | highlights word/selection for multi cursor selection |
-| `shift + k`   | show current symbol documentation                    |
-| `]g`          | next diagnostic                                      |
-| `[g`          | Previous diagnostic                                  |
+| Mapping       | functionality                        |
+| ------------- | ------------------------------------ |
+| `leader + o`  | organize imports                     |
+| `leader + a`  | run cocAction                        |
+| `leader + s`  | format file with available formatter |
+| `leader + rn` | rename globally                      |
+| `leader + jd` | jump to definition                   |
+| `leader + jy` | jump to type definition              |
+| `leader + ji` | jump to implementation               |
+| `leader + jr` | jump to references                   |
+| `ctrl + a`    | highlight for multi cursor selection |
+| `shift + k`   | show current symbol documentation    |
+| `]g`          | next diagnostic                      |
+| `[g`          | Previous diagnostic                  |
 
 #### FZF windows
 
@@ -168,9 +169,9 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | `leader + c`  | show editor commands                     |
 | `leader + /`  | search in current folder files           |
 | `leader + sh` | search / history                         |
-| `F1`          | show keyboard shortcuts for current mode |
 | `leader + b`  | show open buffers                        |
 | `leader + t`  | search current file tags                 |
+| `F1`          | show keyboard shortcuts for current mode |
 
 #### In FZF
 
@@ -186,7 +187,7 @@ these only work on an open fzf window
 
 | Mapping       | functionality            |
 | ------------- | ------------------------ |
-| `leader + gd` | show git diff in splits  |
+| `leader + gd` | git diff split           |
 | `leader + gc` | git commits              |
 | `leader + gb` | git blame                |
 | `leader + gs` | git status in fzf window |
@@ -234,6 +235,10 @@ more options.
 ### Project wide search with fzf
 
 ![Rg preview](./Screens/screen2.png)
+
+### Git Status
+
+![git status](./Screens/screen3.png)
 
 ### workflow demo
 
