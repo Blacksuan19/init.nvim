@@ -339,6 +339,10 @@ nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
 
+" new line in normal mode and back
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
+
 " use a different register for delete and paste
 nnoremap d "_d
 vnoremap d "_d
@@ -394,7 +398,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " multi cursor shortcuts
-nmap <silent> <C-c> <Plug>(coc-cursors-position)
 nmap <silent> <C-a> <Plug>(coc-cursors-word)
 xmap <silent> <C-a> <Plug>(coc-cursors-range)
 
@@ -402,12 +405,9 @@ xmap <silent> <C-a> <Plug>(coc-cursors-range)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" for global rename
+" other stuff
 nmap <leader>rn <Plug>(coc-rename)
-
-" new line in normal mode and back
-map <Enter> o<ESC>
-map <S-Enter> O<ESC>
+nmap <leader>o :OR <CR>
 
 " jump stuff
 nmap <leader>jd <Plug>(coc-definition)
