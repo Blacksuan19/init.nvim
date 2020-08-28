@@ -179,8 +179,8 @@ let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
 
-" startify
-let g:startify_padding_left = 60
+"" startify
+let g:startify_padding_left = 10
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 let g:startify_change_to_vcs_root = 1
@@ -206,6 +206,24 @@ let g:startify_commands = [
     \ {'uc': ['Update coc Plugins', ':CocUpdate']},
     \ {'h':  ['Help', ':help']},
     \ ]
+
+" custom banner
+let g:startify_custom_header = [
+ \ '',
+ \ '',
+ \ '',
+ \ '                                                    ▟▙            ',
+ \ '                                                    ▝▘            ',
+ \ '            ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
+ \ '            ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
+ \ '            ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
+ \ '            ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
+ \ '            ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
+ \ '',
+ \ '',
+ \ '',
+ \ '',
+ \]
 
 " rainbow brackets
 let g:rainbow_active = 1
@@ -399,27 +417,5 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " fugitive mappings
 nmap <leader>d :Gdiffsplit<CR>
-
-"}}}
-
-" =============== custom header ================ "{{{
-
-" put this here because it cuts throw half the screen
-let g:startify_custom_header = [
- \ '',
- \ '',
- \ '',
- \ '                                                                                                            ▟▙            ',
- \ '                                                                                                            ▝▘            ',
- \ '                                                                    ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
- \ '                                                                    ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
- \ '                                                                    ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
- \ '                                                                    ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
- \ '                                                                    ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
- \ '',
- \ '',
- \ '',
- \ '',
- \]
 
 "}}}
