@@ -223,7 +223,7 @@ highly opinionated).
   the value is the path to targeted folder
 
 for more customizations read throw the config file, there are comments everywhere and its
-easy to interpret, you can also checkout linked the github pages for each plugin for even
+easy to interpret, you can also checkout the linked github page for each plugin for even
 more options.
 
 ## Demos
