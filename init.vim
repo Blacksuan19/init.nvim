@@ -244,8 +244,9 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**'"
 
 " ======================== Commands ============================= "{{{
 
-au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
-autocmd FileType help wincmd L                          " open help in vertical split
+au BufEnter * set fo-=c fo-=r fo-=o                 " stop annoying auto commenting on new lines
+au FileType help wincmd L                           " open help in vertical split
+au BufWritePre * :%s/\s\+$//e                       " remove trailing whitespaces before saving
 
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
