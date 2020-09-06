@@ -92,10 +92,6 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
-" Python VirtualEnv
-let g:python_host_prog =  expand('/usr/bin/python')
-let g:python3_host_prog = expand('/usr/bin/python3')
-
 " Themeing
 let g:material_style = 'oceanic'
 colorscheme vim-material
@@ -134,6 +130,10 @@ if exists('$TMUX')
 "" built in plugins
 let loaded_netrw = 0                                    " diable netew
 let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
+let g:loaded_python_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
+let g:python3_host_prog = expand('/usr/bin/python3')
 
 " Airline
 let g:airline_theme='material'
