@@ -9,7 +9,7 @@
   - [Supported Languages](#supported-languages)
 - [Requirements](#requirements)
 - [Setup](#setup)
-  - [Environment](#Environment)
+  - [Environment](#environment)
   - [Tools](#tools)
 - [Installation](#installation)
 - [Plugins](#plugins)
@@ -39,7 +39,8 @@ distro avoids, KISS!
 - Beautiful Material ocean color scheme
 - Vscode like auto completion, multi cursor
 - Smooth Scrolling (its really smooth!)
-- floating window + borders + file previews on fzf(see [demos](#demos))
+- Fully integrated with fzf (see [demos](#demos))
+- Live Markdown preview
 - Simple, Intuitive shortcuts
 
 ### Supported Languages
@@ -111,6 +112,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [tmux-complete](https://github.com/wellle/tmux-complete.vim)        | tmux panes completion                        |
 | [vim-eunuch](https://github.com/tpope/vim-eunuch)                   | some common Linux commands                   |
 | [semshi](https://github.com/numirias/semshi)                        | better highlighting for python               |
+| [markdown-preview](https://github.com/iamcco/markdown-preview.nvim) | live markdown preview                        |
 
 ## Keyboard shortcuts
 
@@ -210,7 +212,7 @@ highly opinionated).
   plugin settings
 
 - **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions` variable and
-  then uninstall it via `:CocUninstall` plugin name
+  uninstall it via `:CocUninstall` plugin name
 
 - **Installing CoC plugins:** open `:CocList` and search for marketplace, you can find all
   available plugins here
