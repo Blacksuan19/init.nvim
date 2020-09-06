@@ -95,7 +95,7 @@ set signcolumn=yes
 " Themeing
 let g:material_style = 'oceanic'
 colorscheme vim-material
-highlight Pmenu guibg='#00010a' guifg=white              " popup menu colors
+highlight Pmenu guibg='#00010a' guifg=white             " popup menu colors
 highlight Comment gui=italic cterm=italic               " bold comments
 highlight Normal gui=none
 highlight NonText guibg=none
@@ -105,6 +105,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 hi NonText guifg=bg                                     " mask ~ on empty lines
 hi clear CursorLineNr                                   " use the theme color for relative number
 hi CursorLineNr gui=bold                                " make relative number bold
+hi SpellBad guifg=#ff7480 cterm=bold,undercurl          " misspelled words
 
 " colors for git (especially the gutter)
 hi DiffAdd  guibg=#0f111a guifg=#43a047
@@ -118,6 +119,8 @@ hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 if exists('$TMUX')
     let &t_SI .= "\ePtmux;\e\e[=1c\e\\"
     let &t_EI .= "\ePtmux;\e\e[=2c\e\\"
+    let &t_Cs = "\e[4:3m"
+    let &t_Ce = "\e[4:0m"
  else
     let &t_SI .= "\e[=1c"
     let &t_EI .= "\e[=2c"
