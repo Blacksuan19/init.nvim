@@ -36,8 +36,8 @@ distro avoids, KISS!
 - Super fast startup (less than 40ms!)
 - Lazy loading plugins
 - Highly customizable
-- Beautiful Material ocean color scheme
-- Vscode like auto completion, multi cursor
+- Beautiful [Material ocean](https://github.com/material-ocean/Material-Ocean) color scheme
+- Various IDE features via [coc.nvim](https://github.com/neoclide/coc.nvim)
 - Smooth Scrolling (its really smooth!)
 - Fully integrated with fzf (see [demos](#demos))
 - Live Markdown preview
