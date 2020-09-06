@@ -61,11 +61,8 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 
 ### Environment
 
-- python
-  - python3 `pip3 install --user pynvim`
-  - python2 `pip2 install --user pynvim`
-- ruby `gem install neovim`
-- nodeJS `yarn install -g neovim`
+- python3: `pip3 install --user pynvim`
+- javascript: `yarn install -g neovim`
 
 ### Tools
 
@@ -219,7 +216,7 @@ highly opinionated).
   available plugins here
 
 - **Adding Bookmarks:** to add bookmarks to the start page, find `g:startify_bookmarks` in
-  `init.nvim` and add the a new bookmark just like the already present ones, the dictionary
+  `init.nvim` and add the new bookmark just like the already present ones, the dictionary
   key is the shortcut you will use to quickly jump to that folder from the start page and
   the value is the path to targeted folder
 
