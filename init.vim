@@ -38,6 +38,7 @@ Plug 'psliwka/vim-smoothie'                             " some very smooth ass s
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
+Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 call plug#end()
 
 "}}}
@@ -174,7 +175,7 @@ let g:coc_global_extensions = [
             \]
 
 " indentLine
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char_list = ['▏']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
@@ -224,6 +225,9 @@ let g:startify_custom_header = [
 
 " rainbow brackets
 let g:rainbow_active = 1
+
+" tmux navigator
+let g:tmux_navigator_no_mappings = 1
 
 " semshi settings
 let g:semshi#error_sign	= v:false                       " let ms python lsp handle this
@@ -421,5 +425,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " fugitive mappings
 nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gb :Gblame<CR>
+
+" tmux navigator
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 
 "}}}
