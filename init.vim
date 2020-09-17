@@ -161,6 +161,7 @@ let g:coc_snippet_prev = '<S-Tab>'
 " list of the extensions to make sure are always installed
 let g:coc_global_extensions = [
             \'coc-yank',
+            \'coc-actions',
             \'coc-pairs',
             \'coc-json',
             \'coc-css',
@@ -434,8 +435,8 @@ nmap <leader>ji <Plug>(coc-implementation)
 nmap <leader>jr <Plug>(coc-references)
 
 " other coc actions
-vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <leader>a :CocCommand actions.open<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " fugitive mappings
