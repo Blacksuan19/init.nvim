@@ -96,17 +96,13 @@ set signcolumn=yes
 " Themeing
 let g:material_style = 'oceanic'
 colorscheme vim-material
-highlight Pmenu guibg='#00010a' guifg=white             " popup menu colors
-highlight Comment gui=italic cterm=italic               " bold comments
-highlight Normal gui=none
-highlight NonText guibg=none
-highlight clear SignColumn                              " use number color for sign column color
+hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
+hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
-autocmd ColorScheme * highlight VertSplit cterm=NONE    " split color
 hi NonText guifg=bg                                     " mask ~ on empty lines
 hi clear CursorLineNr                                   " use the theme color for relative number
 hi CursorLineNr gui=bold                                " make relative number bold
-hi SpellBad guifg=#ff7480 cterm=bold,undercurl          " misspelled words
+hi SpellBad guifg=NONE gui=bold,undercurl               " misspelled words
 
 " colors for git (especially the gutter)
 hi DiffAdd  guibg=#0f111a guifg=#43a047
@@ -254,9 +250,10 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**'"
 
 " ======================== Commands ============================= "{{{
 
-au BufEnter * set fo-=c fo-=r fo-=o                 " stop annoying auto commenting on new lines
-au FileType help wincmd L                           " open help in vertical split
-au BufWritePre * :%s/\s\+$//e                       " remove trailing whitespaces before saving
+au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
+au FileType help wincmd L                               " open help in vertical split
+au BufWritePre * :%s/\s\+$//e                           " remove trailing whitespaces before saving
+au CursorHold * silent call CocActionAsync('highlight') " highlight match on cursor hold
 
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
