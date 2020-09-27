@@ -177,6 +177,7 @@ let g:coc_global_extensions = [
             \'coc-syntax',
             \'coc-git',
             \'coc-marketplace',
+            \'coc-highlight',
             \]
 
 " indentLine
