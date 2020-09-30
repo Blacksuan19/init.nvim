@@ -63,7 +63,7 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 ### Environment
 
 - python3: `pip3 install --user pynvim`
-- javascript: `yarn install -g neovim`
+- javascript: `yarn global add neovim`
 
 ### Tools
 
