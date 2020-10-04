@@ -49,7 +49,6 @@ call plug#end()
 set termguicolors                                       " Opaque Background
 set mouse=a                                             " enable mouse scrolling
 set clipboard+=unnamedplus                              " use system clipboard by default
-filetype plugin indent on                               " enable indentations
 set tabstop=4 softtabstop=4 shiftwidth=4 autoindent     " tab width
 set expandtab smarttab                                  " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
@@ -61,6 +60,7 @@ set number                                              " enable numbers on the 
 set relativenumber                                      " current line is 0
 set title                                               " tab title as file name
 set noshowmode                                          " dont show current mode below statusline
+set noshowcmd                                           " to get rid of display of last command
 set conceallevel=2                                      " set this so we wont break indentation plugin
 set splitright                                          " open vertical split to the right
 set splitbelow                                          " open horizontal split to the bottom
@@ -112,17 +112,6 @@ hi DiffRemoved guibg=#0f111a guifg=#e53935
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
-" tmux cursor shape
-if exists('$TMUX')
-    let &t_SI .= "\ePtmux;\e\e[=1c\e\\"
-    let &t_EI .= "\ePtmux;\e\e[=2c\e\\"
-    let &t_Cs = "\e[4:3m"
-    let &t_Ce = "\e[4:0m"
- else
-    let &t_SI .= "\e[=1c"
-    let &t_EI .= "\e[=2c"
- endif
-
 "}}}
 
 " ======================== Plugin Configurations ======================== "{{{
@@ -137,16 +126,20 @@ let g:python3_host_prog = expand('/usr/bin/python3')
 
 " Airline
 let g:airline_theme='material'
-let g:airline_powerline_fonts = 0
-let g:airline#themes#clean#palette = 1
-call airline#parts#define_raw('linenr', '%l')
-call airline#parts#define_accent('linenr', 'bold')
-let g:airline_section_z = airline#section#create(['%3p%%  ',
-            \ g:airline_symbols.linenr .' ', 'linenr', ':%c '])
+let g:airline_skip_empty_sections = 1
 let g:airline_section_warning = ''
+let g:airline_section_x=''
+let g:airline_section_z = airline#section#create(['%3p%% ', 'linenr', ':%c'])
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.branch = '⎇ '
+let g:airline_symbols.dirty= ''
 
 "" coc
 
