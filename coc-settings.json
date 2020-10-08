@@ -51,7 +51,6 @@
   // diagnostic settings
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.signOffset": 999999,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "",
@@ -66,6 +65,7 @@
   "list.source.grep.command": "rg",
 
   // git settings
+  "git.signOffset": 9999999,
   "git.topRemovedSign.text": "▌",
   "git.changeRemovedSign.text": "▌",
   "git.removedSign.text": "▌",
