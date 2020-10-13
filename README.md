@@ -1,5 +1,6 @@
 <p align="center">
 <img src="./Screens/screen0.png">
+
 </p>
 
 ## Table of Contents
@@ -49,6 +50,7 @@ Neovim provides support for a wide range of languages by default.
 There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
+- [dart](http://dart.dev)
 
 ## Requirements
 
@@ -128,7 +130,7 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | `leader + w` | save changes                         |
 | `leader + e` | call :PlugInstall (install plug-ins) |
 | `Enter`      | enter empty line in normal mode      |
-| `F5`         | trim white spaces                    |
+| `F2`         | trim white spaces                    |
 | `F6`         | open Startify                        |
 
 #### Navigation
@@ -149,7 +151,7 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | Mapping       | functionality                        |
 | ------------- | ------------------------------------ |
 | `leader + o`  | organize imports                     |
-| `leader + a`  | run cocAction                        |
+| `leader + a`  | run cocAction on what's undercursor  |
 | `leader + s`  | format file with available formatter |
 | `leader + rn` | rename globally                      |
 | `leader + jd` | jump to definition                   |
@@ -160,6 +162,14 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | `shift + k`   | show current symbol documentation    |
 | `]g`          | next diagnostic                      |
 | `[g`          | Previous diagnostic                  |
+
+#### Flutter
+
+| Mapping | functionality                          |
+| ------- | -------------------------------------- |
+| `F3`    | show list of devices                   |
+| `F4`    | show list of emulators                 |
+| `F5`    | start development server (flutter run) |
 
 #### FZF windows
 

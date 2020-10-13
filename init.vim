@@ -37,6 +37,7 @@ Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -152,9 +153,9 @@ let g:coc_snippet_prev = '<S-Tab>'
 " list of the extensions to make sure are always installed
 let g:coc_global_extensions = [
             \'coc-yank',
-            \'coc-actions',
             \'coc-pairs',
             \'coc-json',
+            \'coc-actions',
             \'coc-css',
             \'coc-html',
             \'coc-tsserver',
@@ -169,10 +170,11 @@ let g:coc_global_extensions = [
             \'coc-git',
             \'coc-marketplace',
             \'coc-highlight',
+            \'coc-flutter',
             \]
 
 " indentLine
-let g:indentLine_char_list = ['▏']
+let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
@@ -239,7 +241,7 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffse
 let g:fzf_tags_command = 'ctags -R'
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
-let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**'"
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build/**' --glob '!.dart_tool/**' --glob '!.idea'"
 
 "}}}
 
@@ -253,6 +255,7 @@ au CursorHold * silent call CocActionAsync('highlight') " highlight match on cur
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
 autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
+
 
 " coc completion popup
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -380,7 +383,10 @@ nnoremap <C-l> <C-w>l
 noremap <silent><esc> <esc>:noh<CR><esc>
 
 " trim white spaces
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" markdown preview
+au FileType markdown nmap <leader>m :MarkdownPreview<CR>
 
 "" FZF
 nnoremap <silent> <leader>f :Files<CR>
@@ -431,6 +437,11 @@ nmap <leader>jr <Plug>(coc-references)
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <leader>a :CocCommand actions.open<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" flutter mappings
+nnoremap <F3> :CocCommand flutter.devices<CR>
+nnoremap <F4> :CocCommand flutter.emulators<CR>
+nnoremap <F5> :CocCommand flutter.run<CR>
 
 " fugitive mappings
 nmap <leader>gd :Gdiffsplit<CR>
