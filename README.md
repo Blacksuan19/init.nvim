@@ -115,6 +115,7 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-eunuch](https://github.com/tpope/vim-eunuch)                   | some common Linux commands                   |
 | [semshi](https://github.com/numirias/semshi)                        | better highlighting for python               |
 | [markdown-preview](https://github.com/iamcco/markdown-preview.nvim) | live markdown preview                        |
+| [vim-MvVis](https://github.com/Jorengarenar/vim-MvVis)              | move visual selection                        |
 
 ## Keyboard shortcuts
 
@@ -132,6 +133,15 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | `Enter`      | enter empty line in normal mode      |
 | `F2`         | trim white spaces                    |
 | `F6`         | open Startify                        |
+
+#### Visual Mode Essentials
+
+| Mapping    | functionality                   |
+| ---------- | ------------------------------- |
+| `ctrl + j` | move selected text to bottom    |
+| `ctrl + k` | move selected text to top       |
+| `ctrl + h` | move selected text to the left  |
+| `ctrl + l` | move selected text to the right |
 
 #### Navigation
 
