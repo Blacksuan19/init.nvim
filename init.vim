@@ -41,6 +41,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'TovarishFin/vim-solidity'
 call plug#end()
 
 "}}}
