@@ -56,7 +56,6 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "ஐ",
-  "diagnostic.refreshAfterSave": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": true,
@@ -66,15 +65,12 @@
   "list.source.grep.command": "rg",
 
   // git settings
-  "git.signOffset": 9999999,
   "git.topRemovedSign.text": "▌",
   "git.changeRemovedSign.text": "▌",
   "git.removedSign.text": "▌",
   "git.addedSign.text": "▌",
   "git.changedSign.text": "▌",
 
-  // other stuff (language specific)
-  "python.autoComplete.addBrackets": true,
-  "python.jediEnabled": false,
+  // other language specific settings
   "html.autoClosingTags": true
 }
