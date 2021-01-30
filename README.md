@@ -51,6 +51,8 @@ There is also support for:
 
 - [liquid](https://shopify.github.io/liquid/)
 - [dart](http://dart.dev)
+- [Flutter](https://flutter.dev/)
+- [solidity](https://solidity.readthedocs.io/en/v0.7.4/)
 
 ## Requirements
 
@@ -101,7 +103,6 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [vim-material](https://github.com/hzchirs/vim-material)             | material themes                              |
 | [coc.nvim](https://github.com/neoclide/coc.nvim)                    | async completion and more                    |
 | [fzf.vim](https://github.com/junegunn/fzf.vim)                      | fuzzy finder vim integration                 |
-| [ultisnips](https://github.com/SirVer/ultisnips)                    | snippets engine                              |
 | [vim-snippets](https://github.com/honza/vim-snippets)               | snippets for many languages                  |
 | [indentLine](https://github.com/Yggdroot/indentLine)                | auto indent lines                            |
 | [vim-liquid](https://github.com/tpope/vim-liquid)                   | liquid language support                      |
@@ -144,6 +145,8 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventu
 | `ctrl + l` | move selected text to the right |
 
 #### Navigation
+
+`ctrl + hjkl` navigation also supports tmux panes.
 
 | Mapping      | functionality                          |
 | ------------ | -------------------------------------- |
