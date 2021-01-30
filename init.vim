@@ -155,7 +155,6 @@ let g:coc_global_extensions = [
             \'coc-yank',
             \'coc-pairs',
             \'coc-json',
-            \'coc-actions',
             \'coc-css',
             \'coc-html',
             \'coc-tsserver',
@@ -434,9 +433,9 @@ nmap <leader>ji <Plug>(coc-implementation)
 nmap <leader>jr <Plug>(coc-references)
 
 " other coc actions
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <leader>a :CocCommand actions.open<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <leader>a <Plug>(coc-codeaction-line)
+xmap <leader>a <Plug>(coc-codeaction-selected)
 
 " flutter mappings
 nnoremap <F3> :CocCommand flutter.devices<CR>
