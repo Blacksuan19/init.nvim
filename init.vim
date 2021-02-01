@@ -261,8 +261,8 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " startify if no passed argument or all buffers are closed
 augroup noargs
-    " startify when there is no open buffer left
-    autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+    " startify when there is no open buffer left(when only scratch buffer is open)
+    autocmd BufEnter * if line2byte('.') == -1 && len(tabpagebuflist()) == 1 | Startify | endif
 
     " open startify on start if no argument was passed
     autocmd VimEnter * if argc() == 0 | Startify | endif
