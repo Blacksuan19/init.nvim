@@ -444,7 +444,7 @@ nnoremap <F5> :CocCommand flutter.run<CR>
 
 " fugitive mappings
 nmap <leader>gd :Gdiffsplit<CR>
-nmap <leader>gb :Gblame<CR>
+nmap <leader>gb :Git blame<CR>
 
 " tmux navigator
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
