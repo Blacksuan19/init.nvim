@@ -3,23 +3,6 @@
 
 </p>
 
-## Table of Contents
-
-- [Why?](#why)
-- [Features](#features)
-  - [Supported Languages](#supported-languages)
-- [Requirements](#requirements)
-- [Setup](#setup)
-  - [Environment](#environment)
-  - [Tools](#tools)
-- [Installation](#installation)
-- [Plugins](#plugins)
-- [Keyboard shortcuts](#keyboard-shortcuts)
-- [Custom Commands](#custom-commands)
-- [Customizations](#customizations)
-- [Demos](#demos)
-- [Credits](#credits)
-
 ## Why?
 
 Modern Vim distributions are really huge and bloated with way too many fancy features
