@@ -73,5 +73,6 @@
 
   // other language specific settings
   "html.autoClosingTags": true,
-  "coc.source.ultisnips.filetypes": []
+  "coc.source.ultisnips.filetypes": [],
+  "prettier.proseWrap": "always"
 }
