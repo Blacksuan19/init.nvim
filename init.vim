@@ -28,7 +28,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
 Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
 Plug 'honza/vim-snippets'                               " actual snippets
 Plug 'Yggdroot/indentLine'                              " show indentation lines
-Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
 Plug 'tpope/vim-commentary'                             " better commenting
 Plug 'mhinz/vim-startify'                               " cool start up screen
@@ -36,11 +35,9 @@ Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
-Plug 'dart-lang/dart-vim-plugin'
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'TovarishFin/vim-solidity'
 call plug#end()
 
 "}}}
@@ -169,7 +166,6 @@ let g:coc_global_extensions = [
             \'coc-git',
             \'coc-marketplace',
             \'coc-highlight',
-            \'coc-flutter',
             \]
 
 " indentLine
@@ -436,11 +432,6 @@ nmap <leader>jr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <leader>a <Plug>(coc-codeaction-line)
 xmap <leader>a <Plug>(coc-codeaction-selected)
-
-" flutter mappings
-nnoremap <F3> :CocCommand flutter.devices<CR>
-nnoremap <F4> :CocCommand flutter.emulators<CR>
-nnoremap <F5> :CocCommand flutter.run<CR>
 
 " fugitive mappings
 nmap <leader>gd :Gdiffsplit<CR>

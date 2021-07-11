@@ -5,13 +5,13 @@
 
 ## Why?
 
-Modern Vim distributions are really huge and bloated with way too many fancy features
-that you won't ever use or need, for example directory trees like Nerd tree, you
-don't need a tree, you can view a project structure with fzf which is faster and has search.
-Another example is [ThinkVim](https://github.com/hardcoreplayers/ThinkVim) has a
-separate extension for formatting while also having ALE which can do that as
-well, this double functionality is very common, thats one of the things this
-distro avoids, KISS!
+Modern Vim distributions are really huge and bloated with way too many fancy
+features that you won't ever use or need, for example directory trees like Nerd
+tree, you don't need a tree, you can view a project structure with fzf which is
+faster and has search. Another example is
+[ThinkVim](https://github.com/hardcoreplayers/ThinkVim) has a separate extension
+for formatting while also having ALE which can do that as well, this double
+functionality is very common, thats one of the things this distro avoids, KISS!
 
 ## Features
 
@@ -20,7 +20,8 @@ distro avoids, KISS!
 - Super fast startup (less than 40ms!)
 - Lazy loading plugins
 - Highly customizable
-- Beautiful [Material ocean](https://github.com/material-ocean/Material-Ocean) color scheme
+- Beautiful [Material ocean](https://github.com/material-ocean/Material-Ocean)
+  color scheme
 - Various IDE features via [coc.nvim](https://github.com/neoclide/coc.nvim)
 - Smooth Scrolling (its really smooth!)
 - Fully integrated with fzf (see [demos](#demos))
@@ -29,13 +30,8 @@ distro avoids, KISS!
 
 ### Supported Languages
 
-Neovim provides support for a wide range of languages by default.
-There is also support for:
-
-- [liquid](https://shopify.github.io/liquid/)
-- [dart](http://dart.dev)
-- [Flutter](https://flutter.dev/)
-- [solidity](https://solidity.readthedocs.io/en/v0.7.4/)
+Neovim provides support for a wide range of languages by default. For more
+languages install [vim-polyglot](https://github.com/sheerun/vim-polyglot).
 
 ## Requirements
 
@@ -54,7 +50,8 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 
 ### Tools
 
-- [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode) (not required but Recommended)
+- [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+  (not required but Recommended)
 - [tmux](https://github.com/tmux/tmux) (not required but recommended)
 - [prettier](https://prettier.io/)
 - clang (much better C and C++)
@@ -75,8 +72,8 @@ After installing the requirements:
 
 Thanks to vim-plug the plugins are lazy loaded (anything that is not needed for
 the current buffer is not loaded) for example opening a python file means all
-other non python related plugins are not loaded.
-Coc extensions are lazy loaded as well, they work the same way as vim-plug plugins.
+other non python related plugins are not loaded. Coc extensions are lazy loaded
+as well, they work the same way as vim-plug plugins.
 
 | Plugin                                                              | Functionality                                |
 | ------------------------------------------------------------------- | -------------------------------------------- |
@@ -88,7 +85,6 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 | [fzf.vim](https://github.com/junegunn/fzf.vim)                      | fuzzy finder vim integration                 |
 | [vim-snippets](https://github.com/honza/vim-snippets)               | snippets for many languages                  |
 | [indentLine](https://github.com/Yggdroot/indentLine)                | auto indent lines                            |
-| [vim-liquid](https://github.com/tpope/vim-liquid)                   | liquid language support                      |
 | [vim-commentary](https://github.com/tpope/vim-commentary)           | better comments everywhere                   |
 | [vim-startify](https://github.com/mhinz/vim-startify)               | cool startup thingy                          |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)               | best git integration around                  |
@@ -103,7 +99,8 @@ Coc extensions are lazy loaded as well, they work the same way as vim-plug plugi
 
 ## Keyboard shortcuts
 
-To learn the default Vim shortcuts run `Tutor` and or checkout this [vim adventures](https://vim-adventures.com/).
+To learn the default Vim shortcuts run `Tutor` and or checkout this
+[vim adventures](https://vim-adventures.com/).
 
 #### Essentials
 
@@ -214,23 +211,24 @@ about their functionality, and can be removed, commented out or swapped easily,
 there are some defaults that are not everyone's cup of tea (after all this is
 highly opinionated).
 
-- **Disabling Plugins:** comment out the plug's 'Plugin/name' line from config and also remove the
-  plugin settings
+- **Disabling Plugins:** comment out the plug's 'Plugin/name' line from config
+  and also remove the plugin settings
 
-- **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions` variable and
-  uninstall it via `:CocUninstall` plugin name
+- **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions`
+  variable and uninstall it via `:CocUninstall` plugin name
 
-- **Installing CoC plugins:** open `:CocList` and search for marketplace, you can find all
-  available plugins here
+- **Installing CoC plugins:** open `:CocList` and search for marketplace, you
+  can find all available plugins here
 
-- **Adding Bookmarks:** to add bookmarks to the start page, find `g:startify_bookmarks` in
-  `init.nvim` and add the new bookmark just like the already present ones, the dictionary
-  key is the shortcut you will use to quickly jump to that folder from the start page and
-  the value is the path to targeted folder
+- **Adding Bookmarks:** to add bookmarks to the start page, find
+  `g:startify_bookmarks` in `init.nvim` and add the new bookmark just like the
+  already present ones, the dictionary key is the shortcut you will use to
+  quickly jump to that folder from the start page and the value is the path to
+  targeted folder
 
-for more customizations read throw the config file, there are comments everywhere and its
-easy to interpret, you can also checkout the linked github page for each plugin for even
-more options.
+for more customizations read throw the config file, there are comments
+everywhere and its easy to interpret, you can also checkout the linked github
+page for each plugin for even more options.
 
 ## Demos
 
