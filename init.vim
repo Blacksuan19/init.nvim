@@ -13,7 +13,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 
 " ================= looks and GUI stuff ================== "{{{
 
-Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'luochen1990/rainbow'                              " rainbow parenthesis
 Plug 'hzchirs/vim-material'                             " material color themes
@@ -70,7 +69,7 @@ set undofile                                            " enable persistent undo
 set undodir=/tmp                                        " undo temp file directory
 set foldlevel=0                                         " open all folds by default
 set inccommand=nosplit                                  " visual feedback while substituting
-set showtabline=2                                       " always show tabline
+set showtabline=0                                       " always show tabline
 set grepprg=rg\ --vimgrep                               " use rg as default grepper
 
 " performance tweaks
@@ -121,25 +120,6 @@ let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
 let g:python3_host_prog = expand('/usr/bin/python3')
-
-" Airline
-let g:airline_theme='material'
-let g:airline_skip_empty_sections = 1
-let g:airline_section_warning = ''
-let g:airline_section_x=''
-let g:airline_section_z = airline#section#create(['%3p%% ', 'linenr', ':%c'])
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
-let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let airline#extensions#coc#error_symbol = '✘:'
-let airline#extensions#coc#warning_symbol = '⚠:'
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.branch = '⎇ '
-let g:airline_symbols.dirty= ''
 
 "" coc
 
@@ -443,5 +423,11 @@ nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+
+"}}}
+
+
+" ======================== Additional sourcing ====================== "{{{
+source ~/.config/nvim/statusline.vim
 
 "}}}

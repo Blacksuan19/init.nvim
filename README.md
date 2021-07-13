@@ -50,8 +50,7 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 
 ### Tools
 
-- [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
-  (not required but Recommended)
+- [Any patched nerd font](https://github.com/ryanoasis/nerd-fonts/)
 - [tmux](https://github.com/tmux/tmux) (not required but recommended)
 - [prettier](https://prettier.io/)
 - clang (much better C and C++)
