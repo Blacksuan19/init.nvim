@@ -57,7 +57,7 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 - [fuzzy finder (fzf)](https://github.com/junegunn/fzf)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [bat](https://github.com/sharkdp/bat)
-- [autopep8](https://pypi.org/project/autopep8/) python formatting
+- [black](https://black.readthedocs.io/en/latest/) for python formatting
 
 ## Installation
 
