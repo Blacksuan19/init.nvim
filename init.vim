@@ -37,6 +37,7 @@ Plug 'tpope/vim-eunuch'                                 " run common Unix comman
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'memgraph/cypher.vim'
 call plug#end()
 
 "}}}
@@ -267,8 +268,13 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
-" python renaming
-autocmd FileType python nnoremap <leader>rn :Semshi rename <CR>
+" python renaming and folding
+augroup python
+    autocmd FileType python nnoremap <leader>rn :Semshi rename <CR>
+    autocmd FileType python set foldmethod=syntax
+    autocmd FileType python syn sync fromstart
+    autocmd FileType python syn region foldImports start='"""' end='"""' fold keepend
+augroup end
 
 " format with available file format formatter
 command! -nargs=0 Format :call CocAction('format')
