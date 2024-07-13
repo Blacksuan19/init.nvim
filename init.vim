@@ -12,32 +12,40 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "}}}
 
 " ================= looks and GUI stuff ================== "{{{
+if !exists('g:vscode')
+    Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
+    Plug 'luochen1990/rainbow'                              " rainbow parenthesis
+    Plug 'hzchirs/vim-material'                             " material color themes
+    Plug 'gregsexton/MatchTag'                              " highlight matching html tags
+endif
 
-Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
-Plug 'luochen1990/rainbow'                              " rainbow parenthesis
-Plug 'hzchirs/vim-material'                             " material color themes
-Plug 'gregsexton/MatchTag'                              " highlight matching html tags
-Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
+Plug 'AlphaTechnolog/pywal.nvim', { 'as': 'pywal' }
+
 "}}}
 
 " ================= Functionalities ================= "{{{
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
-Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
-Plug 'honza/vim-snippets'                               " actual snippets
-Plug 'Yggdroot/indentLine'                              " show indentation lines
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
-Plug 'tpope/vim-commentary'                             " better commenting
-Plug 'mhinz/vim-startify'                               " cool start up screen
-Plug 'tpope/vim-fugitive'                               " git support
-Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
-Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
 Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                           " make sandwiches
-Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'memgraph/cypher.vim'
+Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
+
+if !exists('g:vscode')
+    Plug 'unblevable/quick-scope'                           " highlight f-t markers
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
+    Plug 'tpope/vim-commentary'                             " better commenting
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
+    Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
+    Plug 'honza/vim-snippets'                               " actual snippets
+    Plug 'Yggdroot/indentLine'                              " show indentation lines
+    Plug 'mhinz/vim-startify'                               " cool start up screen
+    Plug 'tpope/vim-fugitive'                               " git support
+    Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
+    Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
+    Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'memgraph/cypher.vim'
+    Plug 'ActivityWatch/aw-watcher-vim'
+endif
 call plug#end()
 
 "}}}
@@ -93,7 +101,7 @@ set signcolumn=yes
 
 " Themeing
 let g:material_style = 'oceanic'
-colorscheme vim-material
+colorscheme pywal
 hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
@@ -110,6 +118,18 @@ hi DiffRemoved guibg=#0f111a guifg=#e53935
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
+"neovim settings
+if exists('g:vscode')
+    " fix vim-sandwich highlight colors
+    highlight OperatorSandwichBuns guifg='#aa91a0' gui=underline ctermfg=172 cterm=underline
+    highlight OperatorSandwichChange guifg='#edc41f' gui=underline ctermfg='yellow' cterm=underline
+    highlight OperatorSandwichAdd guibg='#b1fa87' gui=none ctermbg='green' cterm=none
+    highlight OperatorSandwichDelete guibg='#cf5963' gui=none ctermbg='red' cterm=none
+
+    " fix quick-scope colors
+    highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+endif
 "}}}
 
 " ======================== Plugin Configurations ======================== "{{{
@@ -231,8 +251,9 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 au FileType help wincmd L                               " open help in vertical split
 au BufWritePre * :%s/\s\+$//e                           " remove trailing whitespaces before saving
-au CursorHold * silent call CocActionAsync('highlight') " highlight match on cursor hold
 
+if !exists('g:vscode')
+au CursorHold * silent call CocActionAsync('highlight') " highlight match on cursor hold
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
 autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
@@ -322,125 +343,140 @@ function! s:show_documentation()
   endif
 endfunction
 
+endif "g:neovim
 "}}}
 
 " ======================== Custom Mappings ====================== "{{{
 
 "" the essentials
 let mapleader=","
-nnoremap ; :
-nmap \ <leader>q
-map <F6> :Startify <CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>q :bd<CR>
+nnoremap ; :
 nmap <leader>w :w<CR>
-map <leader>s :Format<CR>
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
-noremap <leader>e :PlugInstall<CR>
-noremap <C-q> :q<CR>
 
 " new line in normal mode and back
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
-" use a different register for delete and paste
-nnoremap d "_d
-vnoremap d "_d
-vnoremap p "_dP
-nnoremap x "_x
 
-" emulate windows copy, cut behavior
-vnoremap <LeftRelease> "+y<LeftRelease>
-vnoremap <C-c> "+y<CR>
-vnoremap <C-x> "+d<CR>
+if exists('g:vscode')
+    " essentials
+    nmap <leader>q :q<CR>
 
-" switch between splits using ctrl + {h,j,k,l}
-inoremap <C-h> <C-\><C-N><C-w>h
-inoremap <C-j> <C-\><C-N><C-w>j
-inoremap <C-k> <C-\><C-N><C-w>k
-inoremap <C-l> <C-\><C-N><C-w>l
-nnoremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+    " use internal vscode commentary plugin
+    xmap gc  <Plug>VSCodeCommentary
+    nmap gc  <Plug>VSCodeCommentary
+    omap gc  <Plug>VSCodeCommentary
+    nmap gcc <Plug>VSCodeCommentaryLine
+else
+    nmap \ <leader>q
+    map <F6> :Startify <CR>
+    nmap <leader>q :bd<CR>
+    map <leader>s :Format<CR>
+    nmap <Tab> :bnext<CR>
+    nmap <S-Tab> :bprevious<CR>
+    noremap <leader>e :PlugInstall<CR>
+    noremap <C-q> :q<CR>
 
-" disable hl with 2 esc
-noremap <silent><esc> <esc>:noh<CR><esc>
+    " use a different register for delete and paste
+    nnoremap d "_d
+    vnoremap d "_d
+    vnoremap p "_dP
+    nnoremap x "_x
 
-" trim white spaces
-nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+    " emulate windows copy, cut behavior
+    vnoremap <LeftRelease> "+y<LeftRelease>
+    vnoremap <C-c> "+y<CR>
+    vnoremap <C-x> "+d<CR>
 
-" markdown preview
-au FileType markdown nmap <leader>m :MarkdownPreview<CR>
+    " switch between splits using ctrl + {h,j,k,l}
+    inoremap <C-h> <C-\><C-N><C-w>h
+    inoremap <C-j> <C-\><C-N><C-w>j
+    inoremap <C-k> <C-\><C-N><C-w>k
+    inoremap <C-l> <C-\><C-N><C-w>l
+    nnoremap <C-h> <C-w>h
+    noremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
 
-"" FZF
-nnoremap <silent> <leader>f :Files<CR>
-nmap <leader>b :Buffers<CR>
-nmap <leader>c :Commands<CR>
-nmap <leader>t :BTags<CR>
-nmap <leader>/ :Rg<CR>
-nmap <leader>gc :Commits<CR>
-nmap <leader>gs :GFiles?<CR>
-nmap <leader>sh :History/<CR>
+    " disable hl with 2 esc
+    noremap <silent><esc> <esc>:noh<CR><esc>
 
-" show mapping on all modes with F1
-nmap <F1> <plug>(fzf-maps-n)
-imap <F1> <plug>(fzf-maps-i)
-vmap <F1> <plug>(fzf-maps-x)
+    " trim white spaces
+    nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-"" coc
+    " markdown preview
+    au FileType markdown nmap <leader>m :MarkdownPreview<CR>
 
-" use tab to navigate snippet placeholders
-inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#_select_confirm() :
-    \ coc#expandableOrJumpable() ?
-    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
+    "" FZF
+    nnoremap <silent> <leader>f :Files<CR>
+    nmap <leader>b :Buffers<CR>
+    nmap <leader>c :Commands<CR>
+    nmap <leader>t :BTags<CR>
+    nmap <leader>/ :Rg<CR>
+    nmap <leader>gc :Commits<CR>
+    nmap <leader>gs :GFiles?<CR>
+    nmap <leader>sh :History/<CR>
 
-let g:coc_snippet_next = '<tab>'
+    " show mapping on all modes with F1
+    nmap <F1> <plug>(fzf-maps-n)
+    imap <F1> <plug>(fzf-maps-i)
+    vmap <F1> <plug>(fzf-maps-x)
 
-" use enter to accept completion
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+    "" coc
 
-" multi cursor shortcuts
-nmap <silent> <C-a> <Plug>(coc-cursors-word)
-xmap <silent> <C-a> <Plug>(coc-cursors-range)
+    " use tab to navigate snippet placeholders
+    inoremap <silent><expr> <TAB>
+        \ coc#pum#visible() ? coc#_select_confirm() :
+        \ coc#expandableOrJumpable() ?
+        \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+        \ check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+    let g:coc_snippet_next = '<tab>'
 
-" other stuff
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>o :OR <CR>
+    " use enter to accept completion
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
-" jump stuff
-nmap <leader>jd <Plug>(coc-definition)
-nmap <leader>jy <Plug>(coc-type-definition)
-nmap <leader>ji <Plug>(coc-implementation)
-nmap <leader>jr <Plug>(coc-references)
+    " multi cursor shortcuts
+    nmap <silent> <C-a> <Plug>(coc-cursors-word)
+    xmap <silent> <C-a> <Plug>(coc-cursors-range)
 
-" other coc actions
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nmap <leader>a <Plug>(coc-codeaction-line)
-xmap <leader>a <Plug>(coc-codeaction-selected)
+    " Use `[g` and `]g` to navigate diagnostics
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" fugitive mappings
-nmap <leader>gd :Gdiffsplit<CR>
-nmap <leader>gb :Git blame<CR>
+    " other stuff
+    nmap <leader>rn <Plug>(coc-rename)
+    nmap <leader>o :OR <CR>
 
-" tmux navigator
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+    " jump stuff
+    nmap <leader>jd <Plug>(coc-definition)
+    nmap <leader>jy <Plug>(coc-type-definition)
+    nmap <leader>ji <Plug>(coc-implementation)
+    nmap <leader>jr <Plug>(coc-references)
 
+    " other coc actions
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    nmap <leader>a <Plug>(coc-codeaction-line)
+    xmap <leader>a <Plug>(coc-codeaction-selected)
+
+    " fugitive mappings
+    nmap <leader>gd :Gdiffsplit<CR>
+    nmap <leader>gb :Git blame<CR>
+
+    " tmux navigator
+    nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+    nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+    nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+    nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+
+endif " g:vscode
 "}}}
 
 
 " ======================== Additional sourcing ====================== "{{{
+if !exists("g:vscode")
 source ~/.config/nvim/statusline.vim
-
+endif
 "}}}
