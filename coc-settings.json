@@ -1,7 +1,5 @@
 {
   // normal settings
-  "coc.preferences.colorSupport": true,
-  "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "html",
@@ -74,5 +72,6 @@
   // other language specific settings
   "html.autoClosingTags": true,
   "prettier.proseWrap": "always",
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "sh.enable": true
 }
