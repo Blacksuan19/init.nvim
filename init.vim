@@ -19,8 +19,6 @@ if !exists('g:vscode')
     Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 endif
 
-Plug 'AlphaTechnolog/pywal.nvim', { 'as': 'pywal' }
-
 "}}}
 
 " ================= Functionalities ================= "{{{
@@ -101,7 +99,7 @@ set signcolumn=yes
 
 " Themeing
 let g:material_style = 'oceanic'
-colorscheme pywal
+colorscheme vim-material
 hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
