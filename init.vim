@@ -42,7 +42,6 @@ if !exists('g:vscode')
     Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     Plug 'memgraph/cypher.vim'
-    Plug 'ActivityWatch/aw-watcher-vim'
 endif
 call plug#end()
 
