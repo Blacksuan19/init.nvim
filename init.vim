@@ -17,6 +17,7 @@ if !exists('g:vscode')
     Plug 'luochen1990/rainbow'                              " rainbow parenthesis
     Plug 'hzchirs/vim-material'                             " material color themes
     Plug 'gregsexton/MatchTag'                              " highlight matching html tags
+    Plug 'f-person/auto-dark-mode.nvim'                      " auto dark mode
 endif
 
 "}}}
@@ -97,8 +98,11 @@ set shortmess+=c
 set signcolumn=yes
 
 " Themeing
-let g:material_style = 'oceanic'
-colorscheme vim-material
+if !exists("g:vscode")
+    let g:material_style = 'oceanic'
+    colorscheme vim-material
+endif
+
 hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
