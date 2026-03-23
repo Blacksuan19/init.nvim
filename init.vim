@@ -1,5 +1,7 @@
 " ============= Vim-Plug ============== "{{{
 
+let s:is_vscode = exists('g:vscode')
+
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -12,7 +14,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "}}}
 
 " ================= looks and GUI stuff ================== "{{{
-if !exists('g:vscode')
+if !s:is_vscode
     Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
     Plug 'luochen1990/rainbow'                              " rainbow parenthesis
     Plug 'Shatur/neovim-ayu'                                " ayu color theme
@@ -27,7 +29,7 @@ Plug 'tpope/vim-eunuch'                                 " run common Unix comman
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
 
-if !exists('g:vscode')
+if !s:is_vscode
     Plug 'unblevable/quick-scope'                           " highlight f-t markers
     Plug 'tpope/vim-commentary'                             " better commenting
     Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
@@ -96,8 +98,8 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
-" Themeing
-if !exists("g:vscode")
+" Theming
+if !s:is_vscode
 lua << EOF
 local ok_ayu, ayu = pcall(require, "ayu")
 if ok_ayu then
@@ -132,8 +134,8 @@ EOF
     endif
 endif
 
-"neovim settings
-if exists('g:vscode')
+" VS Code-only highlight fixes
+if s:is_vscode
     " fix vim-sandwich highlight colors
     highlight OperatorSandwichBuns guifg='#aa91a0' gui=underline ctermfg=172 cterm=underline
     highlight OperatorSandwichChange guifg='#edc41f' gui=underline ctermfg='yellow' cterm=underline
@@ -263,7 +265,7 @@ au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto com
 au FileType help wincmd L                               " open help in vertical split
 au BufWritePre * :%s/\s\+$//e                           " remove trailing whitespaces before saving
 
-if !exists('g:vscode')
+if !s:is_vscode
 au CursorHold * silent call CocActionAsync('highlight') " highlight match on cursor hold
 " enable spell only if file type is normal text
 let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
@@ -354,7 +356,7 @@ function! s:show_documentation()
   endif
 endfunction
 
-endif "g:neovim
+endif " !s:is_vscode
 "}}}
 
 " ======================== Custom Mappings ====================== "{{{
@@ -370,7 +372,7 @@ map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
 
-if exists('g:vscode')
+if s:is_vscode
     " essentials
     nmap <leader>q :q<CR>
 
@@ -482,12 +484,12 @@ else
     nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
     nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 
-endif " g:vscode
+endif " s:is_vscode
 "}}}
 
 
 " ======================== Additional sourcing ====================== "{{{
-if !exists("g:vscode")
-source ~/.config/nvim/statusline.vim
+if !s:is_vscode
+    source ~/.config/nvim/statusline.vim
 endif
 "}}}
