@@ -15,7 +15,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 if !exists('g:vscode')
     Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
     Plug 'luochen1990/rainbow'                              " rainbow parenthesis
-    Plug 'hzchirs/vim-material'                             " material color themes
+    Plug 'Shatur/neovim-ayu'                                " ayu color theme
     Plug 'gregsexton/MatchTag'                              " highlight matching html tags
     Plug 'f-person/auto-dark-mode.nvim'                      " auto dark mode
 endif
@@ -99,25 +99,39 @@ set signcolumn=yes
 
 " Themeing
 if !exists("g:vscode")
-    let g:material_style = 'oceanic'
-    colorscheme vim-material
+lua << EOF
+local ok_ayu, ayu = pcall(require, "ayu")
+if ok_ayu then
+    ayu.setup({
+        mirage = false,
+        terminal = true,
+    })
+end
+
+local ok_auto_dark, auto_dark_mode = pcall(require, "auto-dark-mode")
+if ok_auto_dark then
+    auto_dark_mode.setup({
+        set_dark_mode = function()
+            vim.api.nvim_set_option_value("background", "dark", {})
+            if vim.fn.globpath(vim.o.runtimepath, "colors/ayu-dark.lua") ~= "" then
+                vim.cmd("colorscheme ayu-dark")
+            end
+        end,
+        set_light_mode = function()
+            vim.api.nvim_set_option_value("background", "light", {})
+            if vim.fn.globpath(vim.o.runtimepath, "colors/ayu-light.lua") ~= "" then
+                vim.cmd("colorscheme ayu-light")
+            end
+        end,
+    })
+end
+EOF
+    if &background ==# 'light' && !empty(globpath(&rtp, 'colors/ayu-light.lua'))
+        silent! colorscheme ayu-light
+    elseif !empty(globpath(&rtp, 'colors/ayu-dark.lua'))
+        silent! colorscheme ayu-dark
+    endif
 endif
-
-hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
-hi Comment gui=italic cterm=italic                      " italic comments
-hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
-hi NonText guifg=bg                                     " mask ~ on empty lines
-hi clear CursorLineNr                                   " use the theme color for relative number
-hi CursorLineNr gui=bold                                " make relative number bold
-hi SpellBad guifg=NONE gui=bold,undercurl               " misspelled words
-
-" colors for git (especially the gutter)
-hi DiffAdd  guibg=#0f111a guifg=#43a047
-hi DiffChange guibg=#0f111a guifg=#fdd835
-hi DiffRemoved guibg=#0f111a guifg=#e53935
-
-" coc multi cursor highlight color
-hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 "neovim settings
 if exists('g:vscode')
