@@ -29,7 +29,6 @@ Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
 
 if !exists('g:vscode')
     Plug 'unblevable/quick-scope'                           " highlight f-t markers
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
     Plug 'tpope/vim-commentary'                             " better commenting
     Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
@@ -243,9 +242,6 @@ let g:rainbow_active = 1
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
-
-" semshi settings
-let g:semshi#error_sign	= v:false                       " let ms python lsp handle this
 
 "" FZF
 let g:fzf_action = {
