@@ -1,237 +1,218 @@
-   " _____   __            __                     __     _
-  " / ___/  / /_  ____ _  / /_  __  __   _____   / /    (_)   ____   ___
-  " \__ \  / __/ / __ `/ / __/ / / / /  / ___/  / /    / /   / __ \ / _ \
- " ___/ / / /_  / /_/ / / /_  / /_/ /  (__  )  / /___ / /   / / / //  __/
-" /____/  \__/  \__,_/  \__/  \__,_/  /____/  /_____//_/   /_/ /_/ \___/
-
 set noshowmode
 set laststatus=2
 
-function! RedrawModeColors(mode) " {{{
-    " Normal mode
-    if a:mode == 'n'
-        hi CustomStatuslineAccent     cterm=none gui=none ctermbg=none ctermfg=1   guibg=none    guifg=#fc8993
-        hi CustomStatuslineAccentBody cterm=none gui=none ctermbg=1    ctermfg=0   guibg=#fc8993 guifg=#272c38
-        hi CustomStatuslineFilename   cterm=none gui=none ctermbg=8    ctermfg=251 guibg=#272c38 guifg=#fc8993
-        " Insert mode
-    elseif a:mode == 'i'
-        hi CustomStatuslineAccent     cterm=none gui=none ctermbg=none ctermfg=2   guibg=none    guifg=#8de19f
-        hi CustomStatuslineAccentBody cterm=none gui=none ctermbg=2    ctermfg=0   guibg=#8de19f guifg=#272c38
-        hi CustomStatuslineFilename   cterm=none gui=none ctermbg=8    ctermfg=251 guibg=#272c38 guifg=#8de19f
-        " Replace mode
-    elseif a:mode == 'R'
-        hi CustomStatuslineAccent     cterm=none gui=none ctermbg=none ctermfg=1   guibg=none    guifg=#A65169
-        hi CustomStatuslineAccentBody cterm=none gui=none ctermbg=1    ctermfg=0   guibg=#A65169 guifg=#272c38
-        hi CustomStatuslineFilename   cterm=none gui=none ctermbg=8    ctermfg=251 guibg=#272c38 guifg=#A65169
-        " Visual mode
-    elseif a:mode == 'v' || a:mode == 'V' || a:mode == "\<C-V>"
-        hi CustomStatuslineAccent     cterm=none gui=none ctermbg=none ctermfg=7   guibg=none    guifg=#a7bdfb
-        hi CustomStatuslineAccentBody cterm=none gui=none ctermbg=7    ctermfg=0   guibg=#a7bdfb guifg=#272c38
-        hi CustomStatuslineFilename   cterm=none gui=none ctermbg=8    ctermfg=7 guibg=#272c38 guifg=#a7bdfb
-        " Command mode
-    elseif a:mode == 'c'
-        hi CustomStatuslineAccent     cterm=none gui=none ctermbg=none ctermfg=6   guibg=none    guifg=#ee828c
-        hi CustomStatuslineAccentBody cterm=none gui=none ctermbg=6    ctermfg=0   guibg=#ee828c guifg=#272c38
-        hi CustomStatuslineFilename   cterm=none gui=none ctermbg=8    ctermfg=6 guibg=#272c38 guifg=#ee828c
-        " Terminal mode
-    elseif a:mode == 't'
-        hi CustomStatuslineAccent     cterm=none gui=none ctermbg=none ctermfg=3   guibg=none    guifg=#fbdf90
-        hi CustomStatuslineAccentBody cterm=none gui=none ctermbg=3    ctermfg=0   guibg=#fbdb90 guifg=#272c38
-        hi CustomStatuslineFilename   cterm=none gui=none ctermbg=8    ctermfg=3 guibg=#272c38 guifg=#fbdb90
-    endif
-    return ''
+function! s:HiColor(group, attr, fallback) abort
+    let l:id = synIDtrans(hlID(a:group))
+    let l:color = synIDattr(l:id, a:attr . '#')
+    return empty(l:color) || l:color ==# 'NONE' ? a:fallback : l:color
 endfunction
-" }}}
-function! ModeIcon(mode) " {{{
-    " Normal mode
-    if a:mode == 'n'
-        return '煮'
-        " Insert mode
-    elseif a:mode == 'i'
-        return ' '
-        " Replace mode
-    elseif a:mode == 'R'
-        return ' '
-        " Visual mode
-    elseif a:mode == 'v'
-        return ' '
-    elseif a:mode == 'V'
-        return ' '
-    elseif a:mode == "\<C-V>"
-        return '礪'
-        " Command mode
-    elseif a:mode == 'c'
-        return '⌘ '
-        " Terminal mode
-    elseif a:mode == 't'
-        return 'ﰣ '
+
+function! s:Contrast(hex) abort
+    let l:hex = substitute(a:hex, '^#', '', '')
+    if strlen(l:hex) != 6
+        return '#11111b'
     endif
+
+    let l:r = str2nr(strpart(l:hex, 0, 2), 16)
+    let l:g = str2nr(strpart(l:hex, 2, 2), 16)
+    let l:b = str2nr(strpart(l:hex, 4, 2), 16)
+    let l:brightness = (299 * l:r + 587 * l:g + 114 * l:b) / 1000
+    return l:brightness < 140 ? '#eff1f5' : '#11111b'
+endfunction
+
+function! s:Palette() abort
+    let l:bg = s:HiColor('Normal', 'bg', '#1d212a')
+
+    return {
+                \ 'bg': l:bg,
+                \ 'fg': s:HiColor('Normal', 'fg', '#cdd6f4'),
+                \ 'surface': l:bg,
+                \ 'muted': s:HiColor('Comment', 'fg', '#6c7086'),
+                \ 'normal': s:HiColor('Statement', 'fg', s:HiColor('Identifier', 'fg', '#e06c75')),
+                \ 'insert': s:HiColor('String', 'fg', s:HiColor('DiffAdd', 'fg', '#a6e3a1')),
+                \ 'replace': s:HiColor('ErrorMsg', 'fg', s:HiColor('Constant', 'fg', '#f38ba8')),
+                \ 'visual': s:HiColor('Identifier', 'fg', s:HiColor('Function', 'fg', '#89b4fa')),
+                \ 'command': s:HiColor('Special', 'fg', '#f5c2e7'),
+                \ 'terminal': s:HiColor('Type', 'fg', '#f9e2af'),
+                \ 'git': s:HiColor('Identifier', 'fg', s:HiColor('Function', 'fg', '#89b4fa')),
+                \ 'filetype': s:HiColor('Special', 'fg', s:HiColor('Type', 'fg', '#cba6f7')),
+                \ 'lines': s:HiColor('Type', 'fg', '#f9e2af'),
+                \ 'modified': s:HiColor('ErrorMsg', 'fg', s:HiColor('Statement', 'fg', '#e06c75')),
+                \ 'saved': s:HiColor('DiffAdd', 'fg', s:HiColor('String', 'fg', '#a6e3a1')),
+                \ 'inactive': s:HiColor('Comment', 'fg', '#6c7086'),
+                \ }
+endfunction
+
+function! s:ModeAccent(mode) abort
+    let l:p = s:Palette()
+    if a:mode ==# 'i'
+        return l:p.insert
+    elseif a:mode ==# 'R'
+        return l:p.replace
+    elseif a:mode ==# 'v' || a:mode ==# 'V' || a:mode ==# "\<C-V>"
+        return l:p.visual
+    elseif a:mode ==# 'c'
+        return l:p.command
+    elseif a:mode ==# 't'
+        return l:p.terminal
+    endif
+    return l:p.normal
+endfunction
+
+function! s:Hi(group, guifg, guibg, style) abort
+    execute 'hi ' . a:group
+                \ . ' cterm=none ctermbg=NONE ctermfg=NONE'
+                \ . ' gui=' . a:style
+                \ . ' guifg=' . a:guifg
+                \ . ' guibg=' . a:guibg
+endfunction
+
+function! s:RefreshStatuslineTheme() abort
+    let l:p = s:Palette()
+    let l:lines_fg = s:Contrast(l:p.lines)
+    let l:git_fg = s:Contrast(l:p.git)
+
+    call s:Hi('StatusLine', l:p.fg, l:p.bg, 'none')
+    call s:Hi('StatusLineNC', l:p.inactive, l:p.bg, 'none')
+    call s:Hi('MsgArea', l:p.fg, l:p.bg, 'none')
+    call s:Hi('MsgSeparator', l:p.fg, l:p.bg, 'none')
+    call s:Hi('WinSeparator', l:p.bg, l:p.bg, 'none')
+    call s:Hi('CustomStatuslineSeparator', l:p.bg, l:p.bg, 'none')
+
+    call s:Hi('CustomStatuslineTotalLines', l:p.lines, l:p.bg, 'none')
+    call s:Hi('CustomStatuslineTotalLinesIcon', l:lines_fg, l:p.lines, 'none')
+    call s:Hi('CustomStatuslineTotalLinesBody', l:lines_fg, l:p.lines, 'none')
+    call s:Hi('CustomStatuslineTotalLinesSeparator', l:p.lines, l:p.bg, 'none')
+
+    call s:Hi('CustomStatuslineInactive', l:p.inactive, l:p.surface, 'none')
+    call s:Hi('CustomStatuslineInactiveSeparator', l:p.bg, l:p.bg, 'none')
+    call s:Hi('CustomStatuslineGitbranch', l:p.git, l:p.bg, 'none')
+    call s:Hi('CustomStatuslineGitbranchIcon', l:git_fg, l:p.git, 'none')
+    call s:Hi('CustomStatuslineGitbranchBody', l:git_fg, l:p.git, 'none')
+    call s:Hi('CustomStatuslineGitbranchSeparator', l:p.git, l:p.bg, 'none')
+endfunction
+
+function! RedrawModeColors(mode) abort
+    let l:p = s:Palette()
+    let l:accent = s:ModeAccent(a:mode)
+    let l:accent_fg = s:Contrast(l:accent)
+
+    call s:Hi('CustomStatuslineAccent', l:accent, l:p.bg, 'none')
+    call s:Hi('CustomStatuslineAccentBody', l:accent_fg, l:accent, 'none')
+    call s:Hi('CustomStatuslineFilename', l:accent_fg, l:accent, 'none')
+    call s:Hi('CustomStatuslineFilenameSeparator', l:accent, l:p.bg, 'none')
     return ''
 endfunction
 
-function! SetModifiedSymbol(modified) " {{{
+function! ModeIcon(mode) abort
+    if a:mode ==# 'n'
+        return ' '
+    elseif a:mode ==# 'i'
+        return ' '
+    elseif a:mode ==# 'R'
+        return ' '
+    elseif a:mode ==# 'v'
+        return '󰈈 '
+    elseif a:mode ==# 'V'
+        return '󰈈 '
+    elseif a:mode ==# "\<C-V>"
+        return '󰈈 '
+    elseif a:mode ==# 'c'
+        return ' '
+    elseif a:mode ==# 't'
+        return ' '
+    endif
+    return ' '
+endfunction
+
+function! SetModifiedSymbol(modified) abort
+    let l:p = s:Palette()
     if a:modified == 1
-        hi CustomStatuslineModifiedBody cterm=none gui=none ctermbg=1 ctermfg=0 guibg=#fc8993 guifg=#272c38
-        hi CustomStatuslineModified cterm=none gui=none ctermbg=none ctermfg=1 guibg=none guifg=#fc8993
+        call s:Hi('CustomStatuslineModified', l:p.modified, l:p.bg, 'none')
+        call s:Hi('CustomStatuslineModifiedBody', s:Contrast(l:p.modified), l:p.modified, 'none')
+        call s:Hi('CustomStatuslineModifiedSeparator', l:p.modified, l:p.bg, 'none')
+        return '+'
     else
-        hi CustomStatuslineModifiedBody cterm=none gui=none ctermbg=0 ctermfg=2 guibg=#1d212a guifg=#89e19c
-        hi CustomStatuslineModified cterm=none gui=none ctermbg=0 ctermfg=0 guibg=none guifg=#1d212a
+        call s:Hi('CustomStatuslineModified', l:p.saved, l:p.bg, 'none')
+        call s:Hi('CustomStatuslineModifiedBody', s:Contrast(l:p.saved), l:p.saved, 'none')
+        call s:Hi('CustomStatuslineModifiedSeparator', l:p.saved, l:p.bg, 'none')
+        return '='
     endif
-    return ''
 endfunction
 
-function! FiletypeIcon()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' : ' ') : ''
+function! FiletypeIcon() abort
+    return winwidth(0) > 70 ? ' ' : ''
 endfunction
-function! SetFiletype(filetype) " {{{
+
+function! SetFiletype(filetype) abort
+    let l:p = s:Palette()
+
     if winwidth(0) > 70
-        hi CustomStatuslineFiletype          cterm=none   gui=none   ctermbg=none ctermfg=5 guibg=none    guifg=#d990cd
-        hi CustomStatuslineFiletypeIcon      cterm=none   gui=none   ctermbg=5 ctermfg=0 guibg=#d990cd guifg=#272c38
-        hi CustomStatuslineFiletypeBody      cterm=italic gui=italic ctermbg=8    ctermfg=5 guibg=#272c38 guifg=#d990cd
-        hi CustomStatuslineFiletypeSeparator cterm=none   gui=none   ctermbg=none ctermfg=8 guibg=none    guifg=#272c38
-        if a:filetype == ''
-            return '-'
-        else
-            return a:filetype
-        endif
-    else
-        hi CustomStatuslineFiletype          cterm=none   gui=none   ctermbg=none ctermfg=5 guibg=none    guifg=#1d212a
-        hi CustomStatuslineFiletypeIcon      cterm=none   gui=none   ctermbg=5 ctermfg=0 guibg=#1d212a guifg=#1d212a
-        hi CustomStatuslineFiletypeBody      cterm=italic gui=italic ctermbg=5    ctermfg=5 guibg=#1d212a guifg=#1d212a
-        hi CustomStatuslineFiletypeSeparator cterm=none   gui=none   ctermbg=none ctermfg=5 guibg=none    guifg=#1d212a
-        return ''
+        let l:filetype_fg = s:Contrast(l:p.filetype)
+        call s:Hi('CustomStatuslineFiletype', l:p.filetype, l:p.bg, 'none')
+        call s:Hi('CustomStatuslineFiletypeIcon', l:filetype_fg, l:p.filetype, 'none')
+        call s:Hi('CustomStatuslineFiletypeBody', l:filetype_fg, l:p.filetype, 'italic')
+        call s:Hi('CustomStatuslineFiletypeSeparator', l:p.filetype, l:p.bg, 'none')
+        return empty(a:filetype) ? '-' : a:filetype
     endif
+
+    return ''
 endfunction
 
-function GitBranchIcon()
-    if strlen(FugitiveHead())>0 && winwidth(0) > 70
-        hi CustomStatuslineGitbranch          cterm=none gui=none ctermbg=none ctermfg=4 guibg=none    guifg=#81d4ee
-        hi CustomStatuslineGitbranchIcon      cterm=none gui=none ctermbg=4 ctermfg=0 guibg=#81d4ee guifg=#272c38
-        hi CustomStatuslineGitbranchBody      cterm=none gui=none ctermbg=8    ctermfg=4 guibg=#272c38 guifg=#81d4ee
-        hi CustomStatuslineGitbranchSeparator cterm=none gui=none ctermbg=none ctermfg=8 guibg=none    guifg=#272c38
+function! GitBranchIcon() abort
+    if strlen(FugitiveHead()) > 0 && winwidth(0) > 70
         return ' '
-    else
-        hi CustomStatuslineGitbranch          cterm=none gui=none ctermbg=none ctermfg=0 guibg=none    guifg=#1d212a
-        hi CustomStatuslineGitbranchIcon      cterm=none gui=none ctermbg=0    ctermfg=0 guibg=#1d212a guifg=#1d212a
-        hi CustomStatuslineGitbranchBody      cterm=none gui=none ctermbg=0    ctermfg=0 guibg=#1d212a guifg=#1d212a
-        hi CustomStatuslineGitbranchSeparator cterm=none gui=none ctermbg=none ctermfg=0 guibg=none    guifg=#1d212a
-        return ''
     endif
+
+    return ''
 endfunction
 
-
-function! Shiftwidth()
-    let fname = expand('%:t')
-    if ! &expandtab || fname == 'ControlP'
-        return '-'
+function! SetActiveStatusLine() abort
+    let l:branch = FugitiveHead()
+    let l:statusline  = "%{RedrawModeColors(mode())}"
+    let l:statusline .= "%#CustomStatuslineAccent#"
+    let l:statusline .= "%#CustomStatuslineAccentBody#%{ModeIcon(mode())}"
+    let l:statusline .= "%#CustomStatuslineFilename#\ %t\ "
+    let l:statusline .= "%#CustomStatuslineFilenameSeparator#\ "
+    let l:statusline .= "%#CustomStatuslineModified#"
+    let l:statusline .= "%#CustomStatuslineModifiedBody#%{SetModifiedSymbol(&modified)}"
+    let l:statusline .= "%#CustomStatuslineModifiedSeparator#"
+    let l:statusline .= "%="
+    if strlen(l:branch) > 0 && winwidth(0) > 70
+        let l:statusline .= "%#CustomStatuslineGitbranch#"
+        let l:statusline .= "%#CustomStatuslineGitbranchIcon#%{GitBranchIcon()}"
+        let l:statusline .= "%#CustomStatuslineGitbranchBody#\ " . l:branch . "\ "
+        let l:statusline .= "%#CustomStatuslineGitbranchSeparator#\ "
+        let l:statusline .= "\ "
     endif
-    if &shiftwidth == 0
-        return &tabstop
-    else
-        return &shiftwidth
-    endif
+    let l:statusline .= "%#CustomStatuslineTotalLines#"
+    let l:statusline .= "%#CustomStatuslineTotalLinesIcon# "
+    let l:statusline .= "%#CustomStatuslineTotalLinesBody#\ %l"
+    let l:statusline .= "\/\%#CustomStatuslineTotalLinesBody#%L"
+    let l:statusline .= "%#CustomStatuslineTotalLinesSeparator#"
+    let l:statusline .= "\ "
+    let l:statusline .= "%#CustomStatuslineFiletype#"
+    let l:statusline .= "%#CustomStatuslineFiletypeIcon#%{FiletypeIcon()}"
+    let l:statusline .= "%#CustomStatuslineFiletypeBody#\ %{SetFiletype(&filetype)}"
+    let l:statusline .= "%#CustomStatuslineFiletypeSeparator#\ "
+    return l:statusline
 endfunction
 
-" Setup the colors
-hi StatusLine                cterm=none gui=none ctermbg=8 ctermfg=3 guibg=none guifg=none
-hi CustomStatuslineSeparator cterm=none gui=none ctermbg=none ctermfg=8 guibg=none guifg=#272c38
-
-hi CustomStatuslinePercentage     ctermfg=0 cterm=NONE ctermbg=NONE
-hi CustomStatuslinePercentageBody ctermbg=0 cterm=none ctermfg=6
-
-hi CustomStatuslineTotalLines     cterm=none gui=none ctermbg=none ctermfg=3 guibg=none guifg=#fbdf90
-hi CustomStatuslineTotalLinesIcon cterm=none gui=none ctermbg=3 ctermfg=0 guibg=#fbdf90 guifg=#272c38
-hi CustomStatuslineTotalLinesBody cterm=none gui=none ctermbg=8    ctermfg=3 guibg=#272c38 guifg=#fbdf90
-hi CustomStatuslineTotalLinesSeparator cterm=none gui=none ctermbg=none ctermfg=8 guibg=none guifg=#272c38
-
-hi CustomStatuslineInactiveDark           cterm=none gui=none ctermbg=8 ctermfg=12 guibg=#44506c guifg=#a7bdfb
-hi CustomStatuslineInactiveDarkSeparator  cterm=none gui=none ctermbg=8 ctermfg=12 guibg=none    guifg=#272c38
-hi CustomStatuslineInactiveLight          cterm=none gui=none ctermbg=8 ctermfg=12 guibg=none guifg=#44506c
-hi CustomStatuslineInactiveLightSeparator cterm=none gui=none ctermbg=8 ctermfg=12 guibg=none    guifg=#44506c
-
-function! SetActiveStatusLine()
-    " Statusbar items
-    let statusline  = "%{RedrawModeColors(mode())}"
-    " Left side items
-    " =======================
-    let statusline .= "%#CustomStatuslineAccent#"
-    let statusline .= "%#CustomStatuslineAccentBody#%{ModeIcon(mode())}"
-    let statusline .= "%#CustomStatuslineFilename#\ %t\ "
-    let statusline .= "%#CustomStatuslineSeparator#\ "
-    " Modified status
-    let statusline .= "%#CustomStatuslineModified#"
-    let statusline .= "%#CustomStatuslineModifiedBody#%{SetModifiedSymbol(&modified)}"
-    let statusline .= "%#CustomStatuslineModified#"
-    " Right side items
-    " =======================
-    let statusline .= "%="
-    " Git branch name
-    let statusline .= "%#CustomStatuslineGitbranch#"
-    let statusline .= "%#CustomStatuslineGitbranchIcon#%{GitBranchIcon()}"
-    let statusline .= "%#CustomStatuslineGitbranchBody#\ %{FugitiveHead()}"
-    let statusline .= "%#CustomStatuslineGitbranchSeparator#\ "
-    " Padding
-    let statusline .= "\ "
-    " Current line / total number of lines
-    let statusline .= "%#CustomStatuslineTotalLines#"
-    let statusline .= "%#CustomStatuslineTotalLinesIcon# "
-    let statusline .= "%#CUSTomStatuslineTotalLinesBody#\ %l"
-    let statusline .= "\/\%#CUSTomStatuslineTotalLinesBody#%L"
-    let statusline .= "%#CustomStatuslineTotalLinesSeparator#"
-    " Padding
-    let statusline .= "\ "
-    " Filetype
-    let statusline .= "%#CustomStatuslineFiletype#"
-    let statusline .= "%#CustomStatuslineFiletypeIcon#%{FiletypeIcon()}"
-    let statusline .= "%#CustomStatuslineFiletypeBody#\ %{SetFiletype(&filetype)}"
-    let statusline .= "%#CustomStatuslineFiletypeSeparator#\ "
-    return statusline
-endfunction
-
-function! SetInactiveStatusLine()
-    " Statusbar items
-    let statusline  = "%{RedrawModeColors(mode())}"
-    " Left side items
-    " =======================
-    let statusline .= "%#CustomStatuslineAccent#"
-    let statusline .= "%#CustomStatuslineAccentBody#%{ModeIcon(mode())}"
-    let statusline .= "%#CustomStatuslineFilename#\ %t\ "
-    let statusline .= "%#CustomStatuslineSeparator#\ "
-    " Modified status
-    let statusline .= "%#CustomStatuslineModified#"
-    let statusline .= "%#CustomStatuslineModifiedBody#%{SetModifiedSymbol(&modified)}"
-    let statusline .= "%#CustomStatuslineModified#"
-    " Right side items
-    " =======================
-    let statusline .= "%="
-    " Git branch name
-    let statusline .= "%#CustomStatuslineGitbranch#"
-    let statusline .= "%#CustomStatuslineGitbranchIcon#%{GitBranchIcon()}"
-    let statusline .= "%#CustomStatuslineGitbranchBody#\ %{FugitiveHead()}"
-    let statusline .= "%#CustomStatuslineGitbranchSeparator#\ "
-    " Padding
-    let statusline .= "\ "
-    " Current line / total number of lines
-    let statusline .= "%#CustomStatuslineTotalLines#"
-    let statusline .= "%#CustomStatuslineTotalLinesIcon# "
-    let statusline .= "%#CUSTomStatuslineTotalLinesBody#\ %l"
-    let statusline .= "\/\%#CUSTomStatuslineTotalLinesBody#%L"
-    let statusline .= "%#CustomStatuslineTotalLinesSeparator#"
-    " Padding
-    let statusline .= "\ "
-    " Filetype
-    let statusline .= "%#CustomStatuslineFiletype#"
-    let statusline .= "%#CustomStatuslineFiletypeIcon#%{FiletypeIcon()}"
-    let statusline .= "%#CustomStatuslineFiletypeBody#\ %{SetFiletype(&filetype)}"
-    let statusline .= "%#CustomStatuslineFiletypeSeparator#\ "
-    return statusline
+function! SetInactiveStatusLine() abort
+    call s:RefreshStatuslineTheme()
+    let l:statusline  = "%#CustomStatuslineInactive#"
+    let l:statusline .= "%#CustomStatuslineInactive# %t "
+    let l:statusline .= "%#CustomStatuslineInactiveSeparator#"
+    return l:statusline
 endfunction
 
 augroup vimrc-statusline
     autocmd!
-    autocmd WinEnter * setlocal statusline=%!SetActiveStatusLine()
-    autocmd BufEnter * setlocal statusline=%!SetActiveStatusLine()
-    autocmd WinNew   * setlocal statusline=%!SetActiveStatusLine()
-    autocmd WinLeave * setlocal statusline=%!SetActiveStatusLine()
+    autocmd ColorScheme * call <SID>RefreshStatuslineTheme()
+    autocmd VimEnter,BufEnter,WinEnter * call <SID>RefreshStatuslineTheme() | setlocal statusline=%!SetActiveStatusLine()
+    autocmd CursorMoved,CursorMovedI * call <SID>RefreshStatuslineTheme()
+    autocmd WinLeave * call <SID>RefreshStatuslineTheme() | setlocal statusline=%!SetInactiveStatusLine()
 augroup END
+
+call s:RefreshStatuslineTheme()
 setlocal statusline=%!SetActiveStatusLine()
