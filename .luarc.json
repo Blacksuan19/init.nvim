@@ -1,0 +1,13 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "Snacks"
+    ],
+    "runtime.version": "LuaJIT",
+    "workspace.library": [
+        "/usr/share/nvim/runtime",
+        "${3rd}/luv/library",
+        "${3rd}/busted/library",
+        "/home/blacksuan19/.local/share/nvim/lazy/snacks.nvim/lua"
+    ]
+}

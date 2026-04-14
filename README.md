@@ -1,7 +1,6 @@
-<p align="center">
-<img src="./Screens/screen0.png">
+# init.nvim
 
-</p>
+![Main screenshot](./Screens/screen0.png)
 
 ## Why?
 
@@ -15,28 +14,26 @@ functionality is very common, thats one of the things this distro avoids, KISS!
 
 ## Features
 
-- Single file (you don't want your dotfiles to be all Vim script)
-- Super minimal (~400 lines)
-- Super fast startup (less than 40ms!)
-- Lazy loading plugins
-- Highly customizable
-- Beautiful [Material ocean](https://github.com/material-ocean/Material-Ocean)
-  color scheme
-- Various IDE features via [coc.nvim](https://github.com/neoclide/coc.nvim)
-- Smooth Scrolling (its really smooth!)
-- Fully integrated with fzf (see [demos](#demos))
-- Live Markdown preview
-- Simple, Intuitive shortcuts
+- Lua-first Neovim config
+- Native LSP powered by Neovim, Mason, Conform, and Blink
+- Lazy-managed plugins with modular config under `lua/config/` and
+  `lua/plugins/`
+- Ayu-based theme with automatic light/dark switching, custom floats, and a
+  custom statusline
+- Modern Snacks-based picker and scrolling workflow
+- Noice-powered command line and notifications
+- Simple, intuitive shortcuts
 
 ### Supported Languages
 
-Neovim provides support for a wide range of languages by default. For more
-languages install [vim-polyglot](https://github.com/sheerun/vim-polyglot).
+Built-in LSP and formatter setup is included for Bash, C/C++, CSS, HTML, JSON,
+Lua, Python, TypeScript, XML, and YAML. Mason installs the configured language
+servers and formatters automatically on startup.
 
 ## Requirements
 
 - Linux (not tested on other platforms)
-- Neovim (you can try regular Vim)
+- Neovim `0.11+`
 - Properly set up environment
 
 ## Setup
@@ -46,18 +43,17 @@ To check if your current environment is correctly set up run `:CheckHealth`.
 ### Environment
 
 - python3: `pip3 install --user pynvim`
-- javascript: `yarn global add neovim`
+- javascript: `npm install -g neovim`
 
 ### Tools
 
 - [Any patched nerd font](https://github.com/ryanoasis/nerd-fonts/)
 - [tmux](https://github.com/tmux/tmux) (not required but recommended)
-- [prettier](https://prettier.io/)
-- clang (much better C and C++)
-- [fuzzy finder (fzf)](https://github.com/junegunn/fzf)
+- [git](https://git-scm.com/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
-- [bat](https://github.com/sharkdp/bat)
-- [black](https://black.readthedocs.io/en/latest/) for python formatting
+- a C toolchain for `clangd` / `clang-format`
+
+Most language servers and formatters are installed automatically through Mason.
 
 ## Installation
 
@@ -69,52 +65,56 @@ After installing the requirements:
 
 ## Plugins
 
-Thanks to vim-plug the plugins are lazy loaded (anything that is not needed for
-the current buffer is not loaded) for example opening a python file means all
-other non python related plugins are not loaded. Coc extensions are lazy loaded
-as well, they work the same way as vim-plug plugins.
+Plugins are managed by `lazy.nvim`, with language servers and formatters handled
+by Mason.
 
-| Plugin                                                              | Functionality                                |
-| ------------------------------------------------------------------- | -------------------------------------------- |
-| [vim-airline](https://github.com/vim-airline/vim-airline)           | airline status line                          |
-| [devicons](https://github.com/ryanoasis/vim-devicons)               | icons everywhere                             |
-| [rainbow](https://github.com/luochen1990/rainbow)                   | rainbow parenthesis                          |
-| [vim-material](https://github.com/hzchirs/vim-material)             | material themes                              |
-| [coc.nvim](https://github.com/neoclide/coc.nvim)                    | async completion and more                    |
-| [fzf.vim](https://github.com/junegunn/fzf.vim)                      | fuzzy finder vim integration                 |
-| [vim-snippets](https://github.com/honza/vim-snippets)               | snippets for many languages                  |
-| [indentLine](https://github.com/Yggdroot/indentLine)                | auto indent lines                            |
-| [vim-commentary](https://github.com/tpope/vim-commentary)           | better comments everywhere                   |
-| [vim-startify](https://github.com/mhinz/vim-startify)               | cool startup thingy                          |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)               | best git integration around                  |
-| [vim-sandwich](https://github.com/machakann/vim-sandwich)           | surround stuff with stuff                    |
-| [vim-smoothie](https://github.com/psliwka/vim-smoothie)             | super smooth scrolling                       |
-| [tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) | seamless movement between Vim and tmux panes |
-| [tmux-complete](https://github.com/wellle/tmux-complete.vim)        | tmux panes completion                        |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)                   | some common Linux commands                   |
-| [semshi](https://github.com/numirias/semshi)                        | better highlighting for python               |
-| [markdown-preview](https://github.com/iamcco/markdown-preview.nvim) | live markdown preview                        |
-| [vim-MvVis](https://github.com/Jorengarenar/vim-MvVis)              | move visual selection                        |
+| Plugin                                                                                    | Functionality                                |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [lazy.nvim](https://github.com/folke/lazy.nvim)                                           | plugin management                            |
+| [blink.cmp](https://github.com/Saghen/blink.cmp)                                          | completion UI                                |
+| [conform.nvim](https://github.com/stevearc/conform.nvim)                                  | formatting                                   |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                               | git signs in the gutter                      |
+| [mason.nvim](https://github.com/williamboman/mason.nvim)                                  | external tool management                     |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)              | LSP server installation bridge               |
+| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | auto-installs tools on startup               |
+| [mini.nvim](https://github.com/nvim-mini/mini.nvim)                                       | icons, comments, move, surround              |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                | LSP server configs                           |
+| [alpha-nvim](https://github.com/goolord/alpha-nvim)                                       | start screen                                 |
+| [neovim-ayu](https://github.com/Shatur/neovim-ayu)                                        | colorscheme                                  |
+| [noice.nvim](https://github.com/folke/noice.nvim)                                         | command line and message UI                  |
+| [nvim-notify](https://github.com/rcarriga/nvim-notify)                                    | notifications                                |
+| [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)             | rainbow bracket highlighting                 |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                      | VS Code-style snippet collection for Blink   |
+| [blink-cmp-conventional-commits](https://github.com/disrupted/blink-cmp-conventional-commits) | conventional commit suggestions for Blink |
+| [blink-cmp-git](https://github.com/Kaiser-Yang/blink-cmp-git)                             | git-aware Blink completion source            |
+| [blink-cmp-tmux](https://github.com/mgalliou/blink-cmp-tmux)                              | tmux pane text as a Blink completion source  |
+| [blink-cmp-words](https://github.com/archie-judd/blink-cmp-words)                         | English words and synonyms for Blink         |
+| [snacks.nvim](https://github.com/folke/snacks.nvim)                                       | indent guides, picker, smooth scrolling      |
+| [auto-dark-mode.nvim](https://github.com/f-person/auto-dark-mode.nvim)                    | automatic theme switching                    |
+| [MatchTag](https://github.com/gregsexton/MatchTag)                                        | matching HTML/XML tags                       |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)                                     | best git integration around                  |
+| [tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)                       | seamless movement between Vim and tmux panes |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)                                         | some common Linux commands                   |
 
 ## Keyboard shortcuts
 
 To learn the default Vim shortcuts run `Tutor` and or checkout this
 [vim adventures](https://vim-adventures.com/).
 
-#### Essentials
+### Essentials
 
-| Mapping      | functionality                        |
-| ------------ | ------------------------------------ |
-| `;`          | commands key                         |
-| `,`          | leader key                           |
-| `leader + r` | reload nvim config                   |
-| `leader + w` | save changes                         |
-| `leader + e` | call :PlugInstall (install plug-ins) |
-| `Enter`      | enter empty line in normal mode      |
-| `F2`         | trim white spaces                    |
-| `F6`         | open Startify                        |
+| Mapping      | functionality                   |
+| ------------ | ------------------------------- |
+| `;`          | commands key                    |
+| `,`          | leader key                      |
+| `leader + w` | save changes                    |
+| `leader + e` | sync plugins with Lazy          |
+| `Enter`      | enter empty line in normal mode |
+| `S-Enter`    | enter empty line above          |
+| `F2`         | trim trailing whitespace        |
+| `F6`         | open the start screen           |
 
-#### Visual Mode Essentials
+### Visual Mode Essentials
 
 | Mapping    | functionality                   |
 | ---------- | ------------------------------- |
@@ -123,14 +123,15 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this
 | `ctrl + h` | move selected text to the left  |
 | `ctrl + l` | move selected text to the right |
 
-#### Navigation
+### Navigation
 
 `ctrl + hjkl` navigation also supports tmux panes.
 
 | Mapping      | functionality                          |
 | ------------ | -------------------------------------- |
-| `leader + q` | close tab                              |
-| `ctrl + q`   | close all buffers and exit             |
+| `leader + q` | confirm and delete current buffer      |
+| `\`          | alias for `leader + q`                 |
+| `ctrl + q`   | confirm and quit Neovim                |
 | `ctrl + l`   | move to the split on the right         |
 | `ctrl + k`   | move the split above                   |
 | `ctrl + j`   | move to the split on below             |
@@ -138,32 +139,23 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this
 | `Tab`        | switch to the next buffer(normal mode) |
 | `S-Tab`      | switch to the previous buffer          |
 
-#### IDE Features
+### IDE Features
 
 | Mapping       | functionality                        |
 | ------------- | ------------------------------------ |
-| `leader + o`  | organize imports                     |
-| `leader + a`  | run cocAction on what's undercursor  |
+| `OR`          | organize imports                     |
+| `leader + a`  | run code action                      |
 | `leader + s`  | format file with available formatter |
 | `leader + rn` | rename globally                      |
 | `leader + jd` | jump to definition                   |
 | `leader + jy` | jump to type definition              |
 | `leader + ji` | jump to implementation               |
 | `leader + jr` | jump to references                   |
-| `ctrl + a`    | highlight for multi cursor selection |
-| `shift + k`   | show current symbol documentation    |
+| `K`           | show current symbol documentation    |
 | `]g`          | next diagnostic                      |
 | `[g`          | Previous diagnostic                  |
 
-#### Flutter
-
-| Mapping | functionality                          |
-| ------- | -------------------------------------- |
-| `F3`    | show list of devices                   |
-| `F4`    | show list of emulators                 |
-| `F5`    | start development server (flutter run) |
-
-#### FZF windows
+### Picker windows
 
 | Mapping       | functionality                            |
 | ------------- | ---------------------------------------- |
@@ -172,70 +164,70 @@ To learn the default Vim shortcuts run `Tutor` and or checkout this
 | `leader + /`  | search in current folder files           |
 | `leader + sh` | search / history                         |
 | `leader + b`  | show open buffers                        |
-| `leader + t`  | search current file tags                 |
+| `leader + t`  | search current buffer lines              |
 | `F1`          | show keyboard shortcuts for current mode |
 
-#### In FZF
+### Git
 
-these only work on an open fzf window
-
-| Mapping | Functionality                 |
-| ------- | ----------------------------- |
-| `C-x`   | open file in horizontal split |
-| `C-v`   | open file in vertical split   |
-| `C-t`   | open file in new tab          |
-
-#### Git
-
-| Mapping       | functionality            |
-| ------------- | ------------------------ |
-| `leader + gd` | git diff split           |
-| `leader + gc` | git commits              |
-| `leader + gb` | git blame                |
-| `leader + gs` | git status in fzf window |
+| Mapping       | functionality     |
+| ------------- | ----------------- |
+| `leader + gd` | git diff split    |
+| `leader + gc` | git commits       |
+| `leader + gb` | git blame         |
+| `leader + gs` | git status picker |
 
 ## Custom commands
 
-| Command | Functionality                            |
-| ------- | ---------------------------------------- |
-| Format  | format file with any available formatter |
-| OR      | organize imports                         |
-| Rg      | advanced Grep                            |
+| Command    | Functionality                            |
+| ---------- | ---------------------------------------- |
+| `Format`   | format file with any available formatter |
+| `OR`       | organize imports                         |
+| `Files`    | open the file picker                     |
+| `Rg`       | grep project files                       |
+| `Buffers`  | list open buffers                        |
+| `Commands` | list editor commands                     |
+| `BTags`    | search current buffer lines              |
+| `Commits`  | show git commits                         |
 
 ## Customizations
 
-Since the file is pretty small its very easy to interpret by even those who
-don't have any knowledge about vim script, most of the sections have comments
-about their functionality, and can be removed, commented out or swapped easily,
-there are some defaults that are not everyone's cup of tea (after all this is
-highly opinionated).
+This config is organized as a small Lua codebase rather than a single init file.
+Core editor behavior lives under `lua/config/`, while plugin declarations and
+plugin-specific setup live under `lua/plugins/`. That makes it easier to change
+one part of the setup without digging through unrelated settings.
 
-- **Disabling Plugins:** comment out the plug's 'Plugin/name' line from config
-  and also remove the plugin settings
+If you want to customize behavior, the most useful places to look are:
 
-- **Disabling CoC Plugins:** comment out the plugin from `coc_global_extensions`
-  variable and uninstall it via `:CocUninstall` plugin name
+- `lua/config/options.lua` for editor options
+- `lua/config/keymaps.lua` for global mappings
+- `lua/config/autocmds.lua` for editor automation
+- `lua/config/theme.lua` and `lua/config/statusline.lua` for appearance
+- `lua/plugins/*.lua` for plugin choices and plugin-specific behavior
 
-- **Installing CoC plugins:** open `:CocList` and search for marketplace, you
-  can find all available plugins here
+- **Disabling Plugins:** remove or edit the relevant spec under `lua/plugins/`
+  and adjust any matching config under `lua/config/`
 
-- **Adding Bookmarks:** to add bookmarks to the start page, find
-  `g:startify_bookmarks` in `init.nvim` and add the new bookmark just like the
-  already present ones, the dictionary key is the shortcut you will use to
-  quickly jump to that folder from the start page and the value is the path to
-  targeted folder
+- **Managing LSP tools:** use `:Mason`, `:MasonToolsInstall`, and
+  `:MasonToolsUpdate`
 
-for more customizations read throw the config file, there are comments
-everywhere and its easy to interpret, you can also checkout the linked github
-page for each plugin for even more options.
+- **Formatting:** use `:Format` to format the current buffer with Conform
+
+- **Adding Bookmarks:** to add bookmarks to the start page, find the Alpha start
+  screen config in `lua/plugins/alpha.lua`
+
+- **Reloading config:** a full Neovim restart is still the most reliable way to
+  apply changes across this Lua config, especially plugin spec edits
+
+For deeper customization, read through the relevant Lua module and then check
+the upstream plugin documentation for any extra options you want to enable.
 
 ## Demos
 
-### Project files with fzf
+### Project files with fuzzy finder
 
 ![fzf preview](./Screens/screen1.png)
 
-### Project wide search with fzf
+### Project wide search
 
 ![Rg preview](./Screens/screen2.png)
 
