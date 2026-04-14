@@ -4,7 +4,17 @@ local function setup_completion()
     require("blink.cmp").setup({
         keymap = {
             preset = "enter",
-            ["<Tab>"] = { "snippet_forward", "fallback" },
+            ["<Tab>"] = {
+                function(cmp)
+                    if cmp.snippet_active() then
+                        return cmp.accept()
+                    else
+                        return cmp.select_and_accept()
+                    end
+                end,
+                "snippet_forward",
+                "fallback",
+            },
             ["<S-Tab>"] = { "snippet_backward", "fallback" },
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<Up>"] = { "select_prev", "fallback" },
@@ -57,7 +67,7 @@ local function setup_completion()
         sources = {
             default = { "lsp", "path", "snippets", "tmux", "buffer" },
             per_filetype = {
-                gitcommit = { inherit_defaults = true, "git", "conventional_commits" },
+                gitcommit = { inherit_defaults = true, "conventional_commits", "git" },
                 markdown = { inherit_defaults = true, "git", "dictionary", "thesaurus" },
                 text = { inherit_defaults = true, "dictionary", "thesaurus" },
             },
@@ -65,6 +75,7 @@ local function setup_completion()
                 conventional_commits = {
                     module = "blink-cmp-conventional-commits",
                     name = "Conventional Commits",
+                    score_offset = 8,
                 },
                 git = {
                     module = "blink-cmp-git",
