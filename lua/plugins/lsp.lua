@@ -67,7 +67,7 @@ local function setup_completion()
         sources = {
             default = { "lsp", "path", "snippets", "tmux", "buffer" },
             per_filetype = {
-                gitcommit = { inherit_defaults = true, "conventional_commits", "git" },
+                gitcommit = { inherit_defaults = true, "conventional_commits" },
                 markdown = { inherit_defaults = true, "git", "dictionary", "thesaurus" },
                 text = { inherit_defaults = true, "dictionary", "thesaurus" },
             },
@@ -76,13 +76,6 @@ local function setup_completion()
                     module = "blink-cmp-conventional-commits",
                     name = "Conventional Commits",
                     score_offset = 8,
-                },
-                git = {
-                    module = "blink-cmp-git",
-                    name = "Git",
-                    enabled = function()
-                        return vim.tbl_contains({ "gitcommit", "markdown" }, vim.bo.filetype)
-                    end,
                 },
                 dictionary = {
                     module = "blink-cmp-words.dictionary",
@@ -319,7 +312,6 @@ return {
             "rafamadriz/friendly-snippets",
             "archie-judd/blink-cmp-words",
             "disrupted/blink-cmp-conventional-commits",
-            "Kaiser-Yang/blink-cmp-git",
             "mgalliou/blink-cmp-tmux",
         },
         config = setup_completion,
