@@ -1,5 +1,18 @@
 local is_vscode = vim.g.vscode ~= nil
 
+local picker_excludes = {
+    ".git",
+    ".git/**",
+    "build",
+    "build/**",
+    ".dart_tool",
+    ".dart_tool/**",
+    ".idea",
+    ".idea/**",
+    "node_modules",
+    "node_modules/**",
+}
+
 return {
     {
         "folke/snacks.nvim",
@@ -8,7 +21,21 @@ return {
         lazy = false,
         opts = {
             indent = { enabled = true },
-            picker = { enabled = true },
+            picker = {
+                enabled = true,
+                sources = {
+                    files = {
+                        hidden = true,
+                        ignored = false,
+                        exclude = picker_excludes,
+                    },
+                    grep = {
+                        hidden = true,
+                        ignored = false,
+                        exclude = picker_excludes,
+                    },
+                },
+            },
             scroll = { enabled = true },
         },
         keys = {
@@ -26,14 +53,28 @@ return {
             require("snacks").setup(opts)
 
             vim.api.nvim_create_user_command("Files", function(opts2)
-                Snacks.picker.files({ cwd = opts2.args ~= "" and opts2.args or nil })
+                Snacks.picker.files({
+                    cwd = opts2.args ~= "" and opts2.args or nil,
+                    hidden = true,
+                    ignored = false,
+                    exclude = picker_excludes,
+                })
             end, { nargs = "?", bang = true, complete = "dir" })
 
             vim.api.nvim_create_user_command("Rg", function(opts2)
                 if opts2.args ~= "" then
-                    Snacks.picker.grep({ search = opts2.args })
+                    Snacks.picker.grep({
+                        search = opts2.args,
+                        hidden = true,
+                        ignored = false,
+                        exclude = picker_excludes,
+                    })
                 else
-                    Snacks.picker.grep()
+                    Snacks.picker.grep({
+                        hidden = true,
+                        ignored = false,
+                        exclude = picker_excludes,
+                    })
                 end
             end, { nargs = "*", bang = true })
 
