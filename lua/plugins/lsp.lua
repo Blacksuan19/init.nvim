@@ -1,27 +1,23 @@
 local is_vscode = vim.g.vscode ~= nil
 
+local function accept_first_or_snippet(cmp)
+    if cmp.snippet_active() then
+        return cmp.accept()
+    else
+        return cmp.select_and_accept()
+    end
+end
+
 local function setup_completion()
     require("blink.cmp").setup({
         keymap = {
             preset = "enter",
             ["<CR>"] = {
-                function(cmp)
-                    if cmp.snippet_active() then
-                        return cmp.accept()
-                    else
-                        return cmp.select_and_accept()
-                    end
-                end,
+                accept_first_or_snippet,
                 "fallback",
             },
             ["<Tab>"] = {
-                function(cmp)
-                    if cmp.snippet_active() then
-                        return cmp.accept()
-                    else
-                        return cmp.select_and_accept()
-                    end
-                end,
+                accept_first_or_snippet,
                 "snippet_forward",
                 "fallback",
             },
@@ -38,7 +34,7 @@ local function setup_completion()
         completion = {
             list = {
                 selection = {
-                    preselect = false,
+                    preselect = true,
                     auto_insert = false,
                 },
             },
