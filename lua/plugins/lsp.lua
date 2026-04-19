@@ -4,6 +4,16 @@ local function setup_completion()
     require("blink.cmp").setup({
         keymap = {
             preset = "enter",
+            ["<CR>"] = {
+                function(cmp)
+                    if cmp.snippet_active() then
+                        return cmp.accept()
+                    else
+                        return cmp.select_and_accept()
+                    end
+                end,
+                "fallback",
+            },
             ["<Tab>"] = {
                 function(cmp)
                     if cmp.snippet_active() then
