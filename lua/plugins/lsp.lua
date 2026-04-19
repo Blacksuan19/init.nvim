@@ -73,8 +73,8 @@ local function setup_completion()
         sources = {
             default = { "lsp", "path", "snippets", "tmux", "buffer" },
             per_filetype = {
-                gitcommit = { inherit_defaults = true, "conventional_commits" },
-                markdown = { inherit_defaults = true, "git", "dictionary", "thesaurus" },
+                gitcommit = { inherit_defaults = true, "conventional_commits", "dictionary", "thesaurus" },
+                markdown = { inherit_defaults = true, "dictionary", "thesaurus" },
                 text = { inherit_defaults = true, "dictionary", "thesaurus" },
             },
             providers = {
