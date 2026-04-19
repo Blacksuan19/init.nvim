@@ -68,33 +68,32 @@ After installing the requirements:
 Plugins are managed by `lazy.nvim`, with language servers and formatters handled
 by Mason.
 
-| Plugin                                                                                    | Functionality                                |
-| ----------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [lazy.nvim](https://github.com/folke/lazy.nvim)                                           | plugin management                            |
-| [blink.cmp](https://github.com/Saghen/blink.cmp)                                          | completion UI                                |
-| [conform.nvim](https://github.com/stevearc/conform.nvim)                                  | formatting                                   |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                               | git signs in the gutter                      |
-| [mason.nvim](https://github.com/williamboman/mason.nvim)                                  | external tool management                     |
-| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)              | LSP server installation bridge               |
-| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | auto-installs tools on startup               |
-| [mini.nvim](https://github.com/nvim-mini/mini.nvim)                                       | icons, comments, move, surround              |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                | LSP server configs                           |
-| [alpha-nvim](https://github.com/goolord/alpha-nvim)                                       | start screen                                 |
-| [neovim-ayu](https://github.com/Shatur/neovim-ayu)                                        | colorscheme                                  |
-| [noice.nvim](https://github.com/folke/noice.nvim)                                         | command line and message UI                  |
-| [nvim-notify](https://github.com/rcarriga/nvim-notify)                                    | notifications                                |
-| [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)             | rainbow bracket highlighting                 |
-| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                      | VS Code-style snippet collection for Blink   |
-| [blink-cmp-conventional-commits](https://github.com/disrupted/blink-cmp-conventional-commits) | conventional commit suggestions for Blink |
-| [blink-cmp-git](https://github.com/Kaiser-Yang/blink-cmp-git)                             | git-aware Blink completion source            |
-| [blink-cmp-tmux](https://github.com/mgalliou/blink-cmp-tmux)                              | tmux pane text as a Blink completion source  |
-| [blink-cmp-words](https://github.com/archie-judd/blink-cmp-words)                         | English words and synonyms for Blink         |
-| [snacks.nvim](https://github.com/folke/snacks.nvim)                                       | indent guides, picker, smooth scrolling      |
-| [auto-dark-mode.nvim](https://github.com/f-person/auto-dark-mode.nvim)                    | automatic theme switching                    |
-| [MatchTag](https://github.com/gregsexton/MatchTag)                                        | matching HTML/XML tags                       |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive)                                     | best git integration around                  |
-| [tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)                       | seamless movement between Vim and tmux panes |
-| [vim-eunuch](https://github.com/tpope/vim-eunuch)                                         | some common Linux commands                   |
+| Plugin                                                                                        | Functionality                                |
+| --------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [lazy.nvim](https://github.com/folke/lazy.nvim)                                               | plugin management                            |
+| [blink.cmp](https://github.com/Saghen/blink.cmp)                                              | completion UI                                |
+| [conform.nvim](https://github.com/stevearc/conform.nvim)                                      | formatting                                   |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                                   | git signs in the gutter                      |
+| [mason.nvim](https://github.com/williamboman/mason.nvim)                                      | external tool management                     |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)                  | LSP server installation bridge               |
+| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)     | auto-installs tools on startup               |
+| [mini.nvim](https://github.com/nvim-mini/mini.nvim)                                           | icons, comments, move, surround              |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                    | LSP server configs                           |
+| [alpha-nvim](https://github.com/goolord/alpha-nvim)                                           | start screen                                 |
+| [neovim-ayu](https://github.com/Shatur/neovim-ayu)                                            | colorscheme                                  |
+| [noice.nvim](https://github.com/folke/noice.nvim)                                             | command line and message UI                  |
+| [nvim-notify](https://github.com/rcarriga/nvim-notify)                                        | notifications                                |
+| [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)                 | rainbow bracket highlighting                 |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                          | VS Code-style snippet collection for Blink   |
+| [blink-cmp-conventional-commits](https://github.com/disrupted/blink-cmp-conventional-commits) | conventional commit suggestions for Blink    |
+| [blink-cmp-tmux](https://github.com/mgalliou/blink-cmp-tmux)                                  | tmux pane text as a Blink completion source  |
+| [blink-cmp-words](https://github.com/archie-judd/blink-cmp-words)                             | English words and synonyms for Blink         |
+| [snacks.nvim](https://github.com/folke/snacks.nvim)                                           | indent guides, picker, smooth scrolling      |
+| [auto-dark-mode.nvim](https://github.com/f-person/auto-dark-mode.nvim)                        | automatic theme switching                    |
+| [MatchTag](https://github.com/gregsexton/MatchTag)                                            | matching HTML/XML tags                       |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)                                         | best git integration around                  |
+| [tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)                           | seamless movement between Vim and tmux panes |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch)                                             | some common Linux commands                   |
 
 ## Keyboard shortcuts
 
